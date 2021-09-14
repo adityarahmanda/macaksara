@@ -27,6 +27,7 @@ export default {
             currentSyllable: 0,
             totalChoices: 5,
             streakCount: 0,
+            maxStreakCount: 0,
             correctNotification: {
                 icon: "check",
                 color: "var(--dark-brown)",
@@ -74,7 +75,10 @@ export default {
             let choices = [syllable];
             
             for(let i = 1; i < this.totalChoices; i++) {
-                choices = [...choices, this.generateJavaneseSyllable()];
+                let generatedSyllable;
+                do { generatedSyllable = this.generateJavaneseSyllable(); } 
+                while (generatedSyllable === syllable);
+                choices = [...choices, generatedSyllable];
             }
             
             return this.shuffleArray(choices);
@@ -84,22 +88,11 @@ export default {
             if(choice === this.syllables[this.currentSyllable]) {
                 // play correct sound
                 this.$sounds.correct.play();
-
-                // set to next syllable
-                if(this.currentSyllable !== this.syllables.length - 1)
-                {
-                    this.currentSyllable++;
-                } else {
-                    this.$emit('question-answered');
-                    this.currentSyllable = 0;
-                }
                 
-                // set streak
+                // calculate max streak
                 this.streakCount++;
-
-                // new streak
-                if(this.streakCount > this.userMaxStreak) {
-                    this.$emit('new-streak');
+                if(this.streakCount > this.maxStreakCount) {
+                    this.maxStreakCount = this.streakCount;
                 }
 
                 // correct or streak notification
@@ -108,6 +101,18 @@ export default {
                     this.$emit('set-notification', this.streakNotification);
                 } else {
                     this.$emit('set-notification', this.correctNotification);
+                }
+                
+                // set to next syllable
+                if(this.currentSyllable !== this.syllables.length - 1)
+                {
+                    this.currentSyllable++;
+                } else {
+                    this.$emit('question-answered');
+                    if(this.maxStreakCount > this.userMaxStreak) {
+                        this.$emit('new-streak', this.maxStreakCount);
+                    }
+                    this.currentSyllable = 0;
                 }
 
                 return;

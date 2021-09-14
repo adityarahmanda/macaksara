@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="theme-progress mt-auto d-flex">
-            <ProgressBar width="100%" height="8px" :percentage="progressPercentage" background-color="var(--light-brown)" color-fill="#876741"/>
+            <ProgressBar width="100%" height="8px" :percentage="quizProgress.completed ? '100%' : ((quizProgress.level / quiz.level.length) * 100) + '%'" background-color="var(--light-brown)" color-fill="#876741"/>
             <div class="icon col-2 d-flex flex-row justify-content-end align-items-center px-0">
                 <span class="dot ml-1"></span><span class="dot ml-1"></span><span class="dot ml-1"></span>
             </div>
@@ -34,14 +34,11 @@ export default {
             }
         },
         quizProgress: {
-            type: Number,
-            default: 0,
+            type: Object,
+            default() {
+                return {};
+            },
         },
-    },
-    data() {
-        return {
-            progressPercentage: this.quizProgress.completed ? "100%" : ((this.quizProgress.level / this.quiz.level.length) * 100) + '%',
-        }
     }
 }
 </script>

@@ -60,13 +60,13 @@ export default {
 
   sound: {
     correct: {
-      src: "https://adityarahmanda.nasihosting.com/sounds/correct.mp3",
+      src: "/sounds/correct.mp3",
       options: {
         volume: 1
       }
     },
     wrong: {
-      src: "https://adityarahmanda.nasihosting.com/sounds/wrong.mp3",
+      src: "/sounds/wrong.mp3",
       options: {
         volume: 1
       }

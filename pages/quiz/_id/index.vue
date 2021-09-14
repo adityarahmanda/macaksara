@@ -104,8 +104,8 @@ export default {
                 this.showNotification = false;
             }, 1500);
         },
-        newStreak(streakCount) {
-            this.user.maxStreak = streakCount;
+        newStreak(maxStreakCount) {
+            this.user.maxStreak = maxStreakCount;
         }
     }
 }
