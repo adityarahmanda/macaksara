@@ -1,0 +1,58 @@
+{
+  "quizzes": [
+    {
+      "id": "arane-kewan",
+      "theme" : "Arane Kewan", 
+      "level": [ 
+        {
+            "value": "1",
+            "questions": ["babi","baya","cêcak","coro","dara","pe","kupu","kura","bebek","bulus","tikus","yuyu"]
+        },
+        {
+            "value": "2",
+            "questions": ["ampal","banyak","celeng","gundhik","menthok","mênjangan","nyambik","tongkol","lintah","lingsang","kalajêngking","kucing","bandêng"]
+        },
+        {
+            "value": "3",
+            "questions": ["brati","êmprit","jangkrik","krêmi","kêmangga","kwangwung","tambra","plêting","kintêl","sêmbilang"]
+        }
+      ] 
+    },
+    {
+      "id": "arane-kembang",
+      "theme" : "Arane Kembang",
+      "level": [ 
+        {
+          "value": "1",
+          "questions": ["maya","limaran","kadi","juwis","rêjasa","pudhak","mênik","babal","karuk"]
+        },
+        {
+          "value": "2",
+          "questions": ["ontong","onthel","pêndul","mayang","kêcuwis","sinuwun","cêthethet","kêpek","kêsêngut","naknik","gadhing","manggar"]
+        },
+        {
+          "value": "3",
+          "questions": ["dlongop","puspanyindra","grêmêng","blanggreng","ingklik","montro","drênges","glêgês","nyrêwêteh","krosak"]
+        }
+      ]   
+    },
+    {
+      "id": "arane-panggonan",
+      "theme" : "Arane Panggonan",
+      "level": [ 
+        {
+          "value": "1",
+          "questions": ["balêmangu","bango","bangsal","beteng","bothekan","êpok","gêdhongan","gowok","sêgaran","pawon","gubug"]
+        },
+        {
+          "value": "2",
+          "questions": ["êndhong","êsong","gayor","gêrdhu","glodhog","pêndhopo","lumbung","gudhang","kêdhaton","kombong","langgar","stasiun","tambak"]
+        },
+        {
+          "value": "3",
+          "questions": ["clunthang","greja","grobog","kraton","krangkeng","pasantren","pasanggrahan","plêgukan","wrangka"]
+        }
+      ]      
+    }
+  ]
+}
