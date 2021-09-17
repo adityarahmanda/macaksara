@@ -1,16 +1,16 @@
 <template>
-    <header id="header" class="navbar navbar-expand-lg mb-4">
-        <input id="navbar-toggle" v-model="show" class="d-none" type="checkbox">
-        <div class="navbar-brand brand"><nuxt-link to="/">Sinahu Aksara</nuxt-link></div>
-        <nav :class="show ? 'collapse navbar-collapse justify-content-end' : 'collapse navbar-collapse justify-content-end show'">
-            <ul class="navbar-nav">
-                <li class="menu-item px-2"><nuxt-link class="nav-link" to="/aksara-jawa">Aksara Jawa</nuxt-link></li>
-                <li class="menu-item px-2"><nuxt-link class="nav-link" to="/konverter-aksara">Konverter</nuxt-link></li>
-            </ul>
-        </nav>
-        <label id="navbar-toggler" aria-label="Toggle navigation" class="p-1 d-lg-none" for="navbar-toggle">
+    <header id="header" class="row navbar navbar-expand-md py-4 mb-4">
+        <input id="navbar-toggler" type="checkbox" class="d-none" />
+        <div class="navbar-brand"><a href="/">Sinahu Aksara</a></div>
+        <label for="navbar-toggler" class="d-md-none" style="font-size: 24px;" data-toggle="collapse" data-target="nav-collapse" aria-controls="nav-collapse" aria-expanded="false" aria-label="Toggle navigation">
             <fa icon="bars"/>
         </label>
+        <nav class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="menu-item px-3 pr-md-0 pl-md-4"><a class="nav-link" href="/aksara-jawa">Aksara Jawa</a></li>
+                <li class="menu-item px-3 pr-md-0 pl-md-4"><a class="nav-link" href="/konverter-aksara">Konverter</a></li>
+            </ul>
+        </nav>
       </header>
 </template>
 
@@ -28,18 +28,26 @@ export default {
 </script>
 
 <style>
-#header {
-  height: 100px;
-  padding: 0;
+#navbar-toggler:checked ~ .collapse {
+    display:block;
 }
 
-#navbar-toggler {
-  font-size: 24px;
+.navbar-brand {
+    text-transform: lowercase;
+    font-size: 28px;
 }
 
-.brand {
-  text-transform: lowercase;
-  font-size: 28px;
-  font-weight: 900;
+@media (max-width: 768px) {
+    .navbar-nav {
+        position: absolute;
+        right: 0;
+        background-color: #ffffff;
+        z-index: 9999;
+    }
+
+    .navbar-nav .menu-item {
+        font-size: 16px;
+        text-align: right;
+    }
 }
 </style>

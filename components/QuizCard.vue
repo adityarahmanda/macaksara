@@ -1,9 +1,10 @@
 <template>
-    <nuxt-link tag="div" :to="'quiz/' + quiz.id" class="quiz-card col-12 col-md-6 d-flex flex-column mb-4">
+    <nuxt-link tag="div" :to="'quiz/' + quiz.id" class="quiz-card col-12 d-flex flex-column px-4 py-4">
         <div class="header d-flex flex-row justify-content-between">
             <div class="container px-0">
                 <h3 class="theme">{{ quiz.theme }}</h3>
-                <span class="word-count">{{ quiz.level[quizProgress.level].questions.length }} kata</span>
+                <span v-if="!quizProgress.completed" >{{ quiz.level[quizProgress.level].questions.length }} kata</span>
+                <span v-if="quizProgress.completed" >Terselesaikan</span>
             </div>
             <div class="d-flex flex-row justify-content-center align-items-center">
                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="shield" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -15,10 +16,10 @@
                 <div class="level position-absolute">{{ quiz.level[quizProgress.level].value }}</div>
             </div>
         </div>
-        <div class="theme-progress mt-auto d-flex">
+        <div class="quiz-progress d-flex align-items-end mt-auto">
             <ProgressBar width="100%" height="8px" :percentage="quizProgress.completed ? '100%' : ((quizProgress.level / quiz.level.length) * 100) + '%'" background-color="var(--light-brown)" color-fill="#876741"/>
-            <div class="icon col-2 d-flex flex-row justify-content-end align-items-center px-0">
-                <span class="dot ml-1"></span><span class="dot ml-1"></span><span class="dot ml-1"></span>
+            <div class="d-flex justify-content-end" style="width: 36px; font-size: 16px; margin-bottom: -4px;">
+                <fa icon="play" />
             </div>
         </div>
     </nuxt-link>
@@ -47,14 +48,12 @@ export default {
 .quiz-card {
     cursor: pointer;
     height: 160px;
-    padding: 30px 20px;
     background-color: var(--brown);
     color: var(--light-brown);
     border-radius: 20px;
 }
 
 .quiz-card .header .theme {
-    margin: 0;
     font-size: 18px;
     color: #ffffff;
 }
@@ -68,17 +67,5 @@ export default {
 .quiz-card .header .shield {
     font-size: 48px;
     color: #876741;
-}
-
-.quiz-card .progress .icon {
-    position: relative;
-    width: 20%;
-}
-
-.quiz-card .dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--light-brown);
-    border-radius: 9999px;
 }
 </style>

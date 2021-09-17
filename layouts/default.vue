@@ -1,7 +1,7 @@
 <template>
-    <div class="d-flex flex-column container px-4" style="min-height: 100vh;">
+    <div class="container d-flex flex-column" style="min-height: 100vh;">
         <Header/>
-            <nuxt />
+        <Nuxt />
         <Footer/>
     </div>
 </template>
@@ -20,10 +20,6 @@
 }
 
 :root {
-    /* default color  */
-    --black: #6C757D;
-    --gray: #E4E4E4;
-
     --brown: #6A492B;
     --dark-brown: #47311C;
     --light-brown: #D2AC7F;
@@ -54,6 +50,10 @@ a:hover {
   color: var(--dark-brown);
 }
 
+button {
+  font-size: 14px !important;
+}
+
 label {
   cursor: pointer;
 }
@@ -80,11 +80,6 @@ label {
 .button:focus {
   outline: none;
   box-shadow: none;
-}
-
-
-.mb-6 {
-  margin-bottom: 6rem;
 }
 </style>
 

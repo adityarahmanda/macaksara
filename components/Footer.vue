@@ -1,5 +1,9 @@
 <template>
-    <footer id="footer" class="mt-auto mb-4 text-center">&copy;2021 - <a class="copyright" href="https://adityarahmanda.com">Aditya Rahmanda</a></footer>
+    <footer id="footer" class="row justify-content-center mt-auto py-3">
+        <div id="copyright">
+            &copy;2021 - <a class="copyright" href="https://adityarahmanda.com">Aditya Rahmanda</a>
+        </div>
+    </footer>
 </template>
 
 <style>

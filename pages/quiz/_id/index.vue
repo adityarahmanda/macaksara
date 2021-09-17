@@ -1,12 +1,16 @@
 <template>
     <div class="position-relative" style="min-height: 100vh;">
-        <nuxt-link tag="div" to="/" class="close-icon position-absolute"><fa icon="times"/></nuxt-link>
+        <nuxt-link tag="div" to="/" class="position-absolute top-items icon-button close-icon"><fa icon="times"/></nuxt-link>
+        <div class="position-absolute top-items icon-button sound-icon " @click="toggleAudio">
+            <fa v-if="enableAudio" icon="volume-up" />
+            <fa v-else icon="volume-mute" />
+        </div>
         <div v-if="isMounted" class="position-relative container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-            <div class="position-absolute bar-container col-6 col-md-8 px-0">
+            <div class="position-absolute top-items quiz-progress-bar col-6 col-md-8 d-flex align-items-center px-0">
                 <ProgressBar :percentage="quiz.percentage"/>
             </div>
             <div class="quiz">
-                <h2 class="instruction text-center mb-6">Pilih bentuk latin dari aksara berikut</h2>
+                <h2 class="instruction text-center px-5 px-md-0 mb-5">Pilih bentuk latin dari aksara berikut</h2>
                 <Question :question-answered="quiz.questionAnswered" :current-syllable="quiz.currSyllable" :syllables="quiz.syllables" />
                 <MultipleChoices :choices="quiz.choices" @select-choices="selectChoices" />
             </div>
@@ -33,7 +37,7 @@ export default {
                 questions: [],
                 currSyllable: 0,
                 syllables: [],
-                totalChoices: 5,
+                totalChoices: 4,
                 choices: [],
                 streakCount: 0,
                 maxStreakCount: 0,
@@ -67,6 +71,7 @@ export default {
                     message: "Kehilangan Streak!"
                 }
             },
+            enableAudio: true,
             isMounted: false
         }
     },
@@ -84,10 +89,10 @@ export default {
     },
     created() {
         this.quiz.data = data.quizzes.find(quiz => quiz.id === this.$route.params.id);        
-        if(this.quiz.data  === undefined) {
+        if(this.quiz.data === undefined) {
             this.$router.push('/');
+            return;
         }
-
         this.quiz.theme = this.quiz.data.theme;
 
         if(process.client) {
@@ -102,12 +107,21 @@ export default {
             } else {
                 this.$router.push('/');
             }
+
+            if(localStorage.getItem("enableAudio") !== null) {
+                this.enableAudio = JSON.parse(localStorage.getItem("enableAudio"));
+            }
         }
     },
     mounted() {
+        if(this.quiz.data === undefined) {
+            return;
+        }
+
         this.quiz.questions = this.quiz.data.level[this.quiz.progress.level].questions;
         this.quiz.syllables = this.toSyllables(this.quiz.questions[this.quiz.currQuestion]);
         this.quiz.choices = this.generateChoices(this.quiz.syllables[this.quiz.currSyllable]);
+
         this.isMounted = true;
     },
     methods: {
@@ -131,7 +145,9 @@ export default {
             // correct answer
             if(choice === this.quiz.syllables[this.quiz.currSyllable]) {
                 // play correct sound
-                this.$sounds.correct.play();
+                if(this.enableAudio) {
+                    this.$sounds.correct.play();
+                }
                 
                 // calculate max streak
                 this.quiz.streakCount++;
@@ -155,14 +171,17 @@ export default {
                     this.quiz.questionAnswered = true;
                     setTimeout(() => {
                         this.questionAnswered();
-                    }, 3000);
+                    }, 1500);
                 }
 
                 return;
             }
             
             // wrong answer
-            this.$sounds.wrong.play();
+            if(this.enableAudio) {
+                this.$sounds.wrong.play();
+            }
+
             if(this.quiz.streakCount !== 0) {
                 // reset streak and send notification
                 this.quiz.streakCount = 0;
@@ -175,7 +194,7 @@ export default {
         questionAnswered() {
             this.quiz.currQuestion++;
             this.quiz.percentage = ((this.quiz.currQuestion / this.quiz.questions.length) * 100) + '%';
-            
+
             if(this.quiz.currQuestion < this.quiz.questions.length) {
                 // reset state
                 this.quiz.currSyllable = 0;
@@ -186,19 +205,22 @@ export default {
                 this.quiz.choices = this.generateChoices(this.quiz.syllables[this.quiz.currSyllable]);
             } else {
                 if(!this.quiz.progress.completed) {
-                    if(this.quiz.progress.level + 1 === this.quiz.level.length) {  
+                    if(this.quiz.progress.level + 1 === this.quiz.data.level.length) {  
                         this.quiz.progress.completed = true;
                     } else {                                        
                         this.quiz.progress.level++;
-                        this.user.wordsLearned += this.quiz.questions.length;
                     }
+                    this.user.wordsLearned += this.quiz.questions.length;
                 }
 
                 if(this.quiz.maxStreakCount > this.user.maxStreak) {
                     this.newStreak(this.quiz.maxStreakCount);
                 }
                 
-                localStorage.setItem("userData", JSON.stringify(this.user));
+                if(process.client) {
+                    localStorage.setItem("userData", JSON.stringify(this.user));
+                }
+
                 this.$router.push('/');
             }
         },
@@ -212,25 +234,65 @@ export default {
         },
         newStreak(maxStreakCount) {
             this.user.maxStreak = maxStreakCount;
+        },
+        toggleAudio() {
+            this.enableAudio = !this.enableAudio;
+            localStorage.setItem("enableAudio", this.enableAudio);
         }
     }
 }
 </script>
 
 <style>
-.close-icon {
+.icon-button {
     cursor: pointer;
-    top: 24px;
-    left: 24px;
-    font-size: 42px;
+    font-size: 36px;
     z-index: 9999;
 }
 
-.bar-container {
-    top: 48px;
+.quiz-progress-bar {
+    height: 56px;
+}
+
+.top-items {
+    top: 36px;
+}
+
+.close-icon {
+    left: 64px;
+}
+
+.sound-icon {
+    right: 64px;
 }
 
 .instruction {
     font-size: 24px;
+}
+
+@media (max-width: 768px) {
+    .icon-button {
+        font-size: 32px;
+    }
+
+    .quiz-progress-bar {
+        height: 48px;
+    }
+    
+    .top-items {
+        top: 24px;
+    }
+
+    .close-icon {
+        left: 21px;
+    }
+
+    .sound-icon {
+        right: 21px;
+    }
+
+    .instruction {
+        font-size: 18px;
+    }
 }
 </style>

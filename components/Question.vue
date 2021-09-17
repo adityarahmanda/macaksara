@@ -1,6 +1,6 @@
 <template>
     <div class="question container px-0 text-center">
-        <div v-for="(syllable, index) in syllables" :key="index" class="syllable d-inline-block ml-4">
+        <div v-for="(syllable, index) in syllables" :key="index" class="syllable d-inline-block mx-1 mx-md-2">
             <div :class="generateClass('aksara', index, 'mb-4')">{{ toJavaneseScript(syllable) }}</div>
             <div :class="generateClass('latin', index, 'mb-5')">{{ generateAnswer(index, syllable) }}</div>
         </div>
@@ -54,17 +54,13 @@ export default {
 </script>
 
 <style>
-.question .syllable:first-child {
-    margin-left: 0 !important;
-}
-
 .question .syllable {
     -webkit-transition: .4s;
     transition: .4s;
 }
 
 .aksara, .latin {
-    color: var(--gray);
+    color: #e4e4e4;
 }
 
 .aksara {

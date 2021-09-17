@@ -23,7 +23,7 @@ Vue.mixin({
             }
         
             // add h in front of dependent vowels
-            text = text.replace(new RegExp(`(?<![${consonants}])[${vowels}]`, 'g'), match => "h" + match);
+            text = text.replace(new RegExp(`(?<![${consonants}${consonants.toUpperCase()}${vowels.toUpperCase()}])[${vowels}]`, 'g'), match => "h" + match);
         
             // replacing sandhangan panyigeg
             text = text.replace(new RegExp(`r(?=[${consonants}\\s])|r$`, 'gi'), "ꦂ").replace(new RegExp(`ŋ(?=[${consonants}\\s])|ŋ$`, 'gi'), "ꦁ").replace(new RegExp(`h(?=[${consonants}\\s])|h$`, 'gi'), "ꦃ");

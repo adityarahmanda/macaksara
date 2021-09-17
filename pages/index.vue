@@ -1,11 +1,13 @@
 <template>
-    <div class="d-lg-flex mb-6">
-        <Sidebar :user="user" @reset-game="startNewGame" />
-        <main class="position-relative flex-grow-1">
+    <div class="row">
+        <Sidebar :user="user" @reset-game="startNewGame" @change-name="changeName"/>
+        <main class="col-12 col-lg-8">
             <MessageCard message="Masih awam dengan aksara jawa?" button-text="Pelajari di sini" to="/aksara-jawa" />
-            <div v-if="isMounted" class="themes position-relative d-flex flex-row flex-wrap px-0">
-                <h1 class="mb-4 col-12 px-0">Kuis</h1>
-                <QuizCard v-for="(quiz, index) in quizzes" :key="index" :quiz="quiz" :quiz-progress="user.quizProgress[index]" />
+            <h1 class="mb-4 col-12 px-0">Kuis</h1>
+            <div v-if="isMounted" class="row mx-0">
+                <div v-for="(quiz, index) in quizzes" :key="index" :class="index % 2 === 0 ? 'col-12 col-md-6 px-0 pl-md-0 pr-md-2 pb-3' : 'col-12 col-md-6 px-0 pl-md-2 pr-md-0 pb-3'">
+                    <QuizCard :quiz="quiz" :quiz-progress="user.quizProgress[index]" />
+                </div>
             </div>
         </main>
     </div>
@@ -17,10 +19,10 @@ import data from '../static/data.json';
 export default {
     data() {
         return {
-            user: { 
-                name: 'Bambang',
+            user: {
                 wordsLearned: 0, 
                 maxStreak: 0,
+                quizProgress: {},
             },
             quizzes: data.quizzes,
             isMounted: false
@@ -41,7 +43,12 @@ export default {
     created() {
         if(process.client) {
             if(localStorage.getItem("userData") !== null) {
-                this.user = JSON.parse(localStorage.getItem("userData"));
+                const userData = JSON.parse(localStorage.getItem("userData"));
+                if(Object.keys(userData.quizProgress).length !== this.quizzes.length) {
+                    this.startNewGame();
+                } else {
+                    this.user = userData;
+                }
             } else {
                 this.startNewGame();
             }
@@ -53,7 +60,6 @@ export default {
     methods: {
         startNewGame() {
             const newUser = {
-                name: 'Bambang',
                 wordsLearned: 0, 
                 maxStreak: 0,
                 quizProgress: {},
@@ -68,36 +74,17 @@ export default {
             }
 
             this.user = newUser;
-            this.saveGame();
+    
+            if(process.client) {
+                localStorage.setItem("userData", JSON.stringify(this.user));
+            }
         },
-        saveGame() {
-            localStorage.setItem("userData", JSON.stringify(this.user));
+        changeName(name) {
+            this.user.name = name;
+            if(process.client) {
+                localStorage.setItem("userData", JSON.stringify(this.user));
+            }
         }
     }
 }
 </script>
-
-<style> 
-.themes .quiz-card:last-child {
-    margin-bottom: 0 !important;
-}
-
-@media (min-width: 768px) {
-    .themes .quiz-card {
-        max-width: calc(50% - 0.5rem);
-        margin-bottom: 1rem !important;
-    }
-
-    .themes .quiz-card:nth-child(odd) {
-        margin-left: 0.5rem !important;
-    }
-
-    .themes .quiz-card:nth-child(even) {
-        margin-right: 0.5rem !important;
-    }
-
-    .themes .quiz-card:nth-last-child(2) {
-        margin-bottom: 0 !important;
-    }
-}
-</style>

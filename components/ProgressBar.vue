@@ -1,6 +1,6 @@
 <template>
     <div class="position-relative" :style="progressBar">
-        <div class="progress-bar-fill position-absolute" :style="progressFill"></div>
+        <div class="position-absolute" :style="progressFill"></div>
     </div>
 </template>
 
@@ -42,16 +42,11 @@ export default {
                 'width': this.percentage,
                 'height': this.height,
                 'background-color': this.colorFill,
-                'border-radius': '9999px'
+                'border-radius': '9999px',
+                '-webkit-transition': '.4s',
+                'transition': '.4s'
             };
         },
     }
 }
 </script>
-
-<style>
-.progress-bar-fill{
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-</style>

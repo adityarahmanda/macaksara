@@ -1,6 +1,6 @@
 <template>
-    <div class="position-relative row">
-        <div class="input position-relative col-12 col-lg-6 mb-5">
+    <div class="row">
+        <div class="input col-12 col-lg-6 mb-5">
             <h3>Latin</h3>
             <textarea ref="textarea" v-model="text" type="text" class="input w-100 m-0 mb-2 px-2 py-2"></textarea>
             <div class="container mb-4 px-0">
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="output position-relative col-12 col-lg-6 mb-5">
+        <div class="output col-12 col-lg-6 mb-5">
             <h3>Aksara</h3>
             <div class="result w-100 m-0 px-2 py-2">{{ getResult() }}</div>
         </div>
