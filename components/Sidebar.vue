@@ -13,7 +13,7 @@
                     <div class="col-8 px-0 text-left">streak tertinggi didapatkan</div>
                 </div>
             </div>
-            <div class="button w-100" @click="$emit('reset-game');">Atur Ulang Permainan</div>
+            <button class="btn button w-100" @click="$emit('reset-game');">Atur Ulang Permainan</button>
         </div>
     </div>
 </template>

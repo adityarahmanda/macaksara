@@ -100,6 +100,9 @@ export default {
     padding: 4px 12px;
     border-radius: 10px;
     border: 2px solid #ebe7e3;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 .output .result {

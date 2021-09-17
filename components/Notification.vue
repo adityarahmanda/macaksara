@@ -1,6 +1,6 @@
 <template>
-    <div :class="show ? 'notification visible position-absolute px-4 py-1' : 'notification position-absolute px-4 py-1'" :style="'background-color: ' + color">
-        <fa v-if="icon !== ''" :icon="icon" class="mr-2" />{{ message }}
+    <div :class="show ? 'notification visible position-absolute px-4 py-1' : 'notification position-absolute px-4 py-1'" :style="'background-color: ' + notification.color">
+        <fa v-if="notification.icon !== ''" :icon="notification.icon" class="mr-2" />{{ notification.message }}
     </div>
 </template>
 
@@ -11,18 +11,17 @@ export default {
             type: Boolean,
             default: false
         },
-        icon: {
-            type: String,
-            default: ""
+        notification: {
+            type: Object,
+            default() {
+                return {
+                    icon: "",
+                    color: "var(--dark-brown)",
+                    message: ""
+                }
+            }
         },
-        color: {
-            type: String,
-            default: "var(--dark-brown)"
-        },
-        message: {
-            type: String,
-            default: ""
-        }
+        
     }
 }
 </script>

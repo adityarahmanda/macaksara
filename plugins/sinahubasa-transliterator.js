@@ -8,7 +8,7 @@ Vue.mixin({
     methods:{
         toJavaneseScript(text, murda = false, diphthong = false) {        
             // converting characters
-            text = text.replace(/ṭh/gi, "ț").replace(/ny/gi, "ñ").replace(/dh/gi, "ḍ").replace(/th/gi, "ṭ").replace(/ng/gi, "ŋ").replace(/nj/gi, "ñj").replace(/nc/gi, "ñc");
+            text = text.replace(/ṭh/gi, "ț").replace(/ny/gi, "ñ").replace(/dh/gi, "ḍ").replace(/th/gi, "ṭ").replace(/ng/gi, "ŋ").replace(/nḍ/gi, "ñḍ").replace(/nj/gi, "ñj").replace(/nc/gi, "ñc");
         
             // converting rekan characters
             text = text.replace(/kh/gi, "ḱ").replace(/dz/gi, "ḋ").replace(/f/gi, "f").replace(/v/gi, "w").replace(/z/gi, "z").replace(/gh/gi, "ǵ");
@@ -23,7 +23,7 @@ Vue.mixin({
             }
         
             // add h in front of dependent vowels
-            text = text.replace(new RegExp(`(?<![${consonants}])[${vowels}]`, 'gi'), match => "h" + match);
+            text = text.replace(new RegExp(`(?<![${consonants}])[${vowels}]`, 'g'), match => "h" + match);
         
             // replacing sandhangan panyigeg
             text = text.replace(new RegExp(`r(?=[${consonants}\\s])|r$`, 'gi'), "ꦂ").replace(new RegExp(`ŋ(?=[${consonants}\\s])|ŋ$`, 'gi'), "ꦁ").replace(new RegExp(`h(?=[${consonants}\\s])|h$`, 'gi'), "ꦃ");

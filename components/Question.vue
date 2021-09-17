@@ -2,16 +2,15 @@
     <div class="question container px-0 text-center">
         <div v-for="(syllable, index) in syllables" :key="index" class="syllable d-inline-block ml-4">
             <div :class="generateClass('aksara', index, 'mb-4')">{{ toJavaneseScript(syllable) }}</div>
-            <div :class="generateClass('latin', index, 'mb-5')">{{ showAnswer(index, syllable) }}</div>
+            <div :class="generateClass('latin', index, 'mb-5')">{{ generateAnswer(index, syllable) }}</div>
         </div>
-        <MultipleChoices :choices="generateChoices(syllables[currentSyllable])" @select-choices="checkAnswer" />
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        userMaxStreak: {
+        currentSyllable: {
             type: Number,
             default: 0
         },
@@ -20,114 +19,35 @@ export default {
             default() {
                 return [];
             }
-        }
-    },
-    data() {
-        return {
-            currentSyllable: 0,
-            totalChoices: 5,
-            streakCount: 0,
-            maxStreakCount: 0,
-            correctNotification: {
-                icon: "check",
-                color: "var(--dark-brown)",
-                message: "Jawaban Benar!"
-            },
-            wrongNotification: {
-                icon: "times",
-                color: "#b54242",
-                message: "Jawaban Salah!"
-            },
-            streakNotification: {
-                icon: "fire",
-                color: "var(--dark-brown)",
-                message: "0x Streak!"
-            },
-            loseStreakNotification: {
-                icon: "sad-tear",
-                color: "#b54242",
-                message: "Kehilangan Streak!"
-            },
-            audio: null
+        },
+        questionAnswered: {
+            type: Boolean,
+            default: false
         }
     },
     methods: {
         generateClass(base, index, optional = '') {
             let generatedClass = base;
+            
             if(index === this.currentSyllable) {
                 generatedClass += " current";
             }
+            
             if(index < this.currentSyllable) {
                 generatedClass += " answered";
             }
+
             if(optional !== '') {
                 generatedClass += " " + optional;
             }
+            
             return generatedClass;
         },
-        showAnswer(index, syllable) {
-            if(index < this.currentSyllable) {
+        generateAnswer(index, syllable) {
+            if(this.questionAnswered || index < this.currentSyllable) {
                 return syllable;
             }
             return '...';
-        },
-        generateChoices(syllable) {
-            let choices = [syllable];
-            
-            for(let i = 1; i < this.totalChoices; i++) {
-                let generatedSyllable;
-                do { generatedSyllable = this.generateJavaneseSyllable(); } 
-                while (generatedSyllable === syllable);
-                choices = [...choices, generatedSyllable];
-            }
-            
-            return this.shuffleArray(choices);
-        },
-        checkAnswer(choice) {
-            // correct answer
-            if(choice === this.syllables[this.currentSyllable]) {
-                // play correct sound
-                this.$sounds.correct.play();
-                
-                // calculate max streak
-                this.streakCount++;
-                if(this.streakCount > this.maxStreakCount) {
-                    this.maxStreakCount = this.streakCount;
-                }
-
-                // correct or streak notification
-                if(this.streakCount >= 2) {
-                    this.streakNotification.message = this.streakCount + "x Streak";
-                    this.$emit('set-notification', this.streakNotification);
-                } else {
-                    this.$emit('set-notification', this.correctNotification);
-                }
-                
-                // set to next syllable
-                if(this.currentSyllable !== this.syllables.length - 1)
-                {
-                    this.currentSyllable++;
-                } else {
-                    this.$emit('question-answered');
-                    if(this.maxStreakCount > this.userMaxStreak) {
-                        this.$emit('new-streak', this.maxStreakCount);
-                    }
-                    this.currentSyllable = 0;
-                }
-
-                return;
-            }
-            
-            // wrong answer
-            this.$sounds.wrong.play();
-            if(this.streakCount !== 0) {
-                // reset streak and send notification
-                this.streakCount = 0;
-                this.$emit('set-notification', this.loseStreakNotification);
-            } else {
-                // send wrong notification
-                this.$emit('set-notification', this.wrongNotification);
-            }
         }
     }
 }
@@ -136,6 +56,11 @@ export default {
 <style>
 .question .syllable:first-child {
     margin-left: 0 !important;
+}
+
+.question .syllable {
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .aksara, .latin {

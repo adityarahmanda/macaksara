@@ -59,14 +59,29 @@ label {
 }
 
 .button {
-  cursor: pointer;
   color: var(--dark-brown);
-  padding: 8px 24px;
   border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0);
   font-weight: 900;
-  text-align: center;
   border: 2px solid var(--dark-brown);
+  border-bottom: 4px solid var(--dark-brown);
+  outline-offset: 4px;
 }
+
+.button:hover {
+  color: var(--dark-brown);
+}
+
+.button:active {
+  transform: translateY(2px);
+  border-bottom: 2px solid var(--dark-brown);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 
 .mb-6 {
   margin-bottom: 6rem;
