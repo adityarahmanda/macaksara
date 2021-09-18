@@ -53,6 +53,24 @@
           "questions": ["clunthang","greja","grobog","kraton","krangkeng","pasantren","pasanggrahan","plêgukan","wrangka"]
         }
       ]      
+    },
+    {
+      "id": "test",
+      "theme" : "Test",
+      "level": [ 
+        {
+          "value": "1",
+          "questions": ["balêmangu","bango"]
+        },
+        {
+          "value": "2",
+          "questions": ["êndhong","êsong"]
+        },
+        {
+          "value": "3",
+          "questions": ["clunthang","greja"]
+        }
+      ]      
     }
   ]
 }

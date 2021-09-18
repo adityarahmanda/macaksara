@@ -22,7 +22,7 @@
     },
     head() {
         return {
-            title: this.error.statusCode === 404 ? 'Halaman tidak ditemukan - Sinahu Aksara' : 'Terjadi Kesalahan' + this.error.statusCode + ' - Sinahu Aksara',
+            title: this.error.statusCode === 404 ? 'Halaman tidak ditemukan - Sinahu Aksara' : 'Terjadi Kesalahan ' + this.error.statusCode + ' - Sinahu Aksara',
         };
     },
   }

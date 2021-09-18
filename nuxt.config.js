@@ -40,7 +40,7 @@ export default {
   fontawesome: {
     component: 'fa',
     icons: {
-      solid: ['faEdit', 'faBars', 'faCheck', 'faTimes', 'faFire', 'faSadTear', 'faVolumeUp', 'faVolumeMute', 'faPlay']
+      solid: ['faBars', 'faCheck', 'faTimes', 'faTrophy', 'faFire', 'faSadTear', 'faVolumeUp', 'faVolumeMute', 'faPlay']
     }
   },
 

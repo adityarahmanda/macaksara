@@ -1,20 +1,29 @@
 <template>
-    <div class="position-relative" style="min-height: 100vh;">
-        <nuxt-link tag="div" to="/" class="position-absolute top-items icon-button close-icon"><fa icon="times"/></nuxt-link>
-        <div class="position-absolute top-items icon-button sound-icon " @click="toggleAudio">
-            <fa v-if="enableAudio" icon="volume-up" />
-            <fa v-else icon="volume-mute" />
-        </div>
-        <div v-if="isMounted" class="position-relative container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+    <div v-if="isMounted" class="position-relative" style="min-height: 100vh;">
+        <div v-if="!quiz.completed" class="position-relative container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+            <nuxt-link tag="div" to="/" class="position-absolute top-items icon-button close-icon"><fa icon="times"/></nuxt-link>
+            <div class="position-absolute top-items icon-button sound-icon " @click="toggleAudio">
+                <fa v-if="enableAudio" icon="volume-up" />
+                <fa v-else icon="volume-mute" />
+            </div>
             <div class="position-absolute top-items quiz-progress-bar col-6 col-md-8 d-flex align-items-center px-0">
                 <ProgressBar :percentage="quiz.percentage"/>
             </div>
             <div class="quiz">
-                <h2 class="instruction text-center px-5 px-md-0 mb-5">Pilih bentuk latin dari aksara berikut</h2>
+                <h2 class="heading text-center px-5 px-md-0 mb-5">Pilih bentuk latin dari aksara berikut</h2>
                 <Question :question-answered="quiz.questionAnswered" :current-syllable="quiz.currSyllable" :syllables="quiz.syllables" />
                 <MultipleChoices :choices="quiz.choices" @select-choices="selectChoices" />
             </div>
             <Notification :show="notification.show" :notification="notification.selected" />
+        </div>
+        <div v-if="quiz.completed" class="position-relative container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+            <h2 class="heading text-center px-5 px-md-0">Selamat, kamu berhasil menyelesaikan kuis!</h2>
+            <div style="font-size: 114px"><fa icon="trophy" /></div>
+            <div v-if="quiz.learnedNewWords || quiz.hasNewStreak" class="text-center font-weight-bold mb-2">
+                <p v-if="quiz.learnedNewWords" >+{{ quiz.questions.length }} kata baru telah dibaca!</p>
+                <p v-if="quiz.hasNewStreak" >{{ quiz.maxStreakCount }} streak baru didapatkan!</p>
+            </div>
+            <nuxt-link tag="button" to="/" class="btn button px-4 py-2">Kembali ke Beranda</nuxt-link>
         </div>
     </div>
 </template>
@@ -41,6 +50,9 @@ export default {
                 choices: [],
                 streakCount: 0,
                 maxStreakCount: 0,
+                learnedNewWords: false,
+                hasNewStreak: false,
+                completed: false
             },
             notification: {
                 show: false,
@@ -211,17 +223,19 @@ export default {
                         this.quiz.progress.level++;
                     }
                     this.user.wordsLearned += this.quiz.questions.length;
+                    this.quiz.learnedNewWords = true;
                 }
 
                 if(this.quiz.maxStreakCount > this.user.maxStreak) {
-                    this.newStreak(this.quiz.maxStreakCount);
+                    this.user.maxStreak = this.quiz.maxStreakCount;
+                    this.quiz.hasNewStreak = true;
                 }
                 
                 if(process.client) {
                     localStorage.setItem("userData", JSON.stringify(this.user));
                 }
 
-                this.$router.push('/');
+                this.quiz.completed = true;
             }
         },
         setNotification(notification) {
@@ -231,9 +245,6 @@ export default {
             this.notification.timeout = setTimeout(() => {
                 this.notification.show = false;
             }, 1500);
-        },
-        newStreak(maxStreakCount) {
-            this.user.maxStreak = maxStreakCount;
         },
         toggleAudio() {
             this.enableAudio = !this.enableAudio;
@@ -266,7 +277,7 @@ export default {
     right: 64px;
 }
 
-.instruction {
+.heading {
     font-size: 24px;
 }
 
@@ -291,7 +302,7 @@ export default {
         right: 21px;
     }
 
-    .instruction {
+    .heading {
         font-size: 18px;
     }
 }
