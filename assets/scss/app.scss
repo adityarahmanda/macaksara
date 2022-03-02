@@ -43,6 +43,8 @@
 @import "navbar";
 @import "tooltip";
 
+@import '~bootstrap-vue/src/index.scss';
+
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';

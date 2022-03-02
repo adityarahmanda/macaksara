@@ -72,11 +72,13 @@
                         id="copy-button"
                         class="btn copy-button pl-2"
                         @click="copyToClipboard($refs.resultText.innerText)"
-                    ><i class="fas fa-copy"></i></button>
+                    >
+                        <i class="fas fa-copy"></i>
+                    </button>
                     <b-tooltip
                         target="copy-button"
                         placement="left"
-                        triggers="hover"
+                        triggers="hover blur"
                         boundary="document"
                         :variant="copyTooltipProperty.variant"
                         :title="copyTooltipProperty.title"
@@ -86,7 +88,7 @@
             </div>
         </div>
 
-        <div v-if="latinToJavaMode" class="usage-description col-12">
+        <div class="usage-description col-12" :class="{ 'd-none' : !latinToJavaMode }" >
             <div class="mb-3 mb-md-4">
                 <h3>Keterangan Penggunaan</h3>
             </div>
@@ -287,28 +289,32 @@ export default {
         justify-content: flex-end;
         margin-top: auto;
 
-        .copy-button {
+        .btn {
             position: relative;
+            display: inline-flex;
             font-size: 1.4rem;
             padding: 0;
-            -webkit-transition: all .3s ease-out;
-            transition: all .3s ease-out;
 
-            &::after {
-                position: absolute;
-            }
-
-            &:focus {
+            &:focus, &:not(:focus) {
                 outline: none;
                 border: 0;
                 -webkit-box-shadow: none;
                 box-shadow: none;
             }
 
-            &:focus::after {
-                border-radius: $rounded-pill;
-                opacity: .2;
-                background-color: $gray-800;
+            i {
+                padding: .4rem .4rem;
+                border-radius: 50%;
+                -webkit-transition: background-color .3s ease-out;
+                transition: background-color .3s ease-out;
+            }
+
+            &:hover i {
+                background-color: rgba($dark, 0.2);
+            }
+
+            &:active i {
+                background-color: rgba($dark, 0.4);
             }
         }
     }
