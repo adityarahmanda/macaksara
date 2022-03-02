@@ -1,0 +1,91 @@
+.tooltip {
+    top: 0;
+
+    &.b-tooltip-primary {
+        .tooltip-inner {
+            background-color: $primary;
+        }
+
+        &.bs-tooltip-left .arrow::before, &.bs-tooltip-auto[x-placement^=left] .arrow::before {
+            border-left-color: $primary;
+        }
+
+        &.bs-tooltip-top .arrow::before, &.bs-tooltip-auto[x-placement^=top] .arrow::before {
+            border-top-color: $primary;
+        }
+
+        &.bs-tooltip-right .arrow::before, &.bs-tooltip-auto[x-placement^=right] .arrow::before {
+            border-right-color: $primary;
+        }
+
+        &.bs-tooltip-bottom .arrow::before, &.bs-tooltip-auto[x-placement^=bottom] .arrow::before {
+            border-bottom-color: $primary;
+        }
+    }
+
+    &.b-tooltip-info {
+        .tooltip-inner {
+            background-color: $info;
+        }
+
+        &.bs-tooltip-left .arrow::before, &.bs-tooltip-auto[x-placement^=left] .arrow::before {
+            border-left-color: $info;
+        }
+
+        &.bs-tooltip-top .arrow::before, &.bs-tooltip-auto[x-placement^=top] .arrow::before {
+            border-top-color: $info;
+        }
+
+        &.bs-tooltip-right .arrow::before, &.bs-tooltip-auto[x-placement^=right] .arrow::before {
+            border-right-color: $info;
+        }
+
+        &.bs-tooltip-bottom .arrow::before, &.bs-tooltip-auto[x-placement^=bottom] .arrow::before {
+            border-bottom-color: $info;
+        }
+    }
+
+    &.b-tooltip-success {
+        .tooltip-inner {
+            background-color: $success;
+        }
+
+        &.bs-tooltip-left .arrow::before, &.bs-tooltip-auto[x-placement^=left] .arrow::before {
+            border-left-color: $success;
+        }
+
+        &.bs-tooltip-top .arrow::before, &.bs-tooltip-auto[x-placement^=top] .arrow::before {
+            border-top-color: $success;
+        }
+
+        &.bs-tooltip-right .arrow::before, &.bs-tooltip-auto[x-placement^=right] .arrow::before {
+            border-right-color: $success;
+        }
+
+        &.bs-tooltip-bottom .arrow::before, &.bs-tooltip-auto[x-placement^=bottom] .arrow::before {
+            border-bottom-color: $success;
+        }
+    }
+
+    &.b-tooltip-danger {
+        .tooltip-inner {
+            background-color: $danger;
+        }
+
+        &.bs-tooltip-left .arrow::before, &.bs-tooltip-auto[x-placement^=left] .arrow::before {
+            border-left-color: $danger;
+        }
+
+        &.bs-tooltip-top .arrow::before, &.bs-tooltip-auto[x-placement^=top] .arrow::before {
+            border-top-color: $danger;
+        }
+
+        &.bs-tooltip-right .arrow::before, &.bs-tooltip-auto[x-placement^=right] .arrow::before {
+            border-right-color: $danger;
+        }
+
+        &.bs-tooltip-bottom .arrow::before, &.bs-tooltip-auto[x-placement^=bottom] .arrow::before {
+            border-bottom-color: $danger;
+        }
+    }
+}

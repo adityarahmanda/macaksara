@@ -1,28 +1,36 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'sinahu-aksara',
+    title: 'Sinahu Aksara',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'id'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { hid: 'description', name: 'description', content: 'Sinahu Aksara - Belajar Aksara Jawa Dengan Bermain Kuis' },
+      { hid: 'title', name: 'title', content: 'Sinahu Aksara' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&family=Noto+Sans+Javanese:wght@400;700&display=swap' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese:wght@400;700&display=swap' }
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: [],
+
+  styleResources: {
+    scss: [
+      '~assets/scss/app.scss',
+    ]
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/sinahubasa-transliterator',
+    '~/plugins/sinahubasa-latintojava',
+    '~/plugins/sinahubasa-javatolatin',
     '~/plugins/sinahubasa-utility',
   ],
 
@@ -33,16 +41,9 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxtjs/fontawesome',
+    '@nuxtjs/style-resources',
     'nuxt-use-sound'
   ],
-
-  fontawesome: {
-    component: 'fa',
-    icons: {
-      solid: ['faBars', 'faCheck', 'faTimes', 'faTrophy', 'faFire', 'faSadTear', 'faVolumeUp', 'faVolumeMute', 'faPlay']
-    }
-  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

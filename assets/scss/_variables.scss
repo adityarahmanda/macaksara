@@ -1,0 +1,106 @@
+// Color system
+//
+// Sets colors used throughout app
+
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #ebe7e3 !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$blue:              #007bff !default;
+$indigo:            #6610f2 !default;
+$purple:            #6f42c1 !default;
+$pink:              #e83e8c !default;
+$red:               #dc3545 !default;
+$orange:            #fd7e14 !default;
+$yellow:            #ffc107 !default;
+$dark-brown:        #47311C !default;
+$brown:             #6A492B !default;
+$light-brown:       #876741 !default;
+$lighter-brown:     #D2AC7F !default;
+$green:             #28a745 !default;
+$teal:              #20c997 !default;
+$cyan:              #17a2b8 !default;
+
+$primary:       $dark-brown !default;
+$secondary:     $brown !default;
+$success:       $teal !default;
+$info:          $light-brown !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $lighter-brown !default;
+$dark:          $brown !default;
+
+$colors: () !default;
+$colors: map-merge(
+  (
+    "blue":             $blue,
+    "indigo":           $indigo,
+    "purple":           $purple,
+    "pink":             $pink,
+    "red":              $red,
+    "orange":           $orange,
+    "yellow":           $yellow,
+    "dark-brown":       $dark-brown,
+    "brown":            $brown,
+    "light-brown":      $light-brown,
+    "lighter-brown":    $lighter-brown,
+    "green":            $green,
+    "teal":             $teal,
+    "cyan":             $cyan,
+    "white":            $white,
+    "gray":             $gray-600,
+    "gray-dark":        $gray-800
+  ),
+  $colors
+);
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-base:            'Mulish', 'Noto Sans Javanese', $font-family-sans-serif !default;
+
+$font-weight-bold:            900 !default;
+$headings-font-weight:        $font-weight-bold !default;
+$btn-font-weight:             $font-weight-bold !default;
+
+$font-size-root:              14px !default;
+$font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+
+$h1-font-size:                $font-size-base * 1.9416 !default;
+$h2-font-size:                $font-size-base * 1.6180 !default;
+$h3-font-size:                $font-size-base * 1.3753 !default;
+$h4-font-size:                $font-size-base * 1.1326 !default;
+$h5-font-size:                $font-size-base !default;
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg:                   $white !default;
+$body-color:                $dark-brown !default;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:                              $primary !default;
+$link-decoration:                         none !default;
+$link-hover-color:                        $link-color !default;
+$link-hover-decoration:                   none !default;
+
+// Converter
+
+$converter-padding-x:       0.75rem !default;
+$converter-padding-y:       $converter-padding-x !default;
+
+$tooltip-bg:                  $primary !default;

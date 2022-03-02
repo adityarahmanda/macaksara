@@ -6,8 +6,8 @@
     </footer>
 </template>
 
-<style>
+<style lang="scss"> 
 .copyright{
-    font-weight: 500;
+    font-weight: $font-weight-normal;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
     <div :class="show ? 'notification visible position-absolute px-4 py-1' : 'notification position-absolute px-4 py-1'" :style="'background-color: ' + notification.color">
-        <fa v-if="notification.icon !== ''" :icon="notification.icon" class="mr-2" />{{ notification.message }}
+        <i v-if="notification.icon !== ''" class="fa-solid" :class="'fa-' + notification.icon"></i>
+        {{ notification.message }}
     </div>
 </template>
 

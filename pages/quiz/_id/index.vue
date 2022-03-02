@@ -90,13 +90,6 @@ export default {
     head() {
         return {
             title: this.quiz.data !== undefined ? 'Kuis ' + this.quiz.theme + ' - Sinahu Aksara' : 'Kuis Tidak Ditemukan - Sinahu Aksara',
-            meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content: 'Konversi aksara jawa ke huruf latin maupun sebaliknya dengan mudah'
-                }
-            ]
         };
     },
     created() {

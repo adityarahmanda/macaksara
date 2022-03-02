@@ -22,48 +22,56 @@ const structures = [[[ swara ], 1], [[ panyigeg ], 1], [[ wyanjana, swara ], 20]
                     [[ rekan, swara ], 1], [[ wyanjana, swara, panyigeg ], 0],
                     [[ wyanjana, sandangan, swara ], 0]];
 
+const toSyllables = (word) => {
+    const regex = /[aeiouê](ng|r|h)?|[^aiueoê\s]+(?:[aiueoê](ng|r|h)(?=[^aiueoê]|$)|[aiueoê]?)/gi;
+    return word.match(regex);
+}
+
+const generateJavaneseSyllable = () => {
+    const structure = this.randomWithWeight(structures);
+    
+    let syllable = '';
+    for(let i = 0; i < structure.length; i++) {
+        syllable = syllable + this.randomWithWeight(structure[i]);
+    }
+    
+    return syllable;
+}
+
+const shuffleArray = (array) => {
+    for(let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+const randomWithWeight = (array) => {
+    let total = 0;
+    
+    for (let i = 0; i < array.length; ++i) {
+        total += array[i][1];
+    }
+    
+    const threshold = Math.random() * total;
+    
+    total = 0;
+    for (let i = 0; i < array.length - 1; ++i) {
+        total += array[i][1];
+    
+        if (total >= threshold) {
+            return array[i][0];
+        }
+    }
+    
+    return array[array.length - 1][0];
+}
+
 Vue.mixin({
     methods:{
-        toSyllables(word) {
-            const regex = /[aeiouê](ng|r|h)?|[^aiueoê\s]+(?:[aiueoê](ng|r|h)(?=[^aiueoê]|$)|[aiueoê]?)/gi;
-            return word.match(regex);
-        },
-        generateJavaneseSyllable() {
-            const structure = this.randomWithWeight(structures);
-            
-            let syllable = '';
-            for(let i = 0; i < structure.length; i++) {
-                syllable = syllable + this.randomWithWeight(structure[i]);
-            }
-          
-            return syllable;
-        },
-        shuffleArray(array) {
-            for(let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        },
-        randomWithWeight(array) {
-            let total = 0;
-            
-            for (let i = 0; i < array.length; ++i) {
-                total += array[i][1];
-            }
-            
-            const threshold = Math.random() * total;
-            
-            total = 0;
-            for (let i = 0; i < array.length - 1; ++i) {
-                total += array[i][1];
-            
-                if (total >= threshold) {
-                    return array[i][0];
-                }
-            }
-            
-            return array[array.length - 1][0];
-        }
+        toSyllables,
+        generateJavaneseSyllable,
+        shuffleArray,
+        randomWithWeight
     },
 })

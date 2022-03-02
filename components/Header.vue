@@ -1,53 +1,42 @@
 <template>
-    <header id="header" class="row navbar navbar-expand-md py-4 mb-4">
-        <input id="navbar-toggler" type="checkbox" class="d-none" />
-        <div class="navbar-brand"><a href="/">Sinahu Aksara</a></div>
-        <label for="navbar-toggler" class="d-md-none" style="font-size: 24px;" data-toggle="collapse" data-target="nav-collapse" aria-controls="nav-collapse" aria-expanded="false" aria-label="Toggle navigation">
-            <fa icon="bars"/>
+    <header id="header" class="row navbar navbar-expand-md py-3 mb-3 mb-md-4">
+        <input id="navbar-toggler-checkbox" type="checkbox" class="d-none" />
+        <div class="navbar-brand">
+            <nuxt-link :to="titleLink">{{ title }}</nuxt-link>
+        </div>
+        <label for="navbar-toggler-checkbox" class="navbar-toggler" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
         </label>
-        <nav class="collapse navbar-collapse">
+        <nav class="navbar-collapse">
             <ul class="navbar-nav ml-auto">
-                <li class="menu-item px-3 pr-md-0 pl-md-4"><a class="nav-link" href="/aksara-jawa">Aksara Jawa</a></li>
-                <li class="menu-item px-3 pr-md-0 pl-md-4"><a class="nav-link" href="/konverter-aksara">Konverter</a></li>
+                <li v-for="item in navItems" :key="item.title" class="menu-item pl-0 pl-md-2">
+                    <nuxt-link :to="item.link" class="nav-link">{{ item.title }}</nuxt-link>
+                </li>
             </ul>
         </nav>
-      </header>
+    </header>
 </template>
 
 <script>
 export default {
-    data() {
-      return {
-        show: {
-            type: Boolean,
-            default: false
-          }
-      }; 
+    props: {
+        title: {
+            type: String,
+            default: 'Sinahu Aksara'
+        },
+        titleLink: {
+            type: String,
+            default: '/'
+        },
+        navItems: {
+            type: Array,
+            default() {
+                return [
+                    { title: 'Tentang Aksara Jawa', link: '/aksara-jawa' },
+                    { title: 'Konverter Aksara', link: '/konverter' },
+                ]
+            }
+        }
     }
 }
 </script>
-
-<style>
-#navbar-toggler:checked ~ .collapse {
-    display:block;
-}
-
-.navbar-brand {
-    text-transform: lowercase;
-    font-size: 28px;
-}
-
-@media (max-width: 768px) {
-    .navbar-nav {
-        position: absolute;
-        right: 0;
-        background-color: #ffffff;
-        z-index: 9999;
-    }
-
-    .navbar-nav .menu-item {
-        font-size: 16px;
-        text-align: right;
-    }
-}
-</style>

@@ -1,0 +1,58 @@
+.navbar-brand {
+    text-transform: lowercase;
+    font-size: $h1-font-size;
+}
+
+.navbar-toggler {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 0;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+@include media-breakpoint-down(sm) {
+    .navbar-collapse {
+        display: block;
+        overflow: hidden;
+    }
+    
+    #navbar-toggler-checkbox:not(:checked) ~ .navbar-collapse {
+        max-height: 0;
+        animation: collapse .3s ease-out;
+    }
+    
+    #navbar-toggler-checkbox:checked ~ .navbar-collapse {
+        max-height: auto;
+        animation: expand .3s ease-in;
+    }
+
+    @keyframes collapse {
+        0% {
+            max-height: 100vh;
+        }
+    
+        100% {
+            max-height: 0;
+        }
+    }
+    
+    @keyframes expand {
+        0% {
+            max-height: 0;
+        }
+    
+        100% {
+            max-height: 100vh;
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
+}

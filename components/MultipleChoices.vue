@@ -17,9 +17,11 @@ export default {
 }
 </script>
 
-<style>
-.choices .button {
-    padding: 4px 16px;
-    border-radius: 10px;
+<style lang="scss">
+.choices {
+    .button {
+        padding: 4px 16px;
+        border-radius: 10px;
+    }
 }
 </style>

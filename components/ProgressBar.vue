@@ -1,6 +1,6 @@
 <template>
-    <div class="position-relative" :style="progressBar">
-        <div class="position-absolute" :style="progressFill"></div>
+    <div class="progress-bar" :style="progressBar">
+        <div class="progress-bar-fill" :style="progressFill"></div>
     </div>
 </template>
 
@@ -9,44 +9,60 @@ export default {
     props: {
         width: {
             type: String,
-            default: '100%'
+            default: null
         },
         height: {
             type: String,
-            default: '12px'
+            default: null
         },
         percentage: {
-            type: String,
-            default: '0'
+            type: Number,
+            default: null
         },
         backgroundColor: {
             type: String,
-            default: 'var(--light-brown)'
+            default: null
         },
         colorFill: {
             type: String,
-            default: 'var(--dark-brown)'
+            default: null
         }
     },
     computed: {
         progressBar() {
             return {
-                'width': this.width,
-                'height': this.height,
-                'background-color': this.backgroundColor,
-                'border-radius': '9999px'
+                'width': this.width ? this.width : null,
+                'height': this.height ? this.height : null,
+                'background-color': this.backgroundColor ? this.backgroundColor : null,
             };
         },
         progressFill() {
             return {
-                'width': this.percentage,
-                'height': this.height,
-                'background-color': this.colorFill,
-                'border-radius': '9999px',
-                '-webkit-transition': '.4s',
-                'transition': '.4s'
+                'width': this.percentage ? this.percentage + '%' : '5%',
+                'height': this.height ? this.height : null,
+                'background-color': this.colorFill ? this.colorFill : null,
             };
         },
     }
 }
 </script>
+
+<style lang="scss">
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    background-color: $lighter-brown;
+    border-radius: $rounded-pill;
+
+    .progress-bar-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $dark-brown;
+        border-radius: $rounded-pill;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+}
+</style>

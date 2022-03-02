@@ -1,0 +1,25 @@
+.pushable {
+    background: $dark-brown;
+    border-radius: $rounded-pill;
+    border: none;
+    padding: 0;
+    outline-offset: 4px;
+
+    .front {
+        display: block;
+        padding: $btn-padding-x $btn-padding-y;
+        border-radius: $rounded-pill;
+        background: $white;
+        color: $primary;
+        font-weight: $font-weight-bold;
+        border: 2px solid $dark-brown;
+        transform: translateY(-6px);
+    }
+
+    &:active {
+        .front {
+            transform: translateY(-2px);
+        }
+    }
+}
+
