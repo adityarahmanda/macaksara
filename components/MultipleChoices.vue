@@ -16,12 +16,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-.choices {
-    .button {
-        padding: 4px 16px;
-        border-radius: 10px;
-    }
-}
-</style>

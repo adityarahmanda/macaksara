@@ -46,23 +46,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-.progress-bar {
-    position: relative;
-    width: 100%;
-    height: 12px;
-    background-color: $lighter-brown;
-    border-radius: $rounded-pill;
-
-    .progress-bar-fill {
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: $dark-brown;
-        border-radius: $rounded-pill;
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
-}
-</style>

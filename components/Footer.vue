@@ -5,9 +5,3 @@
         </div>
     </footer>
 </template>
-
-<style lang="scss"> 
-.copyright{
-    font-weight: $font-weight-normal;
-}
-</style>

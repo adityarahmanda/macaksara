@@ -48,25 +48,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-.quiz-card {
-    height: 160px;
-    cursor: pointer;
-    border-radius: 20px;
-
-    .level {
-        font-size: 24px;
-    }
-
-    .shield-icon {
-        color: $light-brown;
-        font-size: 48px;
-    }
-
-    .play-icon {
-        width: 36px;
-        margin-bottom: -4px;
-    }
-}
-</style>

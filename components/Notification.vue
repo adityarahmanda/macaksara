@@ -26,25 +26,3 @@ export default {
     }
 }
 </script>
-
-<style>
-.notification {
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
-    background-color: var(--dark-brown);
-    border-radius: 15px;
-    bottom: 52px;
-    animation: notification;
-    visibility: hidden;
-    opacity: 0;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-.notification.visible {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(-12px);
-}
-</style>

@@ -52,28 +52,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-.question {
-    .syllable {
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
-}
-
-.aksara, .latin {
-    color: $white;
-}
-
-.aksara {
-    font-size: 42px;
-}
-
-.latin {
-    height: 24px;
-}
-
-.current, .answered {
-    color: $dark-brown;
-}
-</style>

@@ -43,10 +43,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-.counter {
-    font-size: 36px;
-    font-weight: $font-weight-bold;
-}
-</style>
