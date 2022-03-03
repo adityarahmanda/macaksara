@@ -12,12 +12,12 @@ export default {
             default: null
         },
         height: {
-            type: String,
-            default: null
+            type: Number,
+            default: 12
         },
         percentage: {
             type: Number,
-            default: null
+            default: 0
         },
         backgroundColor: {
             type: String,
@@ -32,14 +32,14 @@ export default {
         progressBar() {
             return {
                 'width': this.width ? this.width : null,
-                'height': this.height ? this.height : null,
+                'height': this.height >= 0 ? this.height + "px" : '0',
                 'background-color': this.backgroundColor ? this.backgroundColor : null,
             };
         },
         progressFill() {
             return {
-                'width': this.percentage ? this.percentage + '%' : '5%',
-                'height': this.height ? this.height : null,
+                'width': this.percentage >= 0 && this.percentage <= 100 ? this.percentage + '%' : '0%',
+                'height': this.height >= 0 ? this.height + "px" : '0',
                 'background-color': this.colorFill ? this.colorFill : null,
             };
         },

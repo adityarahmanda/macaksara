@@ -1,29 +1,60 @@
 <template>
-    <div v-if="isMounted" class="position-relative" style="min-height: 100vh;">
-        <div v-if="!quiz.completed" class="position-relative container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-            <nuxt-link tag="div" to="/" class="position-absolute top-items icon-button close-icon"><fa icon="times"/></nuxt-link>
-            <div class="position-absolute top-items icon-button sound-icon " @click="toggleAudio">
-                <fa v-if="enableAudio" icon="volume-up" />
-                <fa v-else icon="volume-mute" />
+    <div class="quiz-wrapper">
+        <div v-if="quiz.completed && isMounted" class="container d-flex flex-column h-100">
+            <h2 class="text-center">Selamat, kamu berhasil menyelesaikan kuis!</h2>
+            <div class="trophy-icon">
+                <i class="fa-solid fa-trophy"></i>
             </div>
-            <div class="position-absolute top-items quiz-progress-bar col-6 col-md-8 d-flex align-items-center px-0">
-                <ProgressBar :percentage="quiz.percentage"/>
-            </div>
-            <div class="quiz">
-                <h2 class="heading text-center px-5 px-md-0 mb-5">Pilih bentuk latin dari aksara berikut</h2>
-                <Question :question-answered="quiz.questionAnswered" :current-syllable="quiz.currSyllable" :syllables="quiz.syllables" />
-                <MultipleChoices :choices="quiz.choices" @select-choices="selectChoices" />
-            </div>
-            <Notification :show="notification.show" :notification="notification.selected" />
-        </div>
-        <div v-if="quiz.completed" class="position-relative container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-            <h2 class="heading text-center px-5 px-md-0">Selamat, kamu berhasil menyelesaikan kuis!</h2>
-            <div style="font-size: 114px"><fa icon="trophy" /></div>
             <div v-if="quiz.learnedNewWords || quiz.hasNewStreak" class="text-center font-weight-bold mb-2">
                 <p v-if="quiz.learnedNewWords" >+{{ quiz.questions.length }} kata baru telah dibaca!</p>
                 <p v-if="quiz.hasNewStreak" >{{ quiz.maxStreakCount }} streak baru didapatkan!</p>
             </div>
-            <nuxt-link tag="button" to="/" class="btn button px-4 py-2">Kembali ke Beranda</nuxt-link>
+            <nuxt-link tag="button" to="/" class="btn button px-4 py-2">
+                Kembali ke Beranda
+            </nuxt-link>
+        </div>
+
+        <div v-if="!quiz.completed && isMounted" class="container position-relative d-flex flex-column h-100">
+            <div class="quiz-top-area-wrapper row align-items-center no-gutters px-4 px-md-0 py-4">
+                <div class="col-2">
+                    <nuxt-link tag="div" to="/" class="close-icon mr-auto">
+                        <i class="fa-solid fa-times"></i>
+                    </nuxt-link>
+                </div>
+                <div class="col-8">
+                    <ProgressBar :percentage="quiz.percentage"/>
+                </div>
+                <div class="col-2">
+                    <div class="sound-icon ml-auto" @click="toggleAudio">
+                        <i v-if="enableAudio" class="fa-solid fa-volume-up"></i>
+                        <i v-else class="fa-solid fa-volume-mute"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-content-center flex-grow-1">
+                <div class="col-12 text-center mb-5">
+                    <h3 class="quiz-instruction">Pilih Cara Baca yang Benar dari Aksara Jawa Berikut</h3>
+                </div>
+                <Question 
+                    :question-answered="quiz.questionAnswered" 
+                    :current-syllable="quiz.currSyllable" 
+                    :syllables="quiz.syllables"
+                    class="col-12 text-center mb-4"
+                />
+                <MultipleChoices 
+                    :choices="quiz.choices"
+                    class="col-12 text-center mb-4" 
+                    @select-choices="selectChoices"
+                />
+            </div>
+        
+            <Notification 
+                :visible="notification.visible" 
+                :icon="notification.selected.icon"
+                :variant="notification.selected.variant"
+                :message="notification.selected.message"
+            />
         </div>
     </div>
 </template>
@@ -40,7 +71,7 @@ export default {
                 theme: "",
                 data: {},
                 progress: {},
-                percentage: '0%',
+                percentage: 0,
                 questionAnswered: false,
                 currQuestion: 0,
                 questions: [],
@@ -55,31 +86,27 @@ export default {
                 completed: false
             },
             notification: {
-                show: false,
+                visible: false,
                 timeout: {},
-                selected: {
-                    icon: "",
-                    color: "var(--dark-brown)",
-                    message: "Message"
-                },
+                selected: {},
                 correct: {
                     icon: "check",
-                    color: "var(--dark-brown)",
+                    variant: "primary",
                     message: "Jawaban Benar!"
                 },
                 wrong: {
                     icon: "times",
-                    color: "#b54242",
+                    variant: "danger",
                     message: "Jawaban Salah!"
                 },
                 streak: {
                     icon: "fire",
-                    color: "var(--dark-brown)",
+                    variant: "primary",
                     message: "0x Streak!"
                 }, 
                 losestreak: {
                     icon: "sad-tear",
-                    color: "#b54242",
+                    variant: "danger",
                     message: "Kehilangan Streak!"
                 }
             },
@@ -198,7 +225,7 @@ export default {
         },
         questionAnswered() {
             this.quiz.currQuestion++;
-            this.quiz.percentage = ((this.quiz.currQuestion / this.quiz.questions.length) * 100) + '%';
+            this.quiz.percentage = (this.quiz.currQuestion / this.quiz.questions.length) * 100;
 
             if(this.quiz.currQuestion < this.quiz.questions.length) {
                 // reset state
@@ -233,10 +260,10 @@ export default {
         },
         setNotification(notification) {
             this.notification.selected = notification;
-            this.notification.show = true;
+            this.notification.visible = true;
             clearTimeout(this.notification.timeout);
             this.notification.timeout = setTimeout(() => {
-                this.notification.show = false;
+                this.notification.visible = false;
             }, 1500);
         },
         toggleAudio() {

@@ -1,28 +1,29 @@
 <template>
-    <div :class="show ? 'notification visible position-absolute px-4 py-1' : 'notification position-absolute px-4 py-1'" :style="'background-color: ' + notification.color">
-        <i v-if="notification.icon !== ''" class="fa-solid" :class="'fa-' + notification.icon"></i>
-        {{ notification.message }}
+    <div class="notification" :class="[{ 'visible' : visible }, variant]">
+        <i v-if="icon !== ''" class="fa-solid mr-2" :class="'fa-' + icon"></i>
+        <span>{{ message }}</span>
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        show: {
+        visible: {
             type: Boolean,
             default: false
         },
-        notification: {
-            type: Object,
-            default() {
-                return {
-                    icon: "",
-                    color: "var(--dark-brown)",
-                    message: ""
-                }
-            }
+        icon: {
+            type: String,
+            default: ''
         },
-        
+        variant: {
+            type: String,
+            default: "primary"
+        },
+        message: {
+            type: String,
+            default: "Notification Message"
+        },
     }
 }
 </script>

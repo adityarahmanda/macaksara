@@ -1,8 +1,13 @@
 <template>
-    <div class="question container px-0 text-center">
+    <div>
         <div v-for="(syllable, index) in syllables" :key="index" class="syllable d-inline-block mx-1 mx-md-2">
-            <div :class="generateClass('aksara', index, 'mb-4')">{{ latinToJava(syllable) }}</div>
-            <div :class="generateClass('latin', index, 'mb-5')">{{ generateAnswer(index, syllable) }}</div>
+            <div class="aksara mb-4" :class="{ 'current' : index === currentSyllable, 'answered' : index < currentSyllable }">
+                {{ latinToJava(syllable) }}
+            </div>
+            <div class="latin mb-4" :class="{ 'current' : index === currentSyllable, 'answered' : index < currentSyllable }">
+                <span v-if="questionAnswered || index < currentSyllable">{{ syllable }}</span>
+                <span v-else>...</span>
+            </div>
         </div>
     </div>
 </template>
@@ -23,31 +28,6 @@ export default {
         questionAnswered: {
             type: Boolean,
             default: false
-        }
-    },
-    methods: {
-        generateClass(base, index, optional = '') {
-            let generatedClass = base;
-            
-            if(index === this.currentSyllable) {
-                generatedClass += " current";
-            }
-            
-            if(index < this.currentSyllable) {
-                generatedClass += " answered";
-            }
-
-            if(optional !== '') {
-                generatedClass += " " + optional;
-            }
-            
-            return generatedClass;
-        },
-        generateAnswer(index, syllable) {
-            if(this.questionAnswered || index < this.currentSyllable) {
-                return syllable;
-            }
-            return '...';
         }
     }
 }

@@ -1,26 +1,27 @@
 import Vue from 'vue';
 
-// javanese character array and its weight
+// javanese characters array with its weight
 const wyanjana = [['h', 4],['n', 7],['c', 1],['r', 9],['k', 11],
                   ['d', 2],['t', 9],['s', 9],['w', 5],['l', 6],
                   ['p', 9],['dh', 3],['j', 3],['y', 3],['ny', 1],
                   ['m', 7],['g', 14],['b', 5],['th', 1],['ng', 3]];
-
 const swara = [['a', 48],['i', 19],['u', 14],['ê', 7],['o', 7],['e', 10]];
-
 const panyigeg = [['h', 9],['n', 31],['c', 0],['r', 4],['k', 4],
                   ['d', 1],['t', 4],['s', 5],['w', 0],['l', 3],
                   ['p', 2],['dh', 0],['j', 0],['y', 0],['ny', 0],
                   ['m', 2],['g', 2],['b', 1],['th', 0],['ng', 39]];
-
 const sandangan = [['y', 1],['r', 1],['l', 1],['w', 0]];
 const rekan = [['kh', 1],['q', 0],['dz', 1],['f', 1],['v', 0],['gh', 1]];
 
-
-// javanese syllable structure and its weight
-const structures = [[[ swara ], 1], [[ panyigeg ], 1], [[ wyanjana, swara ], 20], 
-                    [[ rekan, swara ], 1], [[ wyanjana, swara, panyigeg ], 0],
-                    [[ wyanjana, sandangan, swara ], 0]];
+// javanese syllable structure with its random weight
+const structures = [
+        [[ swara ], 1], 
+        [[ panyigeg ], 1], 
+        [[ wyanjana, swara ], 20], 
+        [[ rekan, swara ], 1], 
+        [[ wyanjana, swara, panyigeg ], 0],
+        [[ wyanjana, sandangan, swara ], 0]
+];
 
 const toSyllables = (word) => {
     const regex = /[aeiouê](ng|r|h)?|[^aiueoê\s]+(?:[aiueoê](ng|r|h)(?=[^aiueoê]|$)|[aiueoê]?)/gi;
@@ -28,11 +29,11 @@ const toSyllables = (word) => {
 }
 
 const generateJavaneseSyllable = () => {
-    const structure = this.randomWithWeight(structures);
+    const structure = randomWithWeight(structures);
     
     let syllable = '';
     for(let i = 0; i < structure.length; i++) {
-        syllable = syllable + this.randomWithWeight(structure[i]);
+        syllable = syllable + randomWithWeight(structure[i]);
     }
     
     return syllable;
@@ -71,7 +72,6 @@ Vue.mixin({
     methods:{
         toSyllables,
         generateJavaneseSyllable,
-        shuffleArray,
-        randomWithWeight
+        shuffleArray
     },
 })

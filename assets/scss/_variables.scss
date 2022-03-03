@@ -18,7 +18,7 @@ $blue:              #007bff !default;
 $indigo:            #6610f2 !default;
 $purple:            #6f42c1 !default;
 $pink:              #e83e8c !default;
-$red:               #dc3545 !default;
+$red:               #b54242 !default;
 $orange:            #fd7e14 !default;
 $yellow:            #ffc107 !default;
 $dark-brown:        #47311C !default;
@@ -100,7 +100,16 @@ $link-hover-decoration:                   none !default;
 
 // Converter
 
-$converter-padding-x:       0.75rem !default;
+$converter-padding-x:       .75rem !default;
 $converter-padding-y:       $converter-padding-x !default;
+
+// Notification
+
+$notification-padding-x:       1.2rem !default;
+$notification-padding-y:       .4rem !default;
+$notification-padding-mobile-x:       .75rem !default;
+$notification-padding-mobile-y:       .2rem !default;
+
+// Tooltip
 
 $tooltip-bg:                  $primary !default;
