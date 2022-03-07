@@ -11,8 +11,8 @@ export default {
     data() {
         return {
             navItems: [
-                { title: "Sinahu Aksara", link: "/" },
-                { title: "Tentang Aksara Jawa", link: "/aksara-jawa" }
+                { title: "Macaksara", link: "/" },
+                { title: "Belajar Aksara Jawa", link: "/aksara-jawa" }
             ]
         }
     }

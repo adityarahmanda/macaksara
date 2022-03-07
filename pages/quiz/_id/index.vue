@@ -1,20 +1,28 @@
 <template>
     <div class="quiz-wrapper">
-        <div v-if="quiz.completed && isMounted" class="container d-flex flex-column h-100">
-            <h2 class="text-center">Selamat, kamu berhasil menyelesaikan kuis!</h2>
-            <div class="trophy-icon">
-                <i class="fa-solid fa-trophy"></i>
+        <div v-if="isQuizReady && isCompleted" class="container position-relative d-flex flex-column h-100">
+            <div class="row align-content-center flex-grow-1">
+                <div class="col-12 text-center mb-4">
+                    <h3>Selamat, Kamu Telah Berhasil Menyelesaikan Kuis!</h3>
+                </div>
+                <div class="col-12 text-center mb-4">
+                    <div class="trophy-icon">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                </div>
+                <div v-if="learnedNewWords || hasNewStreak" class="col-12 text-center font-weight-bold mb-4">
+                    <p v-if="learnedNewWords" >{{ quiz.length }} kata baru telah dibaca!</p>
+                    <p v-if="hasNewStreak" >{{ maxStreakCount }} streak baru didapatkan!</p>
+                </div>
+                <div class="col-12 text-center">
+                    <nuxt-link to="/" class="btn">
+                        Kembali ke Beranda
+                    </nuxt-link>
+                </div>
             </div>
-            <div v-if="quiz.learnedNewWords || quiz.hasNewStreak" class="text-center font-weight-bold mb-2">
-                <p v-if="quiz.learnedNewWords" >+{{ quiz.questions.length }} kata baru telah dibaca!</p>
-                <p v-if="quiz.hasNewStreak" >{{ quiz.maxStreakCount }} streak baru didapatkan!</p>
-            </div>
-            <nuxt-link tag="button" to="/" class="btn button px-4 py-2">
-                Kembali ke Beranda
-            </nuxt-link>
         </div>
 
-        <div v-if="!quiz.completed && isMounted" class="container position-relative d-flex flex-column h-100">
+        <div v-if="isQuizReady && !isCompleted" class="container position-relative d-flex flex-column h-100">
             <div class="quiz-top-area-wrapper row align-items-center no-gutters px-4 px-md-0 py-4">
                 <div class="col-2">
                     <nuxt-link tag="div" to="/" class="close-icon mr-auto">
@@ -22,7 +30,7 @@
                     </nuxt-link>
                 </div>
                 <div class="col-8">
-                    <ProgressBar :percentage="quiz.percentage"/>
+                    <ProgressBar :percentage="questionPercentage"/>
                 </div>
                 <div class="col-2">
                     <div class="sound-icon ml-auto" @click="toggleAudio">
@@ -33,20 +41,29 @@
             </div>
 
             <div class="row align-content-center flex-grow-1">
-                <div class="col-12 text-center mb-5">
-                    <h3 class="quiz-instruction">Pilih Cara Baca yang Benar dari Aksara Jawa Berikut</h3>
+                <div class="col-12 text-center mb-4">
+                    <h3 v-if="questionAnswered" class="quiz-instruction">Satu Kata Telah Terbaca Dengan Benar!</h3>
+                    <h3 v-else class="quiz-instruction">Pilih Cara Baca Yang Benar Dari Aksara Jawa Berikut!</h3>
                 </div>
+
                 <Question 
-                    :question-answered="quiz.questionAnswered" 
-                    :current-syllable="quiz.currSyllable" 
-                    :syllables="quiz.syllables"
-                    class="col-12 text-center mb-4"
+                    :question-answered="questionAnswered"
+                    :current-syllable="currSyllable" 
+                    :syllables="syllables"
+                    class="col-12 text-center"
                 />
-                <MultipleChoices 
-                    :choices="quiz.choices"
-                    class="col-12 text-center mb-4" 
-                    @select-choices="selectChoices"
-                />
+                
+                <div v-if="!questionAnswered" class="col-12 text-center mt-5" >
+                    <MultipleChoices :choices="choices" @select-choices="selectChoices"/>
+                </div>
+                
+                <div class="quiz-translation col-12 text-center" :class="questionAnswered ? 'visible  mb-5' : 'invisible'">
+                    <b v-if="questionAnswered">{{ quiz[currQuestion].translation }}</b>
+                </div>
+
+                <div class="quiz-next-button-area col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'">
+                    <button v-if="questionAnswered" class="btn next-question-button" @click="setNextQuestion">Lanjut</button>
+                </div>
             </div>
         
             <Notification 
@@ -60,38 +77,35 @@
 </template>
 
 <script>
-import data from '../../../static/data.json';
-
 export default {
     layout: 'quiz',
     data() {
         return {
             user: {},
-            quiz: {
-                theme: "",
-                data: {},
-                progress: {},
-                percentage: 0,
-                questionAnswered: false,
-                currQuestion: 0,
-                questions: [],
-                currSyllable: 0,
-                syllables: [],
-                totalChoices: 4,
-                choices: [],
-                streakCount: 0,
-                maxStreakCount: 0,
-                learnedNewWords: false,
-                hasNewStreak: false,
-                completed: false
-            },
+            id: '',
+            level: 0,
+            maxLevel: 0,
+            title: '',
+            quiz: {},
+            currQuestion: 0,
+            syllables: [],
+            currSyllable: 0,
+            totalChoices: 4,
+            choices: [],
+            questionPercentage: 0,
+            questionAnswered: false,
+            streakCount: 0,
+            maxStreakCount: 0,
+            learnedNewWords: false,
+            hasNewStreak: false,
+            isCompleted: false,
             notification: {
                 visible: false,
                 timeout: {},
                 selected: {},
                 correct: {
                     icon: "check",
-                    variant: "primary",
+                    variant: "success",
                     message: "Jawaban Benar!"
                 },
                 wrong: {
@@ -101,66 +115,82 @@ export default {
                 },
                 streak: {
                     icon: "fire",
-                    variant: "primary",
-                    message: "0x Streak!"
+                    variant: "success",
+                    message: "Jawaban Benar! 0x Streak!"
                 }, 
                 losestreak: {
                     icon: "sad-tear",
                     variant: "danger",
-                    message: "Kehilangan Streak!"
+                    message: "Salah! Kehilangan Streak!"
                 }
             },
             enableAudio: true,
-            isMounted: false
+            isQuizReady: false
         }
     },
     head() {
         return {
-            title: this.quiz.data !== undefined ? 'Kuis ' + this.quiz.theme + ' - Sinahu Aksara' : 'Kuis Tidak Ditemukan - Sinahu Aksara',
+            title: this.title !== undefined ? 'Kuis ' + this.title + ' - Sinahu Aksara' : 'Kuis Tidak Ditemukan - Sinahu Aksara',
         };
     },
-    created() {
-        this.quiz.data = data.quizzes.find(quiz => quiz.id === this.$route.params.id);        
-        if(this.quiz.data === undefined) {
-            this.$router.push('/');
-            return;
-        }
-        this.quiz.theme = this.quiz.data.theme;
+    async created() {
+        this.id = this.$route.params.id;
+
+        await this.getQuizTitle();
 
         if(process.client) {
-            if(localStorage.getItem("userData") !== null) {
-                this.user = JSON.parse(localStorage.getItem("userData"));
-                for(const key in this.user.quizProgress)
-                {
-                    if(this.user.quizProgress[key].id === this.quiz.data.id) {
-                        this.quiz.progress = this.user.quizProgress[key];
-                    }
-                }
-            } else {
+            if(!Object.prototype.hasOwnProperty.call(localStorage, "userData")) {
                 this.$router.push('/');
             }
+            
+            this.user = JSON.parse(localStorage.getItem("userData"));
+            this.level = this.user.quizProgresses[this.id].currentLevel;
 
-            if(localStorage.getItem("enableAudio") !== null) {
+            if(Object.prototype.hasOwnProperty.call(localStorage, "enableAudio")) {
                 this.enableAudio = JSON.parse(localStorage.getItem("enableAudio"));
             }
         }
-    },
-    mounted() {
-        if(this.quiz.data === undefined) {
-            return;
-        }
 
-        this.quiz.questions = this.quiz.data.level[this.quiz.progress.level].questions;
-        this.quiz.syllables = this.toSyllables(this.quiz.questions[this.quiz.currQuestion]);
-        this.quiz.choices = this.generateChoices(this.quiz.syllables[this.quiz.currSyllable]);
+        await this.getQuizMaxLevel();
+        await this.getQuestions();
 
-        this.isMounted = true;
+        this.isQuizReady = true;
+
+        this.startNewQuestion()
     },
     methods: {
+        async getQuizTitle() {
+            await this.$axios.get('api/quiz/' + this.id).then((res) => {
+                this.title = res.data[0].title;
+
+                if(this.title === '' || this.title === undefined) {
+                    this.$router.push('/');
+                }
+            });
+        },
+        async getQuizMaxLevel() {
+            await this.$axios.get('api/quiz-level/' + this.id).then((res) => {
+                this.maxLevel = res.data.length;
+
+                if(this.maxLevel <= 0 || this.level > this.maxLevel) {
+                    this.$router.push('/');
+                }
+            });
+        },
+        async getQuestions() {
+            // load quizzes
+            await this.$axios.get('api/quiz/' + this.id + '/' + this.level).then((res) => {
+                this.quiz = this.shuffleArray(res.data);
+                
+                if(this.quiz.length <= 0) {
+                    this.$router.push('/');
+                }
+            });
+        },
         generateChoices(syllable) {
             let choices = [syllable];
             
-            for(let i = 1; i < this.quiz.totalChoices; i++) {
+            for(let i = 1; i < this.totalChoices; i++) {
                 let generatedSyllable;
                 do { generatedSyllable = this.generateJavaneseSyllable(); } 
                 while (generatedSyllable === syllable);
@@ -170,40 +200,39 @@ export default {
             return this.shuffleArray(choices);
         },
         selectChoices(choice) {
-            if(this.quiz.questionAnswered) {
+            if(this.questionAnswered) {
                 return;
             }
 
             // correct answer
-            if(choice === this.quiz.syllables[this.quiz.currSyllable]) {
+            if(choice === this.syllables[this.currSyllable]) {
                 // play correct sound
                 if(this.enableAudio) {
                     this.$sounds.correct.play();
                 }
                 
                 // calculate max streak
-                this.quiz.streakCount++;
-                if(this.quiz.streakCount > this.quiz.maxStreakCount) {
-                    this.quiz.maxStreakCount = this.quiz.streakCount;
+                this.streakCount++;
+                if(this.streakCount > this.maxStreakCount) {
+                    this.maxStreakCount = this.streakCount;
                 }
 
                 // correct or streak notification
-                if(this.quiz.streakCount >= 2) {
-                    this.notification.streak.message = this.quiz.streakCount + "x Streak";
+                if(this.streakCount >= 2) {
+                    this.notification.streak.message = "Benar, " + this.streakCount + "x Streak";
                     this.setNotification(this.notification.streak);
                 } else {
                     this.setNotification(this.notification.correct);
                 }
                 
                 // set to next syllable
-                if(this.quiz.currSyllable < this.quiz.syllables.length - 1) {
-                    this.quiz.currSyllable++;
-                    this.quiz.choices = this.generateChoices(this.quiz.syllables[this.quiz.currSyllable]);
+                if(this.currSyllable < this.syllables.length - 1) {
+                    this.currSyllable++;
+                    this.choices = this.generateChoices(this.syllables[this.currSyllable]);
                 } else {
-                    this.quiz.questionAnswered = true;
-                    setTimeout(() => {
-                        this.questionAnswered();
-                    }, 1500);
+                    this.questionAnswered = true;
+                    this.questionPercentage = ((this.currQuestion + 1) / this.quiz.length) * 100;
+                    // console.log((this.currQuestion + 1) + '/' + this.quiz.length + '=' + this.questionPercentage);
                 }
 
                 return;
@@ -214,49 +243,59 @@ export default {
                 this.$sounds.wrong.play();
             }
 
-            if(this.quiz.streakCount !== 0) {
+            if(this.streakCount !== 0) {
                 // reset streak and send notification
-                this.quiz.streakCount = 0;
+                this.streakCount = 0;
                 this.setNotification(this.notification.losestreak);
             } else {
                 // send wrong notification
                 this.setNotification(this.notification.wrong);
             }
         },
-        questionAnswered() {
-            this.quiz.currQuestion++;
-            this.quiz.percentage = (this.quiz.currQuestion / this.quiz.questions.length) * 100;
+        setNextQuestion() {
+            if(!this.questionAnswered) {
+                return;
+            }
 
-            if(this.quiz.currQuestion < this.quiz.questions.length) {
+            if(this.currQuestion < this.quiz.length - 1) {
                 // reset state
-                this.quiz.currSyllable = 0;
-                this.quiz.questionAnswered = false;
+                this.currQuestion++;
+                this.currSyllable = 0;
+                this.questionAnswered = false;
                 
                 // set next question
-                this.quiz.syllables = this.toSyllables(this.quiz.questions[this.quiz.currQuestion]);
-                this.quiz.choices = this.generateChoices(this.quiz.syllables[this.quiz.currSyllable]);
+                this.startNewQuestion();
             } else {
-                if(!this.quiz.progress.completed) {
-                    if(this.quiz.progress.level + 1 === this.quiz.data.level.length) {  
-                        this.quiz.progress.completed = true;
+                const userQuizProgress = this.user.quizProgresses[this.id];
+
+                if(!userQuizProgress.isCompleted) {
+                    // console.log(this.level + '===' + this.maxLevel);
+
+                    if(this.level === this.maxLevel) {  
+                        userQuizProgress.isCompleted = true;
                     } else {                                        
-                        this.quiz.progress.level++;
+                        userQuizProgress.currentLevel++;
                     }
-                    this.user.wordsLearned += this.quiz.questions.length;
-                    this.quiz.learnedNewWords = true;
+                    
+                    // console.log(userQuizProgress);
+                    this.user.quizProgresses[this.id] = userQuizProgress;
+                    this.user.learnedWords += this.quiz.length;
+                    this.learnedNewWords = true;
                 }
 
-                if(this.quiz.maxStreakCount > this.user.maxStreak) {
-                    this.user.maxStreak = this.quiz.maxStreakCount;
-                    this.quiz.hasNewStreak = true;
+                if(this.maxStreakCount > this.user.maxStreak) {
+                    this.user.maxStreak = this.maxStreakCount;
+                    this.hasNewStreak = true;
                 }
                 
-                if(process.client) {
-                    localStorage.setItem("userData", JSON.stringify(this.user));
-                }
-
-                this.quiz.completed = true;
+                localStorage.setItem("userData", JSON.stringify(this.user));
+                // console.log(this.user);
+                this.isCompleted = true;
             }
+        },
+        startNewQuestion() {
+            this.syllables = this.toSyllables(this.quiz[this.currQuestion].question);
+            this.choices = this.generateChoices(this.syllables[this.currSyllable]);
         },
         setNotification(notification) {
             this.notification.selected = notification;

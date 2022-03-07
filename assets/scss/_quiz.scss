@@ -22,21 +22,51 @@
         font-size: 1.6rem;
     }
 
-    .latin, .aksara {
+    .trophy-icon {
+        font-size: 6rem;
+        color: $yellow;
+    }
+
+    .latin-syllable, .aksara-syllable {
         color: rgba($dark-brown, .2);
 
         &.current, &.answered {
             color: $dark-brown;
         }
     }
+    
+    .aksara-syllable {
+        font-size: 3rem;
+    }
 
-    .latin {
+    .latin-syllable {
         font-weight: $font-weight-bold;
         font-size: 1.2rem;
     }
 
-    .aksara {
-        font-size: 3rem;
+    .quiz-translation,
+    .quiz-next-button-area {
+
+        &.invisible {
+            transition: none;
+            transition-delay: 0;
+            opacity: 0;
+        }
+
+        &.visible {
+            transition: all .5s ease-out;
+            transition-delay: .4s;
+            opacity: 1;
+        }
+    }
+
+    .next-question-button {
+        color: $white;
+        background-color: $dark-brown;
+        border-radius: $rounded-pill;
+        padding-left: $spacer * 3;
+        padding-right: $spacer * 3;
+        border: 0;     
     }
 
     .notification {
@@ -51,14 +81,38 @@
         color: $white;
         background-color: $dark-brown;
         font-weight: $font-weight-bold;
+        border: 0;
         border-radius: $rounded-pill;
         -webkit-transition: all .4s ease-in-out;
         transition: all .4s ease-in-out;
 
         &.visible {
-            visibility: visible;
             opacity: 1;
             transform: translate(-50%, $spacer * -3);
+        }
+
+        &.primary {
+            background-color: $primary;
+        }
+
+        &.secondary {
+            background-color: $secondary;
+        }
+
+        &.info {
+            background-color: $info;
+        }
+
+        &.success {
+            background-color: $success;
+        }
+
+        &.warning {
+            background-color: $warning;
+        }
+
+        &.danger {
+            background-color: $danger;
         }
     }
 }
@@ -68,11 +122,11 @@
         font-size: $h4-font-size;
     }
 
-    .latin {
+    .latin-syllable {
         font-size: 1rem;
     }
 
-    .aksara {
+    .aksara-syllable {
         font-size: 2rem;
     }
 }

@@ -1,23 +1,29 @@
 <template>
-    <div class="col-12 col-lg-4 pr-lg-5 mb-5">
-        <p>Terdapat beberapa kata aksara jawa dalam berbagai tema pada kuis-kuis berikut.</p> 
-        <p>Mampukah kamu membaca kata-kata tersebut dan menyelesaikan semua kuisnya?</p>
-        <div class="d-block d-sm-flex justify-content-center d-lg-block px-lg-0 mb-4">
+    <div class="col-12 col-lg-4 pr-lg-5 mb-3 mb-md-4">
+        <p>Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca Aksara Jawa kamu.</p>
+        <p>Untuk memulai permainan, pilih tema kuis kemudian pilih cara baca yang benar dari Aksara Jawa yang ditampilkan.</p>
+        <div class="d-block d-sm-flex justify-content-center d-lg-block px-lg-0 mb-3 mb-md-4">
             <div id="word-collected" class="d-flex mb-sm-0 align-items-center">
-                <div class="counter col-4 pl-0 pr-3 text-right">{{user.wordsLearned}}</div>
+                <div class="counter col-4 pl-0 pr-3 text-right">
+                    <span v-if="!isLoading">{{ user.learnedWords }}</span>
+                    <span v-else>0</span>
+                </div>
                 <div class="col-8 px-0 text-left">kata dibaca</div>
             </div>
             <div id="max-streak" class="d-flex align-items-center">
-                <div class="counter col-4 pl-0 pr-3 text-right">{{user.maxStreak}}</div>
+                <div class="counter col-4 pl-0 pr-3 text-right">
+                    <span v-if="!isLoading">{{ user.maxStreak }}</span>
+                    <span v-else>0</span>
+                </div>
                 <div class="col-8 px-0 text-left">streak tertinggi didapatkan</div>
             </div>
         </div>
-        <button class="pushable w-100 mb-4" @click="$emit('reset-game')" >
+        <button class="pushable w-100 mb-3 mb-md-4" @click="$emit('reset-game')" >
             <span class="front">
                 Atur Ulang Permainan
             </span>
         </button>
-        <p>*data tersimpan secara otomatis pada perangkat yang digunakan.</p>
+        <p>*Data progress permainan tersimpan secara otomatis pada perangkat yang digunakan.</p>
     </div>
 </template>
 
@@ -29,6 +35,10 @@ export default {
             default() {
                 return {};
             }
+        },
+        isLoading: {
+            type: Boolean,
+            default: false
         }
     },
     data() {

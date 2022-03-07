@@ -33,6 +33,7 @@ const wyanjana = {
      ś: "ꦯ",       // sa murda
      ṣ: "ꦰ",       // sa mahaprana
      t: "ꦠ",       // ta
+     th: "ꦛ",       // ta
      ṭ: "ꦡ",       // ta murda
      ṭh: "ꦜ",      // tha mahaprana
      v: "ꦮ꦳",      // va rekan

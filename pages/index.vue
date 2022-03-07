@@ -1,12 +1,34 @@
 <template>
     <div class="row">
-        <Sidebar :user="user" @reset-game="startNewGame" @change-name="changeName"/>
+        <Sidebar :user="user" :is-loading="!isMounted" @reset-game="resetGame"/>
         <main class="col-12 col-lg-8">
-            <MessageCard message="Masih awam dengan aksara jawa?" button-text="Pelajari di sini" to="/aksara-jawa" />
-            <h1 class="mb-4 col-12 px-0">Kuis</h1>
-            <div v-if="isMounted" class="row mx-0">
-                <div v-for="(quiz, index) in quizzes" :key="index" :class="index % 2 === 0 ? 'col-12 col-md-6 px-0 pl-md-0 pr-md-2 pb-3' : 'col-12 col-md-6 px-0 pl-md-2 pr-md-0 pb-3'">
-                    <QuizCard :quiz="quiz" :quiz-progress="user.quizProgress[index]" />
+            <div class="mb-3 mb-md-4">
+                <h1>Kuis</h1>
+            </div>
+            <div v-if="isMounted" class="row no-gutters">
+                <div 
+                    v-for="(quizCard, i) in quizCards" 
+                    :key="quizCard.id" 
+                    class="col-12 col-md-6 mb-3" 
+                    :class="i % 2 === 0 ? 'pr-md-2' : 'pl-md-2'"
+                >
+                    <QuizCard 
+                        :quiz-id="quizCard.id"
+                        :title="quizCard.title" 
+                        :question-total="quizCard.questionTotal"
+                        :current-level="quizCard.currentLevel"
+                        :is-completed="quizCard.isCompleted"                    
+                    />
+                </div>
+            </div>
+            <div v-else class="row no-gutters">
+                <div 
+                    v-for="index in 2" 
+                    :key="index" 
+                    class="col-12 col-md-6 mb-3" 
+                    :class="index - 1 % 2 === 0 ? 'pr-md-2' : 'pl-md-2'"
+                >
+                    <QuizCard is-loading />
                 </div>
             </div>
         </main>
@@ -14,17 +36,12 @@
 </template>
 
 <script>
-import data from '../static/data.json';
-
 export default {
     data() {
         return {
-            user: {
-                wordsLearned: 0, 
-                maxStreak: 0,
-                quizProgress: {},
-            },
-            quizzes: data.quizzes,
+            user: {},
+            quizzes: {},
+            quizCards: {},
             isMounted: false
         };
     },
@@ -40,50 +57,81 @@ export default {
             ]
         };
     },
-    created() {
-        if(process.client) {
-            if(localStorage.getItem("userData") !== null) {
-                const userData = JSON.parse(localStorage.getItem("userData"));
-                if(Object.keys(userData.quizProgress).length !== this.quizzes.length) {
-                    this.startNewGame();
-                } else {
-                    this.user = userData;
-                }
-            } else {
-                this.startNewGame();
-            }
+    async mounted() {
+        await this.getQuiz();
+
+        if(Object.prototype.hasOwnProperty.call(localStorage, "userData")) {
+            this.user = JSON.parse(localStorage.getItem("userData"));
+        } else {
+            this.createNewUser();
         }
-    },
-    mounted() {
+
+        await this.getQuizCards();
         this.isMounted = true;
     },
     methods: {
-        startNewGame() {
-            const newUser = {
-                wordsLearned: 0, 
+        async getQuiz() {
+            // load quizzes
+            await this.$axios.get('api/quiz').then((res) => {
+                this.quizzes = res.data;
+            });
+            // console.log(this.quizzes);
+        },
+        async getQuizCards() {
+            // load quiz cards
+            for(let i = 0; i < this.quizzes.length; i++) {
+                const id = this.quizzes[i].quiz_id;
+                const title = this.quizzes[i].title;
+                const currentLevel = this.user.quizProgresses[id].currentLevel;
+                const isCompleted = this.user.quizProgresses[id].isCompleted;
+
+                this.quizCards[i] = {
+                    id,
+                    title,
+                    currentLevel,
+                    isCompleted
+                }
+
+                await this.$axios.get('api/quiz/' + id + '/' + currentLevel).then((res) => {
+                    this.quizCards[i].questionTotal = res.data.length;
+                });   
+            }
+            // console.log(this.quizCards);
+        },
+        updateQuizCards() {
+            // load quiz cards
+            for(let i = 0; i < this.quizzes.length; i++) {
+                const id = this.quizzes[i].quiz_id;
+                const currentLevel = this.user.quizProgresses[id].currentLevel;
+                const isCompleted = this.user.quizProgresses[id].isCompleted;
+
+                this.quizCards[i].currentLevel = currentLevel;
+                this.quizCards[i].isCompleted = isCompleted;
+            }
+            // console.log(this.quizCards);
+        },
+        createNewUser() {
+            this.user = {
+                learnedWords: 0, 
                 maxStreak: 0,
-                quizProgress: {},
+                quizProgresses: {},
             };
 
             for(let i = 0; i < this.quizzes.length; i++) {
-                newUser.quizProgress[i] = { 
-                    id: this.quizzes[i].id,
-                    level: 0,
-                    completed: false
+                const id = this.quizzes[i].quiz_id;
+
+                this.user.quizProgresses[id] = {
+                    currentLevel: 1,
+                    isCompleted: false
                 };
             }
-
-            this.user = newUser;
     
-            if(process.client) {
-                localStorage.setItem("userData", JSON.stringify(this.user));
-            }
+            localStorage.setItem("userData", JSON.stringify(this.user));
+            // console.log(this.user);
         },
-        changeName(name) {
-            this.user.name = name;
-            if(process.client) {
-                localStorage.setItem("userData", JSON.stringify(this.user));
-            }
+        resetGame() {
+            this.createNewUser();
+            this.updateQuizCards();
         }
     }
 }

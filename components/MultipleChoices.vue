@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button v-for="choice in choices" :key="choice" class="btn mx-2" @click="$emit('select-choices', choice)">
+        <button v-for="(choice, i) in choices" :key="i" class="btn mx-2" @click="$emit('select-choices', choice)">
             {{ choice }}
         </button>
     </div>

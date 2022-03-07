@@ -1,19 +1,92 @@
 .quiz-card {
+    position: relative;
+    display: flex;
+    padding: $spacer * 4;
+    flex-direction: column;
     height: 160px;
+    color: $lighter-brown;
+    background-color: $brown;
+    border-radius: 1.2rem;
     cursor: pointer;
-    border-radius: 20px;
 
-    .level {
-        font-size: 24px;
+    .quiz-card-header {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .quiz-card-header-title {
+            color: $white;
+        }
     }
 
-    .shield-icon {
-        color: $light-brown;
-        font-size: 48px;
+    .quiz-card-header-level {
+        position: relative;
+
+        .shield-icon {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+    
+            i {
+                color: $light-brown;
+                font-size: 48px;
+            }
+            
+            .text-level {
+                position: absolute;
+                color: $dark-brown;
+                font-size: 24px;
+                font-weight: $font-weight-bold;
+            }
+        }
     }
 
-    .play-icon {
-        width: 36px;
-        margin-bottom: -4px;
+    .quiz-card-content {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        margin-top: auto;
+
+        .play-icon {
+            display: flex;
+            justify-content: flex-end;
+            width: 36px;
+            margin-bottom: -4px;
+        }
+    }
+
+    &.is-loading {
+        h3, p {
+            background: linear-gradient(110deg, $light-brown 8%, $lighter-brown 18%, $light-brown 33%);
+            background-size: 200% 100%;
+            animation: 1.5s shine linear infinite;
+            border-radius: $border-radius;
+        }
+
+        .quiz-card-header-title-and-status {
+            width: 100%;
+        
+            .quiz-card-header-title {
+                height: 26px;
+                margin-bottom: $spacer * .5;
+            }
+        
+            .quiz-card-header-status {
+                height: 20px;
+            }
+        }
+
+        .quiz-card-header-level {
+            display: none;
+        }
+    }      
+}
+
+@keyframes shine {
+    to {
+      background-position-x: -200%;
     }
 }

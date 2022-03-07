@@ -22,7 +22,7 @@ export default {
     props: {
         title: {
             type: String,
-            default: 'Sinahu Aksara'
+            default: 'Macaksara'
         },
         titleLink: {
             type: String,
@@ -32,7 +32,7 @@ export default {
             type: Array,
             default() {
                 return [
-                    { title: 'Tentang Aksara Jawa', link: '/aksara-jawa' },
+                    { title: 'Belajar Aksara Jawa', link: '/aksara-jawa' },
                     { title: 'Konverter Aksara', link: '/konverter' },
                 ]
             }

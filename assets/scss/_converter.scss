@@ -41,10 +41,10 @@
             display: inline-flex;
             font-size: 1.4rem;
             padding: 0;
+            border: 0;
 
             &:focus, &:not(:focus) {
                 outline: none;
-                border: 0;
                 -webkit-box-shadow: none;
                 box-shadow: none;
             }
@@ -69,6 +69,7 @@
 
 .swap-button {
     padding: 0;
+    border: 0;
 }
 
 .toggle {

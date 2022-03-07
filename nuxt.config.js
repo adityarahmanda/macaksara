@@ -1,6 +1,4 @@
 export default {
-  target: 'static',
-
   server: {
     host: '0.0.0.0', // default: localhost
     port: 8000 // default: 3000
@@ -26,13 +24,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
-
-  styleResources: {
-    scss: [
-      '~assets/scss/app.scss',
-    ]
-  },
+  css: [ '~assets/scss/app.scss' ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -62,11 +54,23 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
+  /*
+  ** Server Middleware
+  */
+  serverMiddleware: {
+    '/api': '~/api'
+  },
+
+  /*
+  ** Sounds
+  */
   sound: {
     correct: {
       src: "/sounds/correct.mp3",
@@ -81,4 +85,5 @@ export default {
       }
     }
   }
+
 }
