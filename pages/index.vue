@@ -1,27 +1,13 @@
 <template>
     <div class="row">
-        <Sidebar :user="user" :is-loading="!isMounted" @reset-game="resetGame"/>
+        <Sidebar :user="user" :is-loading="isLoading" @reset-game="resetGame"/>
+
         <main class="col-12 col-lg-8">
             <div class="mb-3 mb-md-4">
                 <h1>Kuis</h1>
             </div>
-            <div v-if="isMounted" class="row no-gutters">
-                <div 
-                    v-for="(quizCard, i) in quizCards" 
-                    :key="quizCard.id" 
-                    class="col-12 col-md-6 mb-3" 
-                    :class="i % 2 === 0 ? 'pr-md-2' : 'pl-md-2'"
-                >
-                    <QuizCard 
-                        :quiz-id="quizCard.id"
-                        :title="quizCard.title" 
-                        :question-total="quizCard.questionTotal"
-                        :current-level="quizCard.currentLevel"
-                        :is-completed="quizCard.isCompleted"                    
-                    />
-                </div>
-            </div>
-            <div v-else class="row no-gutters">
+
+            <div v-if="isLoading" class="row no-gutters">
                 <div 
                     v-for="index in 2" 
                     :key="index" 
@@ -29,6 +15,23 @@
                     :class="index - 1 % 2 === 0 ? 'pr-md-2' : 'pl-md-2'"
                 >
                     <QuizCard is-loading />
+                </div>
+            </div>
+
+            <div v-else class="row no-gutters">
+                <div 
+                    v-for="(quizCard, i) in quizCards" 
+                    :key="quizCard.id" 
+                    class="col-12 col-md-6 mb-3" 
+                    :class="i % 2 === 0 ? 'pr-md-2' : 'pl-md-2'"
+                >
+                    <QuizCard 
+                        :quiz-id="quizCard.slug"
+                        :title="quizCard.title" 
+                        :question-total="quizCard.questionTotal"
+                        :current-level="quizCard.currentLevel"
+                        :is-completed="quizCard.isCompleted"                    
+                    />
                 </div>
             </div>
         </main>
@@ -39,77 +42,30 @@
 export default {
     data() {
         return {
-            user: {},
-            quizzes: {},
-            quizCards: {},
-            isMounted: false
-        };
+            user: undefined,
+            isLoading: true,
+            quizzes: [],
+            quizCards: {}
+        }
     },
     head() {
         return {
-            title: 'Sinahu Aksara - Belajar Aksara Jawa Sambil Bermain',
+            title: 'Macaksara - Belajar Aksara Jawa Sambil Bermain',
             meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content: 'Tempat untuk belajar aksara jawa dengan mudah dengan menyelesaikan kuis-kuis yang menyenangkan'
-                }
+                { hid: 'description', name: 'description', content: 'Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca Aksara Jawa kamu.' },
+                { hid: 'title', name: 'title', content: 'Macaksara - Permainan Kuis Membaca Aksara Jawa' }
             ]
         };
     },
     async mounted() {
-        await this.getQuiz();
+        this.quizzes = await this.$content("quizzes").fetch() || null;
 
-        if(Object.prototype.hasOwnProperty.call(localStorage, "userData")) {
-            this.user = JSON.parse(localStorage.getItem("userData"));
-        } else {
-            this.createNewUser();
-        }
-
-        await this.getQuizCards();
-        this.isMounted = true;
+        this.verifyUser();
+        this.initQuizCards();
+        
+        this.isLoading = false;
     },
     methods: {
-        async getQuiz() {
-            // load quizzes
-            await this.$axios.get('api/quiz').then((res) => {
-                this.quizzes = res.data;
-            });
-            // console.log(this.quizzes);
-        },
-        async getQuizCards() {
-            // load quiz cards
-            for(let i = 0; i < this.quizzes.length; i++) {
-                const id = this.quizzes[i].quiz_id;
-                const title = this.quizzes[i].title;
-                const currentLevel = this.user.quizProgresses[id].currentLevel;
-                const isCompleted = this.user.quizProgresses[id].isCompleted;
-
-                this.quizCards[i] = {
-                    id,
-                    title,
-                    currentLevel,
-                    isCompleted
-                }
-
-                await this.$axios.get('api/quiz/' + id + '/' + currentLevel).then((res) => {
-                    this.quizCards[i].questionTotal = res.data.length;
-                });   
-            }
-            // console.log(this.quizCards);
-        },
-        updateQuizCards() {
-            // load quiz cards
-            for(let i = 0; i < this.quizzes.length; i++) {
-                const id = this.quizzes[i].quiz_id;
-                const currentLevel = this.user.quizProgresses[id].currentLevel;
-                const isCompleted = this.user.quizProgresses[id].isCompleted;
-
-                this.quizCards[i].currentLevel = currentLevel;
-                this.quizCards[i].isCompleted = isCompleted;
-            }
-            // console.log(this.quizCards);
-        },
         createNewUser() {
             this.user = {
                 learnedWords: 0, 
@@ -117,21 +73,105 @@ export default {
                 quizProgresses: {},
             };
 
+            // get quizzes
             for(let i = 0; i < this.quizzes.length; i++) {
-                const id = this.quizzes[i].quiz_id;
+                const slug = this.quizzes[i].slug;
 
-                this.user.quizProgresses[id] = {
+                this.user.quizProgresses[slug] = {
                     currentLevel: 1,
                     isCompleted: false
                 };
             }
-    
-            localStorage.setItem("userData", JSON.stringify(this.user));
+
+            localStorage.setItem('userData', JSON.stringify(this.user));
+        },
+        verifyUser() {
+            this.user = JSON.parse(localStorage.getItem('userData'));
             // console.log(this.user);
+
+            // verify user
+            if(this.user) {
+                const quizProgKeys = Object.keys(this.user.quizProgresses);
+
+                let updateUser = false;
+                if(this.user.learnedWords === undefined || this.user.learnedWords === null) {
+                    this.user.learnedWords = 0;
+                    updateUser = true;
+                }
+
+                if(this.user.maxStreak === undefined || this.user.maxStreak === null) {
+                    this.user.maxStreak = 0;
+                    updateUser = true;
+                }
+
+                if(quizProgKeys.length === this.quizzes.length) {
+                    for(let i = 0; i < this.quizzes.length; i++) {
+                        if(quizProgKeys[i] !== this.quizzes[i].slug || quizProgKeys[i] === "undefined") {
+                            this.user.quizProgresses[quizProgKeys[i]] = {
+                                currentLevel: 1,
+                                isCompleted: false
+                            }
+
+                            updateUser = true;
+                        }
+                    }
+                } else {
+                    this.user.quizProgresses ={};
+                    
+                    for(let i = 0; i < this.quizzes.length; i++) {
+                        const slug = this.quizzes[i].slug;
+
+                        this.user.quizProgresses[slug] = {
+                            currentLevel: 1,
+                            isCompleted: false
+                        };
+                    }
+                    this.createNewUser();
+                }
+
+                if(updateUser) {
+                    localStorage.setItem('userData', JSON.stringify(this.user));
+                }
+            } else {
+                this.createNewUser();
+            }
+        },
+        initQuizCards() {
+            // create quiz card
+            for(let i = 0; i < this.quizzes.length; i++) {
+                const slug = this.quizzes[i].slug;
+                const title = this.quizzes[i].title;
+                const currentLevel = this.user.quizProgresses[slug].currentLevel;
+                const isCompleted = this.user.quizProgresses[slug].isCompleted;
+
+                let questionTotal = 0;
+                if(!isCompleted) {
+                    const levelKeys = Object.keys(this.quizzes[i].levels);
+                    for(const key in levelKeys) {
+                        if(this.quizzes[i].levels[key].value === currentLevel) {
+                            questionTotal = this.quizzes[i].levels[key].questions.length;
+                            break;
+                        }
+                    }
+                    // console.log(questionTotal);
+                }
+
+                this.quizCards[i] = {
+                    slug,
+                    title,
+                    currentLevel,
+                    questionTotal,
+                    isCompleted
+                }
+            }
         },
         resetGame() {
+            this.isLoading = true;
+
             this.createNewUser();
-            this.updateQuizCards();
+            this.initQuizCards();
+
+            this.isLoading = false;
         }
     }
 }

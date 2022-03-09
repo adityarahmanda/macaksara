@@ -54,22 +54,11 @@ export default {
     },
     data() {
         return {
-            spacer: 10
+            spacer: 10,
         }
     },
-    watch: {
-        questionAnswered() {
-            this.$nextTick(() => { this.adjustStyle(); });
-        }
-    },
-    mounted() {
-        for(let i = 0; i < this.syllables.length; i++) {
-            this.$refs.aksaraSyllables[i].style.transition = 'none';
-            this.$refs.aksaraSyllables[i].style.width = (this.$refs.aksaraSyllables[i].firstChild.offsetWidth + this.spacer) + 'px';
-
-            this.$refs.latinSyllables[i].style.transition = 'none';
-            this.$refs.latinSyllables[i].style.width = this.$refs.aksaraSyllables[i].offsetWidth + 'px';
-        }
+    updated() {
+        this.adjustStyle();
     },
     methods: {
         adjustStyle() {

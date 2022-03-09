@@ -1,17 +1,17 @@
 <template>
     <div class="quiz-wrapper">
-        <div v-if="isQuizReady && isCompleted" class="container position-relative d-flex flex-column h-100">
+        <div v-if="isCompleted" class="container position-relative d-flex flex-column h-100">
             <div class="row align-content-center flex-grow-1">
                 <div class="col-12 text-center mb-4">
                     <h3>Selamat, Kamu Telah Berhasil Menyelesaikan Kuis!</h3>
                 </div>
                 <div class="col-12 text-center mb-4">
                     <div class="trophy-icon">
-                        <i class="fa-solid fa-trophy"></i>
+                        <i class="fa fa-solid fa-trophy"></i>
                     </div>
                 </div>
                 <div v-if="learnedNewWords || hasNewStreak" class="col-12 text-center font-weight-bold mb-4">
-                    <p v-if="learnedNewWords" >{{ quiz.length }} kata baru telah dibaca!</p>
+                    <p v-if="learnedNewWords" >{{ questions.length }} kata baru telah dibaca!</p>
                     <p v-if="hasNewStreak" >{{ maxStreakCount }} streak baru didapatkan!</p>
                 </div>
                 <div class="col-12 text-center">
@@ -22,11 +22,11 @@
             </div>
         </div>
 
-        <div v-if="isQuizReady && !isCompleted" class="container position-relative d-flex flex-column h-100">
+        <div v-if="!isCompleted" class="container position-relative d-flex flex-column h-100">
             <div class="quiz-top-area-wrapper row align-items-center no-gutters px-4 px-md-0 py-4">
                 <div class="col-2">
                     <nuxt-link tag="div" to="/" class="close-icon mr-auto">
-                        <i class="fa-solid fa-times"></i>
+                        <i class="fa fa-solid fa-times"></i>
                     </nuxt-link>
                 </div>
                 <div class="col-8">
@@ -34,8 +34,8 @@
                 </div>
                 <div class="col-2">
                     <div class="sound-icon ml-auto" @click="toggleAudio">
-                        <i v-if="enableAudio" class="fa-solid fa-volume-up"></i>
-                        <i v-else class="fa-solid fa-volume-mute"></i>
+                        <i v-if="enableAudio" class="fa fa-solid fa-volume-up"></i>
+                        <i v-else class="fa fa-solid fa-volume-mute"></i>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 </div>
                 
                 <div class="quiz-translation col-12 text-center" :class="questionAnswered ? 'visible  mb-5' : 'invisible'">
-                    <b v-if="questionAnswered">{{ quiz[currQuestion].translation }}</b>
+                    <b v-if="questionAnswered">{{ questions[currQuestion].translation }}</b>
                 </div>
 
                 <div class="quiz-next-button-area col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'">
@@ -81,12 +81,13 @@ export default {
     layout: 'quiz',
     data() {
         return {
-            user: {},
-            id: '',
-            level: 0,
-            maxLevel: 0,
+            isLoading: true,
+            user: undefined,
+            slug: '',
             title: '',
-            quiz: {},
+            currentLevel: 0,
+            maxLevel: 0,
+            questions: {},
             currQuestion: 0,
             syllables: [],
             currSyllable: 0,
@@ -124,8 +125,7 @@ export default {
                     message: "Salah! Kehilangan Streak!"
                 }
             },
-            enableAudio: true,
-            isQuizReady: false
+            enableAudio: true
         }
     },
     head() {
@@ -133,59 +133,53 @@ export default {
             title: this.title !== undefined ? 'Kuis ' + this.title + ' - Sinahu Aksara' : 'Kuis Tidak Ditemukan - Sinahu Aksara',
         };
     },
-    async created() {
-        this.id = this.$route.params.id;
+    async mounted() {
+        this.slug = this.$route.params.slug;
+        this.quiz = await this.$content("quizzes", this.slug).fetch() || null;
 
-        await this.getQuizTitle();
+        this.verifyUser();
+        this.startQuiz();
 
-        if(process.client) {
-            if(!Object.prototype.hasOwnProperty.call(localStorage, "userData")) {
-                this.$router.push('/');
-            }
-            
-            this.user = JSON.parse(localStorage.getItem("userData"));
-            this.level = this.user.quizProgresses[this.id].currentLevel;
-
-            if(Object.prototype.hasOwnProperty.call(localStorage, "enableAudio")) {
-                this.enableAudio = JSON.parse(localStorage.getItem("enableAudio"));
-            }
-        }
-
-        await this.getQuizMaxLevel();
-        await this.getQuestions();
-
-        this.isQuizReady = true;
-
-        this.startNewQuestion()
+        this.isLoading = false;
     },
     methods: {
-        async getQuizTitle() {
-            await this.$axios.get('api/quiz/' + this.id).then((res) => {
-                this.title = res.data[0].title;
+        verifyUser() {
+            this.user = JSON.parse(localStorage.getItem('userData'));
+            // console.log(this.user);
+            
+            if(!this.user) {
+                this.$router.push('/');
+                return;
+            }
 
-                if(this.title === '' || this.title === undefined) {
-                    this.$router.push('/');
-                }
-            });
-        },
-        async getQuizMaxLevel() {
-            await this.$axios.get('api/quiz-level/' + this.id).then((res) => {
-                this.maxLevel = res.data.length;
+            if(this.user.learnedWords === undefined || this.user.learnedWords === null) {
+                this.$router.push('/');
+                return;
+            }
 
-                if(this.maxLevel <= 0 || this.level > this.maxLevel) {
-                    this.$router.push('/');
-                }
-            });
+            if(this.user.maxStreak === undefined || this.user.maxStreak === null) {
+                this.$router.push('/');
+            }
         },
-        async getQuestions() {
-            // load quizzes
-            await this.$axios.get('api/quiz/' + this.id + '/' + this.level).then((res) => {
-                this.quiz = this.shuffleArray(res.data);
-                
-                if(this.quiz.length <= 0) {
-                    this.$router.push('/');
+        startQuiz() {
+            this.currentLevel = this.user.quizProgresses[this.slug].currentLevel;
+            this.maxLevel = this.quiz.levels.length;
+
+            if(this.currentLevel > this.maxLevel) {
+                this.$router.push('/');
+                return;
+            }
+
+            const levelKeys = Object.keys(this.quiz.levels);
+            for(const key in levelKeys) {
+                if(this.quiz.levels[key].value === this.currentLevel) {
+                    this.questions = this.quiz.levels[key].questions;
+                    break;
                 }
-            });
+            }
+            // console.log(this.questions);
+
+            this.startNewQuestion();
         },
         generateChoices(syllable) {
             let choices = [syllable];
@@ -231,7 +225,7 @@ export default {
                     this.choices = this.generateChoices(this.syllables[this.currSyllable]);
                 } else {
                     this.questionAnswered = true;
-                    this.questionPercentage = ((this.currQuestion + 1) / this.quiz.length) * 100;
+                    this.questionPercentage = ((this.currQuestion + 1) / this.questions.length) * 100;
                     // console.log((this.currQuestion + 1) + '/' + this.quiz.length + '=' + this.questionPercentage);
                 }
 
@@ -257,29 +251,28 @@ export default {
                 return;
             }
 
-            if(this.currQuestion < this.quiz.length - 1) {
+            if(this.currQuestion < this.questions.length - 1) {
                 // reset state
                 this.currQuestion++;
                 this.currSyllable = 0;
-                this.questionAnswered = false;
                 
                 // set next question
                 this.startNewQuestion();
             } else {
-                const userQuizProgress = this.user.quizProgresses[this.id];
+                const userQuizProgress = this.user.quizProgresses[this.slug];
 
                 if(!userQuizProgress.isCompleted) {
-                    // console.log(this.level + '===' + this.maxLevel);
+                    // console.log(this.currentLevel + '===' + this.maxLevel);
 
-                    if(this.level === this.maxLevel) {  
+                    if(this.currentLevel === this.maxLevel) {  
                         userQuizProgress.isCompleted = true;
                     } else {                                        
                         userQuizProgress.currentLevel++;
                     }
                     
                     // console.log(userQuizProgress);
-                    this.user.quizProgresses[this.id] = userQuizProgress;
-                    this.user.learnedWords += this.quiz.length;
+                    this.user.quizProgresses[this.slug] = userQuizProgress;
+                    this.user.learnedWords += this.questions.length;
                     this.learnedNewWords = true;
                 }
 
@@ -287,14 +280,14 @@ export default {
                     this.user.maxStreak = this.maxStreakCount;
                     this.hasNewStreak = true;
                 }
-                
-                localStorage.setItem("userData", JSON.stringify(this.user));
-                // console.log(this.user);
+
+                localStorage.setItem('userData', JSON.stringify(this.user));
                 this.isCompleted = true;
             }
         },
         startNewQuestion() {
-            this.syllables = this.toSyllables(this.quiz[this.currQuestion].question);
+            this.questionAnswered = false;
+            this.syllables = this.toSyllables(this.questions[this.currQuestion].value);
             this.choices = this.generateChoices(this.syllables[this.currSyllable]);
         },
         setNotification(notification) {

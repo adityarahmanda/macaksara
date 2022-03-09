@@ -8,13 +8,10 @@
 export default {
     head() {
         return {
-            title: 'Aksara Jawa - Sinahu Aksara',
+            title: 'Aksara Jawa - Macaksara',
             meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content: 'Belajar aksara jawa dengan mudah di Sinahu Aksara'
-                }
+                { hid: 'description', name: 'description', content: 'Materi Aksara Jawa lengkap untuk kamu pelajari dan meningkatkan kemampuan membaca Aksara Jawa kamu.' },
+                { hid: 'title', name: 'title', content: 'Aksara Jawa - Macaksara' }
             ]
         };
     }

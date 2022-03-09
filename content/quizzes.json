@@ -1,0 +1,155 @@
+[
+    { 
+        "title": "Arane Kewan", 
+        "slug": "arane-kewan",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"baya" , "translation":"buaya" },
+                    { "value":"cêcak" , "translation":"cicak" },
+                    { "value":"coro" , "translation":"kêcoak" },
+                    { "value":"pe" , "translation":"ikan pari" },
+                    { "value":"dara" , "translation":"burung mêrpati" },
+                    { "value":"kupu" , "translation":"kupu-kupu" },
+                    { "value":"kura" , "translation":"kura-kura" },
+                    { "value":"tikus" , "translation":"tikus" },
+                    { "value":"yuyu" , "translation":"kêtam" }
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"ampal" , "translation":"ampal" },
+                    { "value":"banyak" , "translation":"angsa" },
+                    { "value":"celeng" , "translation":"babi" },
+                    { "value":"nyambik" , "translation":"biawak" },
+                    { "value":"tongkol" , "translation":"ikan tongkol" },
+                    { "value":"lingsang" , "translation":"bêrang-bêrang" },
+                    { "value":"lintah" , "translation":"lintah" },
+                    { "value":"kalajêngking" , "translation":"kalajêngking" },
+                    { "value":"kucing" , "translation":"kucing" },
+                    { "value":"bandêng" , "translation":"bandêng" }
+                ]
+            },
+            { 
+                "value": 3,
+                "questions": [
+                    { "value":"mênjangan" , "translation":"rusa" },
+                    { "value":"mênthok" , "translation":"êntok" },
+                    { "value":"brati" , "translation":"bebek brati" },
+                    { "value":"jangkrik" , "translation":"jangkrik" },
+                    { "value":"krêmi" , "translation":"cacing krêmi" },
+                    { "value":"kêmangga" , "translation":"laba-laba" },
+                    { "value":"kwangwung" , "translation":"kumbang badak" },
+                    { "value":"êmprit" , "translation":"burung pipit" },
+                    { "value":"tambra" , "translation":"ikan sêmah" },
+                    { "value":"kintêl" , "translation":"kodok bêlêntung" },
+                    { "value":"sêmbilang" , "translation":"ikan sêmbilang" }
+                ]
+            }
+        ]
+    },
+    { 
+        "title": "Arane Anak Kewan", 
+        "slug": "arane-anak-kewan",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"baya" , "translation":"buaya" },
+                    { "value":"cêcak" , "translation":"cicak" },
+                    { "value":"coro" , "translation":"kêcoak" },
+                    { "value":"pe" , "translation":"ikan pari" },
+                    { "value":"dara" , "translation":"burung mêrpati" },
+                    { "value":"kupu" , "translation":"kupu-kupu" },
+                    { "value":"kura" , "translation":"kura-kura" },
+                    { "value":"tikus" , "translation":"tikus" },
+                    { "value":"yuyu" , "translation":"kêtam" }
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"ampal" , "translation":"ampal" },
+                    { "value":"banyak" , "translation":"angsa" },
+                    { "value":"celeng" , "translation":"babi" },
+                    { "value":"nyambik" , "translation":"biawak" },
+                    { "value":"tongkol" , "translation":"ikan tongkol" },
+                    { "value":"lingsang" , "translation":"bêrang-bêrang" },
+                    { "value":"lintah" , "translation":"lintah" },
+                    { "value":"kalajêngking" , "translation":"kalajêngking" },
+                    { "value":"kucing" , "translation":"kucing" },
+                    { "value":"bandêng" , "translation":"bandêng" }
+                ]
+            },
+            { 
+                "value": 3,
+                "questions": [
+                    { "value":"mênjangan" , "translation":"rusa" },
+                    { "value":"mênthok" , "translation":"êntok" },
+                    { "value":"brati" , "translation":"bebek brati" },
+                    { "value":"jangkrik" , "translation":"jangkrik" },
+                    { "value":"krêmi" , "translation":"cacing krêmi" },
+                    { "value":"kêmangga" , "translation":"laba-laba" },
+                    { "value":"kwangwung" , "translation":"kumbang badak" },
+                    { "value":"êmprit" , "translation":"burung pipit" },
+                    { "value":"tambra" , "translation":"ikan sêmah" },
+                    { "value":"kintêl" , "translation":"kodok bêlêntung" },
+                    { "value":"sêmbilang" , "translation":"ikan sêmbilang" }
+                ]
+            }
+        ]
+    },
+    { 
+        "title": "Arane Panggonan", 
+        "slug": "arane-panggonan",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"baya" , "translation":"buaya" },
+                    { "value":"cêcak" , "translation":"cicak" },
+                    { "value":"coro" , "translation":"kêcoak" },
+                    { "value":"pe" , "translation":"ikan pari" },
+                    { "value":"dara" , "translation":"burung mêrpati" },
+                    { "value":"kupu" , "translation":"kupu-kupu" },
+                    { "value":"kura" , "translation":"kura-kura" },
+                    { "value":"tikus" , "translation":"tikus" },
+                    { "value":"yuyu" , "translation":"kêtam" }
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"ampal" , "translation":"ampal" },
+                    { "value":"banyak" , "translation":"angsa" },
+                    { "value":"celeng" , "translation":"babi" },
+                    { "value":"nyambik" , "translation":"biawak" },
+                    { "value":"tongkol" , "translation":"ikan tongkol" },
+                    { "value":"lingsang" , "translation":"bêrang-bêrang" },
+                    { "value":"lintah" , "translation":"lintah" },
+                    { "value":"kalajêngking" , "translation":"kalajêngking" },
+                    { "value":"kucing" , "translation":"kucing" },
+                    { "value":"bandêng" , "translation":"bandêng" }
+                ]
+            },
+            { 
+                "value": 3,
+                "questions": [
+                    { "value":"mênjangan" , "translation":"rusa" },
+                    { "value":"mênthok" , "translation":"êntok" },
+                    { "value":"brati" , "translation":"bebek brati" },
+                    { "value":"jangkrik" , "translation":"jangkrik" },
+                    { "value":"krêmi" , "translation":"cacing krêmi" },
+                    { "value":"kêmangga" , "translation":"laba-laba" },
+                    { "value":"kwangwung" , "translation":"kumbang badak" },
+                    { "value":"êmprit" , "translation":"burung pipit" },
+                    { "value":"tambra" , "translation":"ikan sêmah" },
+                    { "value":"kintêl" , "translation":"kodok bêlêntung" },
+                    { "value":"sêmbilang" , "translation":"ikan sêmbilang" }
+                ]
+            }
+        ]
+    }
+]

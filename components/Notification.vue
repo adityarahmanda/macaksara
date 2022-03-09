@@ -1,6 +1,6 @@
 <template>
     <div class="notification" :class="[{ 'visible' : visible }, variant]">
-        <i v-if="icon !== ''" class="fa-solid mr-2" :class="'fa-' + icon"></i>
+        <i v-if="icon !== ''" class="fa fa-solid mr-2" :class="'fa-' + icon"></i>
         <span>{{ message }}</span>
     </div>
 </template>

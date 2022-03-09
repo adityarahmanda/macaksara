@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link v-slot="{ navigate }" :to="'quiz/' + quizId" custom>
+    <nuxt-link v-slot="{ navigate }" :to="'/' + quizId" custom>
         <div class="quiz-card px-4 py-4" :class="{ 'is-loading' : isLoading }" @click="navigate">
             <div class="quiz-card-header">
                 <div class="quiz-card-header-title-and-status">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="quiz-card-header-level">
                     <div class="shield-icon">
-                        <i class="fa-solid fa-shield-blank"></i>
+                        <i class="fa fa-solid fa-shield-blank"></i>
                         <div class="text-level">
                             <span v-if="!isLoading">{{ currentLevel }}</span>
                         </div>
@@ -23,7 +23,7 @@
             <div class="quiz-card-content">
                 <ProgressBar :height="8" :percentage="progressBarValue"/>
                 <div class="play-icon">
-                    <i class="fa-solid fa-play"></i>
+                    <i class="fa fa-solid fa-play"></i>
                 </div>
             </div>
         </div>

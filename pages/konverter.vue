@@ -7,7 +7,7 @@
                     <h3 v-else>Aksara Jawa</h3>
                 </div>
                 <div class="btn swap-button" @click="swapConvertMode()">
-                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    <i class="fa fa-solid fa-arrow-right-arrow-left"></i>
                 </div>
             </div>
 
@@ -160,11 +160,8 @@ export default {
         return {
             title: 'Konverter Aksara - Konversi Aksara Jawa ke Latin dan Sebaliknya',
             meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content: 'Konversi aksara jawa ke huruf latin maupun sebaliknya dengan mudah'
-                }
+                { hid: 'description', name: 'description', content: 'Konverter Aksara merupakan alat untuk melakukan konversi ataupun transliterasi antara aksara Jawa dan aksara latin permainan kuis untuk kemudahan menulis aksara Jawa.' },
+                { hid: 'title', name: 'title', content: 'Konverter Aksara - Konversi Aksara Jawa ke Latin dan Sebaliknya' }
             ]
         };
     },

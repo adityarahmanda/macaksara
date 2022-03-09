@@ -5,7 +5,7 @@
             <nuxt-link :to="titleLink">{{ title }}</nuxt-link>
         </div>
         <label for="navbar-toggler-checkbox" class="navbar-toggler" aria-label="Toggle navigation">
-            <i class="fa-solid fa-bars"></i>
+            <i class="fa fa-solid fa-bars"></i>
         </label>
         <nav class="navbar-collapse">
             <ul class="navbar-nav ml-auto">
