@@ -27,7 +27,7 @@
             </div>
             
             <div v-if="latinToJavaMode" class="converter-input-togglers mb-3">
-                <label class="toggle mr-2" @click="togglePepetTypeMode">
+                <label class="toggle d-none d-md-inline-block mr-2" @click="togglePepetTypeMode">
                     <div class="slider" :class="{ 'checked' : pepetTypeMode }"></div> Mode Ketik Pepet
                 </label>
                 <label class="toggle mr-2" @click="toggleWithoutSpace">

@@ -11,7 +11,7 @@
 
     .front {
         display: block;
-        padding: $btn-padding-x $btn-padding-y;
+        padding: $spacer * .5 $spacer;
         border-radius: $rounded-pill;
         background: $white;
         color: $primary;

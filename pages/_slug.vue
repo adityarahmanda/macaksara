@@ -1,28 +1,6 @@
 <template>
     <div class="quiz-wrapper">
-        <div v-if="isCompleted" class="container position-relative d-flex flex-column h-100">
-            <div class="row align-content-center flex-grow-1">
-                <div class="col-12 text-center mb-4">
-                    <h3>Selamat, Kamu Telah Berhasil Menyelesaikan Kuis!</h3>
-                </div>
-                <div class="col-12 text-center mb-4">
-                    <div class="trophy-icon">
-                        <i class="fa fa-solid fa-trophy"></i>
-                    </div>
-                </div>
-                <div v-if="learnedNewWords || hasNewStreak" class="col-12 text-center font-weight-bold mb-4">
-                    <p v-if="learnedNewWords" >{{ questions.length }} kata baru telah dibaca!</p>
-                    <p v-if="hasNewStreak" >{{ maxStreakCount }} streak baru didapatkan!</p>
-                </div>
-                <div class="col-12 text-center">
-                    <nuxt-link to="/" class="btn">
-                        Kembali ke Beranda
-                    </nuxt-link>
-                </div>
-            </div>
-        </div>
-
-        <div v-if="!isCompleted" class="container position-relative d-flex flex-column h-100">
+        <div class="container position-relative d-flex flex-column h-100">
             <div class="quiz-top-area-wrapper row align-items-center no-gutters px-4 px-md-0 py-4">
                 <div class="col-2">
                     <nuxt-link tag="div" to="/" class="close-icon mr-auto">
@@ -40,9 +18,30 @@
                 </div>
             </div>
 
-            <div class="row align-content-center flex-grow-1">
+            <div v-if="isCompleted" class="row align-content-center flex-grow-1">
                 <div class="col-12 text-center mb-4">
-                    <h3 v-if="questionAnswered" class="quiz-instruction">Satu Kata Telah Terbaca Dengan Benar!</h3>
+                    <h3>Selamat!</h3>
+                    <p class="mb-0">Kamu telah berhasil menyelesaikan kuis.</p>
+                </div>
+                <div class="col-12 text-center" :class="learnedNewWords || hasNewStreak ? 'mb-4' : 'mb-5'">
+                    <div class="thumbs-up-icon">
+                        <i class="fa fa-solid fa-thumbs-up"></i>
+                    </div>
+                </div>
+                <div v-if="learnedNewWords || hasNewStreak" class="col-12 text-center mb-4">
+                    <h4 v-if="learnedNewWords" :class="hasNewStreak ? 'mb-3' : 'mb-0'">{{ questions.length }} kata baru telah dibaca!</h4>
+                    <h4 v-if="hasNewStreak" >{{ maxStreakCount }} streak baru didapatkan!</h4>
+                </div>
+                <div class="col-12 text-center">
+                    <nuxt-link to="/" class="btn btn-primary rounded-pill border-0 px-4">
+                        Kembali ke Beranda
+                    </nuxt-link>
+                </div>
+            </div>
+
+            <div v-else class="row align-content-center flex-grow-1" :class="isLoading ? 'invisible' : 'visible'">
+                <div class="col-12 text-center mb-4">
+                    <h3 v-if="questionAnswered" class="quiz-instruction px-3 px-md-0">Satu Kata Telah Terbaca Dengan Benar!</h3>
                     <h3 v-else class="quiz-instruction">Pilih Cara Baca Yang Benar Dari Aksara Jawa Berikut!</h3>
                 </div>
 
@@ -50,6 +49,7 @@
                     :question-answered="questionAnswered"
                     :current-syllable="currSyllable" 
                     :syllables="syllables"
+                    :is-loading="isLoading"
                     class="col-12 text-center"
                 />
                 
@@ -67,6 +67,7 @@
             </div>
         
             <Notification 
+                v-if="!isCompleted"
                 :visible="notification.visible" 
                 :icon="notification.selected.icon"
                 :variant="notification.selected.variant"
@@ -193,7 +194,7 @@ export default {
             
             return this.shuffleArray(choices);
         },
-        selectChoices(choice) {
+        selectChoices(choiceButton, choice) {
             if(this.questionAnswered) {
                 return;
             }
@@ -229,6 +230,8 @@ export default {
                     // console.log((this.currQuestion + 1) + '/' + this.quiz.length + '=' + this.questionPercentage);
                 }
 
+                // blur button
+                choiceButton.blur();
                 return;
             }
             
@@ -259,6 +262,12 @@ export default {
                 // set next question
                 this.startNewQuestion();
             } else {
+                // play correct sound
+                if(this.enableAtudio) {
+                    this.$sounds.tada.play();
+                }
+
+                // save quiz progress
                 const userQuizProgress = this.user.quizProgresses[this.slug];
 
                 if(!userQuizProgress.isCompleted) {

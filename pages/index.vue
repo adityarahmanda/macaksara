@@ -4,7 +4,7 @@
 
         <main class="col-12 col-lg-8">
             <div class="mb-3 mb-md-4">
-                <h1>Kuis</h1>
+                <h2>Pilih Kuis</h2>
             </div>
 
             <div v-if="isLoading" class="row no-gutters">

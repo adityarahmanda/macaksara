@@ -1,4 +1,3 @@
-
 .converter-input, 
 .converter-output {
     position: relative;
@@ -117,4 +116,16 @@
 
 .special-character-button {
     font-weight: $font-weight-normal;
+}
+
+@include media-breakpoint-down(sm) {
+    .converter-input, 
+    .converter-output {
+        min-height: 120px;
+    }
+
+    .special-character-button {
+        padding: $spacer * .25 $spacer * .5;
+        font-weight: $font-weight-normal;
+    }
 }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button v-for="(choice, i) in choices" :key="i" class="btn mx-2" @click="$emit('select-choices', choice)">
+        <button v-for="(choice, i) in choices" ref="choices" :key="i" class="btn mx-2" @click="$emit('select-choices', $refs.choices[i], choice)">
             {{ choice }}
         </button>
     </div>
@@ -12,7 +12,7 @@ export default {
         choices: {
             type: Array,
             default() {
-                return ['ha', 'na', 'ca', 'ra', 'ka']
+                return ['ha', 'na', 'ca', 'ra']
             }
         }
     }

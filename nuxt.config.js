@@ -55,6 +55,22 @@ export default {
     '@nuxt/content'
   ],
 
+  generate: {
+    async routes () {
+      const { $content } = require('@nuxt/content')
+      const quizzesSlug = await $content('quizzes').only(['slug']).fetch()
+      const quizzesRoutes = Object.keys(quizzesSlug).map((key) => {
+          return { route: `/${quizzesSlug[key].slug}` }
+      })
+
+      return [
+        { route: '/' },
+        ...quizzesRoutes
+      ]
+    },
+    fallback: '404.html',
+  },
+
   /*
   ** Sounds
   */
@@ -70,7 +86,13 @@ export default {
       options: {
         volume: 1
       }
-    }
+    },
+    tada: {
+      src: "/sounds/tada.mp3",
+      options: {
+        volume: 1
+      }
+    },
   }
 
 }

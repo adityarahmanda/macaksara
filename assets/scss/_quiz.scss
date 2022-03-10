@@ -22,9 +22,15 @@
         font-size: 1.6rem;
     }
 
-    .trophy-icon {
-        font-size: 6rem;
-        color: $yellow;
+    .thumbs-up-icon {
+        position: relative;
+        overflow: hidden;
+    
+        i {
+            font-size: 6rem;
+            color: $blue;
+            animation: thumbs-up-animation 0.4s ease-out;
+        }
     }
 
     .latin-syllable, .aksara-syllable {
@@ -128,5 +134,15 @@
 
     .aksara-syllable {
         font-size: 2rem;
+    }
+}
+
+@keyframes thumbs-up-animation {
+    0% {
+        transform: translateY(6rem) rotate(45deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0);
     }
 }

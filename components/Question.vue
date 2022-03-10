@@ -50,6 +50,10 @@ export default {
         questionAnswered: {
             type: Boolean,
             default: false
+        },
+        isLoading: {
+            type: Boolean,
+            default: true
         }
     },
     data() {
@@ -57,28 +61,35 @@ export default {
             spacer: 10,
         }
     },
-    updated() {
-        this.adjustStyle();
+    watch: {
+        questionAnswered() {
+            this.$nextTick(() => { this.adjustStyle(); });
+        },
+        isLoading() {
+            if(!this.isLoading) {
+                this.$nextTick(() => { this.adjustStyle(); });
+            }
+        }
     },
     methods: {
         adjustStyle() {
             if(this.questionAnswered) {
                 for(let i = 0; i < this.syllables.length; i++) {
                     this.$refs.latinSyllables[i].style.transition = 'all .4s ease-out';
-                    this.$refs.aksaraSyllables[i].style.width = this.$refs.aksaraSyllables[i].firstChild.offsetWidth + 'px';
+                    this.$refs.aksaraSyllables[i].style.width = this.$refs.aksaraSyllables[i].firstChild.offsetWidth  + 1 + 'px';
 
                     this.$refs.aksaraSyllables[i].style.transition = 'all .4s ease-out';
-                    this.$refs.latinSyllables[i].style.width = this.$refs.latinSyllables[i].firstChild.offsetWidth + 'px';
+                    this.$refs.latinSyllables[i].style.width = this.$refs.latinSyllables[i].firstChild.offsetWidth + 1 + 'px';
                 }
             }
 
             if(!this.questionAnswered) {
                 for(let i = 0; i < this.syllables.length; i++) {
                     this.$refs.aksaraSyllables[i].style.transition = 'none';
-                    this.$refs.aksaraSyllables[i].style.width = (this.$refs.aksaraSyllables[i].firstChild.offsetWidth + this.spacer) + 'px';
+                    this.$refs.aksaraSyllables[i].style.width = (this.$refs.aksaraSyllables[i].firstChild.offsetWidth + 1 + this.spacer) + 'px';
 
                     this.$refs.latinSyllables[i].style.transition = 'none';
-                    this.$refs.latinSyllables[i].style.width = this.$refs.aksaraSyllables[i].offsetWidth + 'px';
+                    this.$refs.latinSyllables[i].style.width = this.$refs.aksaraSyllables[i].offsetWidth + 1 + 'px';
                 }
             }
         }

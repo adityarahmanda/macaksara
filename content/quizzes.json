@@ -57,97 +57,76 @@
             { 
                 "value": 1,
                 "questions": [
-                    { "value":"baya" , "translation":"buaya" },
-                    { "value":"cêcak" , "translation":"cicak" },
-                    { "value":"coro" , "translation":"kêcoak" },
-                    { "value":"pe" , "translation":"ikan pari" },
-                    { "value":"dara" , "translation":"burung mêrpati" },
-                    { "value":"kupu" , "translation":"kupu-kupu" },
-                    { "value":"kura" , "translation":"kura-kura" },
-                    { "value":"tikus" , "translation":"tikus" },
-                    { "value":"yuyu" , "translation":"kêtam" }
+                    { "value":"piyik" , "translation":"anak ayam" },
+                    { "value":"mêri" , "translation":"anak bebek" },
+                    { "value":"kuthuk" , "translation":"anak soang" },
+                    { "value":"gudêl" , "translation":"anak kêrbau"},
+                    { "value":"kowe" , "translation":"anak monyet" },
+                    { "value":"bêlo" , "translation":"anak kuda" },
+                    { "value":"pacêt" , "translation":"anak lintah" },
+                    { "value":"rete" , "translation":"anak buaya" },
+                    { "value":"cêlolo" , "translation":"anak tokek" },
+                    { "value":"cêriwi" , "translation":"anak laba-laba" },
+                    { "value":"kêtupa" , "translation":"anak kalajêngking" }
                 ]
             },
             { 
                 "value": 2,
                 "questions": [
-                    { "value":"ampal" , "translation":"ampal" },
-                    { "value":"banyak" , "translation":"angsa" },
-                    { "value":"celeng" , "translation":"babi" },
-                    { "value":"nyambik" , "translation":"biawak" },
-                    { "value":"tongkol" , "translation":"ikan tongkol" },
-                    { "value":"lingsang" , "translation":"bêrang-bêrang" },
-                    { "value":"lintah" , "translation":"lintah" },
-                    { "value":"kalajêngking" , "translation":"kalajêngking" },
-                    { "value":"kucing" , "translation":"kucing" },
-                    { "value":"bandêng" , "translation":"bandêng" }
+                    { "value":"pêdhet" , "translation":"anak sapi" },
+                    { "value":"warêng" , "translation":"anak banteng" },
+                    { "value":"cêmêng" , "translation":"anak kucing" },
+                    { "value":"kirik" , "translation":"anak anjing" },
+                    { "value":"êngkak" , "translation":"anak gagak" },
+                    { "value":"gogor" , "translation":"anak macan" },
+                    { "value":"sawiyah" , "translation":"anak cicak" },
+                    { "value":"mênter" , "translation":"anak ikan bêtik" },
+                    { "value":"gênyong" , "translation":"anak ikan pari" },
+                    { "value":"bokol" , "translation":"anak ikan sêmah" }
                 ]
             },
             { 
                 "value": 3,
                 "questions": [
-                    { "value":"mênjangan" , "translation":"rusa" },
-                    { "value":"mênthok" , "translation":"êntok" },
-                    { "value":"brati" , "translation":"bebek brati" },
-                    { "value":"jangkrik" , "translation":"jangkrik" },
-                    { "value":"krêmi" , "translation":"cacing krêmi" },
-                    { "value":"kêmangga" , "translation":"laba-laba" },
-                    { "value":"kwangwung" , "translation":"kumbang badak" },
-                    { "value":"êmprit" , "translation":"burung pipit" },
-                    { "value":"tambra" , "translation":"ikan sêmah" },
-                    { "value":"kintêl" , "translation":"kodok bêlêntung" },
-                    { "value":"sêmbilang" , "translation":"ikan sêmbilang" }
+                    { "value":"kompreng" , "translation":"anak rusa" },
+                    { "value":"cêmpe" , "translation":"anak kambing" },
+                    { "value":"minthi" , "translation":"anak êntog" },
+                    { "value":"gêndhot" , "translation":"anak kumbang badak" },
+                    { "value":"caplek" , "translation":"anak ikan kakap" },
+                    { "value":"gêndholo" , "translation":"anak jangkrik" },
+                    { "value":"mêndhet" , "translation":"anak kêcoak" },
+                    { "value":"blêngur" , "translation":"anak angsa" },
+                    { "value":"gêmbluk" , "translation":"anak babi" },
+                    { "value":"blêdug" , "translation":"anak gajah" },
+                    { "value":"jênthit" , "translation":"anak capung" }
                 ]
             }
         ]
     },
+    
     { 
-        "title": "Arane Panggonan", 
-        "slug": "arane-panggonan",
+        "title": "Test", 
+        "slug": "test",
         "levels": [
             { 
                 "value": 1,
                 "questions": [
-                    { "value":"baya" , "translation":"buaya" },
-                    { "value":"cêcak" , "translation":"cicak" },
-                    { "value":"coro" , "translation":"kêcoak" },
-                    { "value":"pe" , "translation":"ikan pari" },
-                    { "value":"dara" , "translation":"burung mêrpati" },
-                    { "value":"kupu" , "translation":"kupu-kupu" },
-                    { "value":"kura" , "translation":"kura-kura" },
-                    { "value":"tikus" , "translation":"tikus" },
-                    { "value":"yuyu" , "translation":"kêtam" }
+                    { "value":"piyik" , "translation":"anak ayam" },
+                    { "value":"mêri" , "translation":"anak bebek" }
                 ]
             },
             { 
                 "value": 2,
                 "questions": [
-                    { "value":"ampal" , "translation":"ampal" },
-                    { "value":"banyak" , "translation":"angsa" },
-                    { "value":"celeng" , "translation":"babi" },
-                    { "value":"nyambik" , "translation":"biawak" },
-                    { "value":"tongkol" , "translation":"ikan tongkol" },
-                    { "value":"lingsang" , "translation":"bêrang-bêrang" },
-                    { "value":"lintah" , "translation":"lintah" },
-                    { "value":"kalajêngking" , "translation":"kalajêngking" },
-                    { "value":"kucing" , "translation":"kucing" },
-                    { "value":"bandêng" , "translation":"bandêng" }
+                    { "value":"pêdhet" , "translation":"anak sapi" },
+                    { "value":"warêng" , "translation":"anak banteng" }
                 ]
             },
             { 
                 "value": 3,
                 "questions": [
-                    { "value":"mênjangan" , "translation":"rusa" },
-                    { "value":"mênthok" , "translation":"êntok" },
-                    { "value":"brati" , "translation":"bebek brati" },
-                    { "value":"jangkrik" , "translation":"jangkrik" },
-                    { "value":"krêmi" , "translation":"cacing krêmi" },
-                    { "value":"kêmangga" , "translation":"laba-laba" },
-                    { "value":"kwangwung" , "translation":"kumbang badak" },
-                    { "value":"êmprit" , "translation":"burung pipit" },
-                    { "value":"tambra" , "translation":"ikan sêmah" },
-                    { "value":"kintêl" , "translation":"kodok bêlêntung" },
-                    { "value":"sêmbilang" , "translation":"ikan sêmbilang" }
+                    { "value":"gêmbluk" , "translation":"anak rusa" },
+                    { "value":"cêmpe" , "translation":"anak kambing" }
                 ]
             }
         ]

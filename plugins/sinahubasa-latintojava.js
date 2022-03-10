@@ -43,9 +43,17 @@ const wyanjana = {
      z: "ꦗ꦳",      // za rekan
 }
 
+const isWyanjana = (key) => { return Object.values(wyanjana).includes(key); }
+
 const getWyanjana = (key) => { return wyanjana[key]; }
 
-// const isWyanjana = (key) => { return Object.values(wyanjana).includes(key); }
+const isWyanjanaPasanganInRight = (wyanjana) => { 
+    return wyanjana === 'ꦥ' || wyanjana === 'ꦥ꦳' || wyanjana === 'ꦲ' || wyanjana === "ꦏ꧀ꦱ" || wyanjana === "ꦰ" || wyanjana === "ꦱ" || wyanjana === "ꦦ"; 
+}
+
+const isWyanjanaPasanganInBelow = (wyanjana) => { 
+    return isWyanjana(wyanjana) && !isWyanjanaPasanganInRight(wyanjana); 
+}
 
 const swara = {
     A: "ꦄ",       // aksara swara a
@@ -135,6 +143,7 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
     let length = str.length;
     const output = [];
     let isMurdaAlreadyIncluded = false;
+    let isAlreadyStacked = false;
 
     for (let i = 0; i < length; i++)
     {
@@ -152,6 +161,8 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
                 }
 
                 if(isConsonantsSandhanganPanyigeg(c12)) {
+                    isAlreadyStacked = false;
+                    
                     if(i - 2 >= 0 && i + 1 < length) {
                         const cBefore = str[i - 2];
                         const cAfter = str[i + 1];
@@ -172,6 +183,29 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
                     }
                 }
 
+                // prevent "tumpuk telu" by adding zero width space
+                if(output.length - 2 >= 0) {
+                    const lastOutput = output[output.length - 1];
+                    const lastOutput2 = output[output.length - 2];
+                    
+                    if(isPangkon(lastOutput) && isWyanjanaPasanganInBelow(lastOutput2)) { 
+                        if(isAlreadyStacked) {
+                            // pop last two output
+                            output.pop();
+                            output.pop();
+
+                            output.push("​"); // push zero width space
+
+                            // push again last two output
+                            output.push(lastOutput2);
+                            output.push(lastOutput);
+                            isAlreadyStacked = false;
+                        } else {
+                            isAlreadyStacked = true;
+                        }
+                    }
+                }
+
                 if(murda && !isMurdaAlreadyIncluded && isConsonantsMurda(c12)) {
                     output.push(getMurda(c12));
                     isMurdaAlreadyIncluded = true;
@@ -185,6 +219,7 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
         }
 
         if(isConsonantsSandhanganPanyigeg(c)) {
+            isAlreadyStacked = false;
             let isSandhanganPanyigeg = false;
 
             if(i - 1 >= 0 && i + 1 < length) {
@@ -207,9 +242,9 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
             if(isSandhanganPanyigeg) {
                 // remove pangkon if exist
                 if(output.length - 1 >= 0) {
-                    const lastOutputChar = output[output.length - 1];   
+                    const lastOutput = output[output.length - 1];   
 
-                    if(isPangkon(lastOutputChar)) {
+                    if(isPangkon(lastOutput)) {
                         output.pop();
                     }
                 }
@@ -220,6 +255,7 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
         }
         
         if(isConsonantsSandhanganWyanjana(c)) {
+            isAlreadyStacked = false;
             let isSandhanganWyanjana = false;
 
             if(i - 2 >= 0) {
@@ -241,9 +277,9 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
             if(isSandhanganWyanjana) {
                 // remove pangkon if exist
                 if(output.length - 1 >= 0) {
-                    const lastOutputChar = output[output.length - 1];   
+                    const lastOutput = output[output.length - 1];   
 
-                    if(isPangkon(lastOutputChar)) {
+                    if(isPangkon(lastOutput)) {
                         output.pop();
                     }
                 }
@@ -258,6 +294,26 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
                 c = c.toLowerCase();
             }
 
+            // prevent "tumpuk telu" by adding zero width space
+            if(output.length - 2 >= 0) {
+                const lastOutput = output[output.length - 1];
+                const lastOutput2 = output[output.length - 2];
+                
+                if(isPangkon(lastOutput) && isWyanjanaPasanganInBelow(lastOutput2)) { 
+                    if(isAlreadyStacked) {
+                        output.pop();
+                        output.pop();
+
+                        output.push("​"); // push zero width space
+                        output.push(lastOutput2);
+                        output.push(lastOutput);
+                        isAlreadyStacked = false;
+                    } else {
+                        isAlreadyStacked = true;
+                    }
+                }
+            }
+
             if(murda && !isMurdaAlreadyIncluded && isConsonantsMurda(c)) {
                 output.push(getMurda(c));
                 isMurdaAlreadyIncluded = true;
@@ -270,11 +326,15 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
         }
 
         if(isVowelsSwara(c)) {
+            isAlreadyStacked = false;
+
             output.push(getSwara(c));
             continue;
         }
         
         if(isVowels(c)) {
+            isAlreadyStacked = false;
+
             if(i + 1 < length) {
                 const c2 = str[i + 1];
 
@@ -325,6 +385,18 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
                         output.push("ꦽ");
                         continue;
                     }
+
+                     // check nga lelet
+                    if(i - 1 >= 0) {
+                        const cBefore = str[i - 1];
+                        
+                        if(cBefore === "l" && !isPangkon(lastOutputChar)) {
+                            output.pop(); // pop pangkon
+                            output.pop(); // pop aksara la
+                            output.push("ꦊ");
+                            continue;
+                        }
+                    }
                 }
 
                 if(i - 1 >= 0) {
@@ -335,14 +407,6 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
                         output.pop(); // pop pangkon
                         output.pop(); // pop aksara ra
                         output.push("ꦉ");
-                        continue;
-                    }
-
-                    // check nga lelet
-                    if(cBefore === "l") {
-                        output.pop(); // pop pangkon
-                        output.pop(); // pop aksara la
-                        output.push("ꦊ");
                         continue;
                     }
                 }
@@ -405,6 +469,8 @@ const latinToJava = (str, murda = false, diphthong = false, withoutSpace = false
         }
         
         if(isCharactersPada(c)) {
+            isAlreadyStacked = false;
+
             if(withoutSpace && c === " ") {
                 continue;
             }
