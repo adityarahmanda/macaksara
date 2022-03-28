@@ -1,7 +1,9 @@
 [
     { 
         "title": "Arane Kewan", 
+        "titleTranslation": "Nama-Nama Hewan",
         "slug": "arane-kewan",
+        "icon": "fa-horse",
         "levels": [
             { 
                 "value": 1,
@@ -52,7 +54,9 @@
     },
     { 
         "title": "Arane Anak Kewan", 
+        "titleTranslation": "Nama-Nama Anak Hewan",
         "slug": "arane-anak-kewan",
+        "icon": "fa-dog",
         "levels": [
             { 
                 "value": 1,
@@ -60,9 +64,9 @@
                     { "value":"piyik" , "translation":"anak ayam" },
                     { "value":"mêri" , "translation":"anak bebek" },
                     { "value":"kuthuk" , "translation":"anak soang" },
-                    { "value":"gudêl" , "translation":"anak kêrbau"},
+                    { "value":"gudel" , "translation":"anak kêrbau"},
                     { "value":"kowe" , "translation":"anak monyet" },
-                    { "value":"bêlo" , "translation":"anak kuda" },
+                    { "value":"belo" , "translation":"anak kuda" },
                     { "value":"pacêt" , "translation":"anak lintah" },
                     { "value":"rete" , "translation":"anak buaya" },
                     { "value":"cêlolo" , "translation":"anak tokek" },
@@ -99,34 +103,6 @@
                     { "value":"gêmbluk" , "translation":"anak babi" },
                     { "value":"blêdug" , "translation":"anak gajah" },
                     { "value":"jênthit" , "translation":"anak capung" }
-                ]
-            }
-        ]
-    },
-    
-    { 
-        "title": "Test", 
-        "slug": "test",
-        "levels": [
-            { 
-                "value": 1,
-                "questions": [
-                    { "value":"piyik" , "translation":"anak ayam" },
-                    { "value":"mêri" , "translation":"anak bebek" }
-                ]
-            },
-            { 
-                "value": 2,
-                "questions": [
-                    { "value":"pêdhet" , "translation":"anak sapi" },
-                    { "value":"warêng" , "translation":"anak banteng" }
-                ]
-            },
-            { 
-                "value": 3,
-                "questions": [
-                    { "value":"gêmbluk" , "translation":"anak rusa" },
-                    { "value":"cêmpe" , "translation":"anak kambing" }
                 ]
             }
         ]

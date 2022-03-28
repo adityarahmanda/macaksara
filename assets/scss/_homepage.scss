@@ -3,7 +3,7 @@
     display: flex;
     padding: $spacer * 4;
     flex-direction: column;
-    height: 160px;
+    height: 180px;
     color: $lighter-brown;
     background-color: $brown;
     border-radius: 1.2rem;
@@ -15,46 +15,45 @@
         flex-direction: row;
         justify-content: space-between;
 
-        .quiz-card-header-title {
-            color: $white;
+        .quiz-card-header-title-and-status {
+            z-index: 1;
+        
+            .quiz-card-header-title {
+                color: $white;
+            }    
         }
-    }
 
-    .quiz-card-header-level {
-        position: relative;
-
-        .shield-icon {
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+        .quiz-card-icon {
+            position: absolute;
+            top: 0;
+            right: 0;
     
             i {
                 color: $light-brown;
                 font-size: 48px;
-            }
-            
-            .text-level {
-                position: absolute;
-                color: $dark-brown;
-                font-size: 24px;
-                font-weight: $font-weight-bold;
             }
         }
     }
 
     .quiz-card-content {
         position: relative;
-        display: flex;
-        align-items: flex-end;
         margin-top: auto;
 
-        .play-icon {
+        .quiz-card-status {
+            font-weight: 700;
+            color: $white;
+        }
+
+        .quiz-card-progress-bar {
+            position: relative;
             display: flex;
-            justify-content: flex-end;
-            width: 36px;
-            margin-bottom: -4px;
+            align-items: center;
+
+            .play-icon {
+                display: flex;
+                justify-content: flex-end;
+                width: 36px;
+            }
         }
     }
 
@@ -83,6 +82,12 @@
             display: none;
         }
     }      
+}
+
+@include media-breakpoint-down(sm) {
+    .quiz-card {
+        height: 160px;
+    }
 }
 
 @keyframes shine {

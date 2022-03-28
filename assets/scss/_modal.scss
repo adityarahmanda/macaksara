@@ -1,0 +1,35 @@
+.modal {
+    .modal-content {
+        padding: $spacer * 1.5;
+        border-radius: 1.4rem;
+        border: 2px solid $primary;
+
+        .modal-body {
+            padding: 0;
+            font-weight: $font-weight-bold;
+            margin-bottom: $spacer;
+        }
+
+        .modal-footer {
+            padding: 0;
+            padding-top: 0;
+            border-top: 0;
+
+            button {
+                border: 0;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .modal {
+        .modal-content {
+            padding: $spacer;
+        }
+
+        .modal-body {
+            margin-bottom: $spacer * .5;
+        }
+    }
+}

@@ -1,29 +1,29 @@
 <template>
-    <nuxt-link v-slot="{ navigate }" :to="'/' + quizId" custom>
+    <nuxt-link v-slot="{ navigate }" :to="'/' + slug" custom>
         <div class="quiz-card px-4 py-4" :class="{ 'is-loading' : isLoading }" @click="navigate">
             <div class="quiz-card-header">
                 <div class="quiz-card-header-title-and-status">
-                    <h3 class="quiz-card-header-title">
+                    <h3 class="quiz-card-header-title mb-0">
                         <span v-if="!isLoading">{{ title }}</span>
                     </h3>
-                    <p class="quiz-card-header-status">
-                        <span v-if="!isCompleted && !isLoading" >{{ questionTotal }} kata</span>
-                        <span v-if="isCompleted && !isLoading">Terselesaikan</span>
-                    </p>
-                </div>
-                <div class="quiz-card-header-level">
-                    <div class="shield-icon">
-                        <i class="fa fa-solid fa-shield-blank"></i>
-                        <div class="text-level">
-                            <span v-if="!isLoading">{{ currentLevel }}</span>
-                        </div>
+                    <div class="quiz-card-title-translation">
+                        <span v-if="!isLoading">{{ titleTranslation }}</span>
                     </div>
+                </div>
+                <div class="quiz-card-icon">
+                    <i class="fa fa-solid" :class="icon"></i>
                 </div>
             </div>
             <div class="quiz-card-content">
-                <ProgressBar :height="8" :percentage="progressBarValue"/>
-                <div class="play-icon">
-                    <i class="fa fa-solid fa-play"></i>
+                <div class="quiz-card-status mb-1">
+                    <span v-if="!isCompleted && !isLoading">Level {{ currentLevel }} / {{ maxLevel }}</span>
+                    <span v-if="isCompleted && !isLoading">Terselesaikan</span>
+                </div>
+                <div class="quiz-card-progress-bar">
+                    <ProgressBar :height="8" :percentage="progressBarValue"/>
+                    <div class="play-icon">
+                        <i class="fa fa-solid fa-play"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,13 +33,21 @@
 <script>
 export default {
     props: {
-        quizId: {
+        slug: {
             type: String,
             default: ""
         },
         title: {
             type: String,
             default: "Nama Kuis"
+        },
+        titleTranslation: {
+            type: String,
+            default: "Terjemahan Nama Kuis"
+        },
+        icon: {
+            type: String,
+            default: ""
         },
         questionTotal: {
             type: Number,
@@ -49,7 +57,7 @@ export default {
             type: Number,
             default: 0
         },
-        progressBarValue: {
+        maxLevel: {
             type: Number,
             default: 0
         },
@@ -60,6 +68,11 @@ export default {
         isLoading: {
             type: Boolean,
             default: false
+        }
+    },
+    computed: {
+        progressBarValue() {
+            return (this.currentLevel / this.maxLevel) * 100;
         }
     }
 }

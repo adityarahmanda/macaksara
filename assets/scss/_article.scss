@@ -1,0 +1,259 @@
+.article-container {
+    position: relative;
+    max-width: 675px;
+    margin: 0 auto;
+
+    .article-header {
+        position: relative;
+        text-align: center;
+        margin: $spacer * 3 0;
+
+        h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
+            margin-bottom: $spacer;
+        }
+
+        .article-date-modified {
+            font-weight: bold;
+        }
+    }
+
+    .article-content {
+        position: relative;
+
+        p {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
+            margin-bottom: $spacer;
+        }
+    }
+}
+
+$javanese-text-line-height: 1.6;
+$top-border: .625em;
+$left-border: .75em;
+$bottom-border: 1.2em;
+
+.aksara-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: $spacer;
+    column-gap: $spacer * .5;
+
+    .aksara-grid-block {
+        position: relative;
+        display: flex;
+        flex-flow: column;
+    }
+
+    
+    &.pada {  
+        grid-template-columns: repeat(4, 1fr);
+
+        .name {
+            margin-top: 0;
+        }
+
+        .javanese-text {
+            font-size: 2rem;
+        }
+    }
+}
+
+.aksara-wrapper {
+    &:first-child {
+        margin-left: 0;
+    }
+    
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.aksara-grid, .aksara-wrapper {
+    margin-bottom: $spacer * 2;
+
+    .name {
+        font-weight: 700;
+        text-align: center;
+        margin-top: auto;
+        margin-bottom: $spacer * .5;
+    }
+    
+    .javanese-text {
+        display: flex;
+        justify-content: center;
+        font-size: 2.4rem;
+        line-height: $javanese-text-line-height;
+        margin-bottom: $spacer * 1.5;
+    }
+
+    .transliteration {
+        font-weight: $font-weight-bold;
+    }
+    
+    .description {
+        font-size: .8rem;
+    }
+
+    .transliteration, .translation, .description {
+        text-align: center;
+    }
+
+    &.sandangan {
+        .transliteration {
+            font-weight: $font-weight-normal;
+
+            b {
+                font-weight: $font-weight-bold;
+            }
+        }
+
+        // main color
+        .diacritic-top,
+        .diacritic-left {
+            color: #dad6d2;
+        }
+
+        // diacritic color
+        .diacritic-top::before,
+        .diacritic-left::before {
+            color: $dark-brown;
+        }
+
+        // diacritic color
+        .diacritic-below,
+        .diacritic-right {
+            color: $dark-brown;
+        }
+
+        // main color
+        .diacritic-below::before, 
+        .diacritic-right::before { 
+            color: #dad6d2;
+        }
+    }
+}
+
+.diacritic-top,
+.diacritic-below,
+.diacritic-right,
+.diacritic-left,
+.diacritic-left.diacritic-right {
+    position:relative;     
+    display:inline-block;
+}
+
+.diacritic-top::before,
+.diacritic-below::before,
+.diacritic-right::before,
+.diacritic-left::before,
+.diacritic-left.diacritic-right::before,
+.diacritic-left.diacritic-right::after {
+    content:attr(data-content);
+    position:absolute;
+    left:0;
+    top:0;   
+    overflow:hidden;
+    cursor: text;   
+}
+
+// main color
+.diacritic-top,
+.diacritic-left {
+    color: $dark-brown;
+}
+
+// diacritic color
+.diacritic-top::before,
+.diacritic-left::before {
+    color: $light-brown;
+}
+
+.diacritic-top::before {
+    height: $top-border;
+    width: 100%;
+}
+
+.diacritic-left::before {
+    width: $left-border;
+    height: 150%;
+}
+
+// diacritic color
+.diacritic-below,
+.diacritic-right {
+    color: $light-brown;
+}
+
+// main color
+.diacritic-below::before, 
+.diacritic-right::before { 
+    color: $dark-brown;
+}
+
+.diacritic-below::before {
+    width:100%;
+    height:$bottom-border;
+}
+
+.diacritic-right::before { 
+    width: 100%;
+    height:100%;
+}
+
+.diacritic-left.diacritic-right::before {
+    width: 100%;
+    height: 100%;
+}
+
+.diacritic-left.diacritic-right::after {
+    width: $left-border;
+    height: 150%;
+}
+
+@include media-breakpoint-down(sm) {
+    .article-container {
+        max-width: 100%;
+    }
+
+    .aksara-grid {
+        &.aksara-md-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        &.pepadan {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        
+        &.pada {
+            .javanese-text {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .aksara-grid, .aksara-wrapper {
+        margin-bottom: $spacer * 1.5;
+
+        .name, .transliteration, .translation {
+            font-size: .8rem;
+        }
+
+        .description {
+            font-size: .6rem;
+        }
+
+        .javanese-text {
+            font-size: 1.6rem;
+        }
+    }
+}

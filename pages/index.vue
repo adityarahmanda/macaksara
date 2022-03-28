@@ -20,17 +20,20 @@
 
             <div v-else class="row no-gutters">
                 <div 
-                    v-for="(quizCard, i) in quizCards" 
-                    :key="quizCard.id" 
+                    v-for="(card, i) in quizCards"   
+                    :key="card.id" 
                     class="col-12 col-md-6 mb-3" 
                     :class="i % 2 === 0 ? 'pr-md-2' : 'pl-md-2'"
                 >
                     <QuizCard 
-                        :quiz-id="quizCard.slug"
-                        :title="quizCard.title" 
-                        :question-total="quizCard.questionTotal"
-                        :current-level="quizCard.currentLevel"
-                        :is-completed="quizCard.isCompleted"                    
+                        :title="card.title" 
+                        :title-translation="card.titleTranslation"
+                        :slug="card.slug"
+                        :icon="card.icon"
+                        :question-total="card.questionTotal"
+                        :current-level="card.currentLevel"
+                        :max-level="card.maxLevel"
+                        :is-completed="card.isCompleted"             
                     />
                 </div>
             </div>
@@ -50,9 +53,9 @@ export default {
     },
     head() {
         return {
-            title: 'Macaksara - Belajar Aksara Jawa Sambil Bermain',
+            title: 'Macaksara - Permainan Kuis Membaca Aksara Jawa',
             meta: [
-                { hid: 'description', name: 'description', content: 'Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca Aksara Jawa kamu.' },
+                { hid: 'description', name: 'description', content: 'Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca Aksara Jawa.' },
                 { hid: 'title', name: 'title', content: 'Macaksara - Permainan Kuis Membaca Aksara Jawa' }
             ]
         };
@@ -141,7 +144,10 @@ export default {
             for(let i = 0; i < this.quizzes.length; i++) {
                 const slug = this.quizzes[i].slug;
                 const title = this.quizzes[i].title;
+                const titleTranslation = this.quizzes[i].titleTranslation;
+                const icon = this.quizzes[i].icon;
                 const currentLevel = this.user.quizProgresses[slug].currentLevel;
+                const maxLevel = this.quizzes[i].levels.length;
                 const isCompleted = this.user.quizProgresses[slug].isCompleted;
 
                 let questionTotal = 0;
@@ -159,7 +165,10 @@ export default {
                 this.quizCards[i] = {
                     slug,
                     title,
+                    titleTranslation,
+                    icon,
                     currentLevel,
+                    maxLevel,
                     questionTotal,
                     isCompleted
                 }

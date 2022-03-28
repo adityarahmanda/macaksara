@@ -18,28 +18,7 @@
                 </div>
             </div>
 
-            <div v-if="isCompleted" class="row align-content-center flex-grow-1">
-                <div class="col-12 text-center mb-4">
-                    <h3>Selamat!</h3>
-                    <p class="mb-0">Kamu telah berhasil menyelesaikan kuis.</p>
-                </div>
-                <div class="col-12 text-center" :class="learnedNewWords || hasNewStreak ? 'mb-4' : 'mb-5'">
-                    <div class="thumbs-up-icon">
-                        <i class="fa fa-solid fa-thumbs-up"></i>
-                    </div>
-                </div>
-                <div v-if="learnedNewWords || hasNewStreak" class="col-12 text-center mb-4">
-                    <h4 v-if="learnedNewWords" :class="hasNewStreak ? 'mb-3' : 'mb-0'">{{ questions.length }} kata baru telah dibaca!</h4>
-                    <h4 v-if="hasNewStreak" >{{ maxStreakCount }} streak baru didapatkan!</h4>
-                </div>
-                <div class="col-12 text-center">
-                    <nuxt-link to="/" class="btn btn-primary rounded-pill border-0 px-4">
-                        Kembali ke Beranda
-                    </nuxt-link>
-                </div>
-            </div>
-
-            <div v-else class="row align-content-center flex-grow-1" :class="isLoading ? 'invisible' : 'visible'">
+            <div v-if="!isCompleted" class="row align-content-center flex-grow-1" :class="isLoading ? 'invisible' : 'visible'">
                 <div class="col-12 text-center mb-4">
                     <h3 v-if="questionAnswered" class="quiz-instruction px-3 px-md-0">Satu Kata Telah Terbaca Dengan Benar!</h3>
                     <h3 v-else class="quiz-instruction">Pilih Cara Baca Yang Benar Dari Aksara Jawa Berikut!</h3>
@@ -65,6 +44,27 @@
                     <button v-if="questionAnswered" class="btn next-question-button" @click="setNextQuestion">Lanjut</button>
                 </div>
             </div>
+
+            <div v-if="isCompleted" class="row align-content-center flex-grow-1">
+                <div class="col-12 text-center mb-4">
+                    <h3>Selamat!</h3>
+                    <p class="mb-0">Kamu telah berhasil menyelesaikan kuis.</p>
+                </div>
+                <div class="col-12 text-center" :class="learnedNewWords || hasNewStreak ? 'mb-4' : 'mb-5'">
+                    <div class="thumbs-up-icon">
+                        <i class="fa fa-solid fa-thumbs-up"></i>
+                    </div>
+                </div>
+                <div v-if="learnedNewWords || hasNewStreak" class="col-12 text-center mb-4">
+                    <h5 v-if="learnedNewWords" :class="hasNewStreak ? 'mb-3' : 'mb-0'">{{ questions.length }} kata baru telah dibaca!</h5>
+                    <h5 v-if="hasNewStreak" >{{ maxStreakCount }} streak baru didapatkan!</h5>
+                </div>
+                <div class="col-12 text-center">
+                    <nuxt-link to="/" class="btn btn-primary rounded-pill border-0 px-4">
+                        Kembali ke Beranda
+                    </nuxt-link>
+                </div>
+            </div>
         
             <Notification 
                 v-if="!isCompleted"
@@ -83,6 +83,7 @@ export default {
     data() {
         return {
             isLoading: true,
+            isCompleted: false,
             user: undefined,
             slug: '',
             title: '',
@@ -100,7 +101,6 @@ export default {
             maxStreakCount: 0,
             learnedNewWords: false,
             hasNewStreak: false,
-            isCompleted: false,
             notification: {
                 visible: false,
                 timeout: {},

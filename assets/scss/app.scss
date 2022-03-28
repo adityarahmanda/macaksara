@@ -39,14 +39,17 @@
 @import "~bootstrap/scss/utilities";
 // @import "~bootstrap/scss/print";
 
+@import "type";
 @import "buttons";
 @import "navbar";
 @import "sidebar";
 @import "footer";
 @import "homepage";
 @import "tooltip";
+@import "modal";
 @import "progress-bar";
 @import "quiz";
+@import "article";
 @import "converter";
 
 @import '~bootstrap-vue/src/index.scss';

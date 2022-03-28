@@ -1,20 +1,18 @@
 <template>
-    <header id="header" class="row navbar navbar-expand-md py-3 mb-3 mb-md-4">
-        <input id="navbar-toggler-checkbox" type="checkbox" class="d-none" />
-        <div class="navbar-brand">
-            <nuxt-link :to="titleLink">{{ title }}</nuxt-link>
-        </div>
-        <label for="navbar-toggler-checkbox" class="navbar-toggler" aria-label="Toggle navigation">
-            <i class="fa fa-solid fa-bars"></i>
-        </label>
-        <nav class="navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li v-for="item in navItems" :key="item.title" class="menu-item pl-0 pl-md-2">
-                    <nuxt-link :to="item.link" class="nav-link">{{ item.title }}</nuxt-link>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <b-navbar toggleable="md" class="py-3 mb-3 mb-md-4">
+        <b-navbar-brand :href="titleLink">{{ title }}</b-navbar-brand>
+        <b-navbar-toggle class="d-md-none d-block" target="nav-collapse">
+            <template #default="{ expanded }">
+                <i v-if="expanded" class="fa fa-solid fa-xmark"></i>
+                <i v-else class="fa fa-solid fa-bars"></i>
+            </template>
+        </b-navbar-toggle>
+        <b-collapse id="nav-collapse" is-nav>
+            <b-navbar-nav class="ml-auto">
+                <b-nav-item v-for="item in navItems" :key="item.title" :href="item.link" class="pl-0 pl-md-2">{{ item.title }}</b-nav-item>
+            </b-navbar-nav>
+        </b-collapse>
+    </b-navbar>
 </template>
 
 <script>
