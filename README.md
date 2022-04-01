@@ -10,7 +10,7 @@ Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca Aksar
 
 Data soal didapatkan dengan melakukan fetch data dari file [quizzes.json](https://github.com/adityarahmanda/macaksara/blob/main/content/quizzes.json).
 
-Selanjutnya dilakukan pemenggalan suku kata bahasa jawa pada data soal tersebut dengan menggunakan fungsi berikut.
+Pada data soal tersebut selanjutnya dilakukan pemenggalan suku kata bahasa jawa dengan menggunakan fungsi berikut.
 ```jsx
 const toSyllables = (word) => {
     const regex = /[aeiouê](ng|r|h)?|[^aiueoê\s]+(?:[aiueoê](ng|r|h)(?=[^aiueoê]|$)|[aiueoê]?)/gi;
