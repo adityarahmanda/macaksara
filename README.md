@@ -2,11 +2,11 @@
 
 Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca Aksara Jawa. 
 
-# Demonstrasi
+## Demonstrasi
 
 [https://macaksara.adityarahmanda.com/](https://macaksara.adityarahmanda.com/).
 
-# Proses Generation Soal
+## Proses Generation Soal
 
 Data soal didapatkan dengan melakukan fetch data dari file [quizzes.json](https://github.com/adityarahmanda/macaksara/blob/main/content/quizzes.json).
 
