@@ -19,7 +19,7 @@
                         <span v-if="!isLoading" class="pr-3">{{ user.maxStreak }}</span>
                         <span v-else  class="pr-3">0</span>
                     </div>
-                    <div class="col-8">streak tertinggi didapatkan</div>
+                    <div class="col-8">streak tertinggi</div>
                 </div>
             </div>
             <button class="reset-button pushable w-100 mb-3 mb-md-4" @click="$bvModal.show('reset-progress-modal')" >
@@ -37,7 +37,7 @@
             hide-header 
             @ok="$emit('reset-game')
         ">
-            Apakah kamu yakin untuk mengatur ulang permainan?
+            Apakah kamu yakin untuk mengatur ulang permainan dan kehilangan semua perkembangan permainan?
         
             <template #modal-footer="{ cancel, ok }">
                 <div class="row w-100 no-gutters">

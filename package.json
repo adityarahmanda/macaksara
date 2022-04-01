@@ -2,7 +2,17 @@
   "name": "macaksara",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adityarahmanda/macaksara.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adityarahmanda/macaksara/issues"
+  },
+  "homepage": "https://github.com/adityarahmanda/macaksara#readme",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

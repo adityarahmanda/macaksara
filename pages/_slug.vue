@@ -178,6 +178,10 @@ export default {
                     break;
                 }
             }
+
+            // shuffle questions
+            this.shuffleArray(this.questions);
+
             // console.log(this.questions);
 
             this.startNewQuestion();

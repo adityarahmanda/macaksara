@@ -9,10 +9,10 @@
 
             <div v-if="isLoading" class="row no-gutters">
                 <div 
-                    v-for="index in 2" 
+                    v-for="index in 5" 
                     :key="index" 
                     class="col-12 col-md-6 mb-3" 
-                    :class="index - 1 % 2 === 0 ? 'pr-md-2' : 'pl-md-2'"
+                    :class="index % 2 === 0 ? 'pl-md-2' : 'pr-md-2'"
                 >
                     <QuizCard is-loading />
                 </div>

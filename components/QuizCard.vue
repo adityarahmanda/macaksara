@@ -72,7 +72,9 @@ export default {
     },
     computed: {
         progressBarValue() {
-            return (this.currentLevel / this.maxLevel) * 100;
+            if(this.isCompleted) return 100;
+
+            return ((this.currentLevel - 1) / this.maxLevel) * 100;
         }
     }
 }

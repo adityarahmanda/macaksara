@@ -1,6 +1,12 @@
 import Vue from 'vue';
 
-// javanese characters array with its weight
+// fungsi untuk melakukan pemenggalan suku kata bahasa jawa
+const toSyllables = (word) => {
+    const regex = /[aeiouê](ng|r|h)?|[^aiueoê\s]+(?:[aiueoê](ng|r|h)(?=[^aiueoê]|$)|[aiueoê]?)/gi;
+    return word.match(regex);
+}
+
+// array karakter bahasa jawa dan peluang kemunculannya
 const wyanjana = [['h', 4],['n', 7],['c', 1],['r', 9],['k', 11],
                   ['d', 2],['t', 9],['s', 9],['w', 5],['l', 6],
                   ['p', 9],['dh', 3],['j', 3],['y', 3],['ny', 1],
@@ -13,7 +19,7 @@ const panyigeg = [['h', 9],['n', 31],['c', 0],['r', 4],['k', 4],
 const sandangan = [['y', 1],['r', 1],['l', 1],['w', 0]];
 const rekan = [['kh', 1],['q', 0],['dz', 1],['f', 1],['v', 0],['gh', 1]];
 
-// javanese syllable structure with its random weight
+// array struktur suku kata bahasa jawa dan peluang kemunculannya
 const structures = [
         [[ swara ], 1], 
         [[ panyigeg ], 1], 
@@ -23,11 +29,7 @@ const structures = [
         [[ wyanjana, sandangan, swara ], 0]
 ];
 
-const toSyllables = (word) => {
-    const regex = /[aeiouê](ng|r|h)?|[^aiueoê\s]+(?:[aiueoê](ng|r|h)(?=[^aiueoê]|$)|[aiueoê]?)/gi;
-    return word.match(regex);
-}
-
+// fungsi untuk melakukan generation suku kata bahasa jawa
 const generateJavaneseSyllable = () => {
     const structure = randomWithWeight(structures);
     
@@ -39,14 +41,7 @@ const generateJavaneseSyllable = () => {
     return syllable;
 }
 
-const shuffleArray = (array) => {
-    for(let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
+// fungsi untuk mendapatkan data acak dari array dengan peluang tertentu
 const randomWithWeight = (array) => {
     let total = 0;
     
@@ -66,6 +61,15 @@ const randomWithWeight = (array) => {
     }
     
     return array[array.length - 1][0];
+}
+
+// fungsi untuk mengacak array
+const shuffleArray = (array) => {
+    for(let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }
 
 Vue.mixin({

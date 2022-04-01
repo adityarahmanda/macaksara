@@ -30,9 +30,9 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/vue-bootstrap',
-    '~/plugins/sinahubasa-latintojava',
-    '~/plugins/sinahubasa-javatolatin',
-    '~/plugins/sinahubasa-utility'
+    '~/plugins/macaksara-latintojava',
+    '~/plugins/macaksara-javatolatin',
+    '~/plugins/macaksara-utility'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
