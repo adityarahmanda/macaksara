@@ -3,8 +3,10 @@
         <div class="container position-relative d-flex flex-column h-100">
             <div class="quiz-top-area-wrapper row align-items-center no-gutters px-4 px-md-0 py-4">
                 <div class="col-2">
-                    <nuxt-link tag="div" to="/" class="close-icon mr-auto">
-                        <i class="fa fa-solid fa-times"></i>
+                    <nuxt-link v-slot="{ navigate }" to="/" custom>
+                        <div class="close-icon mr-auto" @click="navigate">
+                            <i class="fa fa-solid fa-times"></i>
+                        </div>
                     </nuxt-link>
                 </div>
                 <div class="col-8">

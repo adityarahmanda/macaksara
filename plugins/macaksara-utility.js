@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 // fungsi untuk melakukan pemenggalan suku kata bahasa jawa
 const toSyllables = (word) => {
-    const regex = /[aeiouê](ng|r|h)?|[^aiueoê\s]+(?:[aiueoê](ng|r|h)(?=[^aiueoê]|$)|[aiueoê]?)/gi;
+    const regex = /[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[aiueoê]/gi;
     return word.match(regex);
 }
 

@@ -35,6 +35,7 @@
 
     .latin-syllable, .aksara-syllable {
         color: rgba($dark-brown, .2);
+        white-space: nowrap;
 
         &.current, &.answered {
             color: $dark-brown;
@@ -52,7 +53,6 @@
 
     .quiz-translation,
     .quiz-next-button-area {
-
         &.invisible {
             transition: none;
             transition-delay: 0;
@@ -124,16 +124,18 @@
 }
 
 @include media-breakpoint-down(sm) {
-    .quiz-instruction {
-        font-size: $h4-font-size;
-    }
+    .quiz-wrapper {
+        .quiz-instruction {
+            font-size: $h4-font-size;
+        }
 
-    .latin-syllable {
-        font-size: 1rem;
-    }
+        .latin-syllable {
+            font-size: 1rem;
+        }
 
-    .aksara-syllable {
-        font-size: 2rem;
+        .aksara-syllable {
+            font-size: 2.5rem;
+        }
     }
 }
 

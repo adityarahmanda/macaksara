@@ -85,7 +85,7 @@
             { 
                 "value": 3,
                 "questions": [
-                    { "value":"bangkekkan" , "translation":"punggung" },
+                    { "value":"bangkekan" , "translation":"punggung" },
                     { "value":"driji" , "translation":"jari" },
                     { "value":"kempol" , "translation":"betis" },
                     { "value":"lambe" , "translation":"bibir"},
@@ -164,7 +164,7 @@
                 "value": 1,
                 "questions": [
                     { "value":"piyik" , "translation":"anak ayam" },
-                    { "value":"mêri" , "translation":"anak bebek" },
+                    { "value":"meri" , "translation":"anak bebek" },
                     { "value":"kuthuk" , "translation":"anak soang" },
                     { "value":"gudel" , "translation":"anak kerbau"},
                     { "value":"kowe" , "translation":"anak monyet" },
@@ -186,7 +186,7 @@
                     { "value":"êngkak" , "translation":"anak gagak" },
                     { "value":"gogor" , "translation":"anak macan" },
                     { "value":"sawiyah" , "translation":"anak cicak" },
-                    { "value":"mênter" , "translation":"anak ikan betik" },
+                    { "value":"menter" , "translation":"anak ikan betik" },
                     { "value":"gênyong" , "translation":"anak ikan pari" },
                     { "value":"bokol" , "translation":"anak ikan semah" }
                 ]
@@ -199,7 +199,7 @@
                     { "value":"minthi" , "translation":"anak entog" },
                     { "value":"gêndhot" , "translation":"anak kumbang badak" },
                     { "value":"caplek" , "translation":"anak ikan kakap" },
-                    { "value":"gêndholo" , "translation":"anak jangkrik" },
+                    { "value":"gêndhala" , "translation":"anak jangkrik" },
                     { "value":"mêndhet" , "translation":"anak kecoak" },
                     { "value":"blêngur" , "translation":"anak angsa" },
                     { "value":"gêmbluk" , "translation":"anak babi" },
@@ -245,7 +245,6 @@
             { 
                 "value": 1,
                 "questions": [
-                    { "value":"karuk" , "translation":"bunga jambu" },
                     { "value":"juwis" , "translation":"bunga jarak" },
                     { "value":"kadi" , "translation":"bunga kapas" },
                     { "value":"kêpek" , "translation":"bunga kacang kara"},
@@ -319,7 +318,6 @@
                     { "value":"klaras" , "translation":"daun pisang kering" },
                     { "value":"procot" , "translation":"daun jambe" },
                     { "value":"lêmbayung" , "translation":"daun kacang lanjaran"},
-                    { "value":"gampleng" , "translation":"daun pepaya" },
                     { "value":"kleyang" , "translation":"daun kluwih" },
                     { "value":"blarak" , "translation":"daun kelapa" },
                     { "value":"sabrang" , "translation":"daun cabai" },

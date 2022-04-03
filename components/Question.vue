@@ -59,6 +59,8 @@ export default {
     data() {
         return {
             spacer: 10,
+            mobileBreakpoint: 768,
+            mobileSpacer: 5
         }
     },
     watch: {
@@ -71,7 +73,18 @@ export default {
             }
         }
     },
+    mounted() {
+        if(this.isMobile()) {
+            this.spacer = this.mobileSpacer
+        }
+    },
     methods: {
+        isMobile() {
+            if(screen.width <= this.mobileBreakpoint) 
+                return true;
+            else 
+                return false;
+        },
         adjustStyle() {
             if(this.questionAnswered) {
                 for(let i = 0; i < this.syllables.length; i++) {
