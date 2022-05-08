@@ -1,6 +1,8 @@
 <template>
     <b-navbar toggleable="md" class="py-3 mb-3 mb-md-4">
-        <b-navbar-brand :href="titleLink">{{ title }}</b-navbar-brand>
+        <a target="_self" :href="titleLink">
+            <h1 class="navbar-brand">{{ title }}</h1>
+        </a>
         <b-navbar-toggle class="d-md-none d-block" target="nav-collapse">
             <template #default="{ expanded }">
                 <i v-if="expanded" class="fa fa-solid fa-xmark"></i>
@@ -30,7 +32,7 @@ export default {
             type: Array,
             default() {
                 return [
-                    { title: 'Belajar Aksara Jawa', link: '/aksara-jawa' },
+                    { title: 'Belajar Aksara Jawa', link: 'https://adityarahmanda.com/2022/04/30/belajar-aksara-jawa-lengkap-beserta-contohnya/' },
                     { title: 'Konverter Aksara', link: '/konverter' },
                 ]
             }

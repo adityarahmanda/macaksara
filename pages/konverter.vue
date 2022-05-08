@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-12 col-lg-6 mb-3 mb-md-4">
             <div class="converter-input-header d-flex justify-content-between">
-                <div class="converter-input-title">
-                    <h3 v-if="latinToJavaMode">Aksara Latin</h3>
-                    <h3 v-else>Aksara Jawa</h3>
+                <div class="converter-input-title h3">
+                    <span v-if="latinToJavaMode">Aksara Latin</span>
+                    <span v-else>Aksara Jawa</span>
                 </div>
                 <div class="btn swap-button" @click="swapConvertMode()">
                     <i class="fa fa-solid fa-arrow-right-arrow-left"></i>
@@ -42,7 +42,7 @@
             </div>
             
             <div v-if="latinToJavaMode" class="converter-input-character-special-buttons">
-                <h5>Tombol Karakter Spesial</h5>
+                <div class="h5">Tombol Karakter Spesial</div>
                 <div 
                     v-for="char in specialCharacters" 
                     :key="char" 
@@ -53,9 +53,9 @@
         </div>
 
         <div class="col-12 col-lg-6 mb-3 mb-md-4">
-            <div class="converter-output-title">
-                <h3 v-if="latinToJavaMode">Aksara Jawa</h3>
-                <h3 v-else>Aksara Latin</h3>
+            <div class="converter-output-title h3">
+                <span v-if="latinToJavaMode" >Aksara Jawa</span>
+                <span v-else>Aksara Latin</span>
             </div>
             
             <div class="converter-output mb-2">
@@ -90,29 +90,29 @@
 
         <div class="usage-description col-12" :class="{ 'd-none' : !latinToJavaMode }" >
             <div class="mb-3 mb-md-4">
-                <h3>Keterangan Penggunaan</h3>
+                <h2 class="h3">Keterangan Penggunaan</h2>
             </div>
             <ul class="list-unstyled">
                 <li>
-                    <h5>Mode Ketik Pepet</h5>
+                    <h3 class="h5">Mode Ketik Pepet</h3>
                     <p>Saat diaktifkan, tombol x pada keyboard akan digantikan fungsinya untuk mengetikkan huruf ê sebagai representasi Sandhangan Pepet (ꦼ) dalam aksara jawa.</p>
                     <p>Dalam bahasa Indonesia, karakter ê menghasilkan bunyi seperti huruf e pada kata "enam".</p>
                 </li>
                 <li>
-                    <h5>Abaikan Spasi</h5>
+                    <h3 class="h5">Abaikan Spasi</h3>
                     <p>Saat diaktifkan, proses konversi akan mengabaikan spasi dari kolom masukan. Sebaliknya jika dinonaktifkan, spasi akan dikonversikan menjadi <i>zero width space</i> alias spasi yang tidak terlihat.</p>                
                 </li>
                 <li>
-                    <h5>Murda</h5>
+                    <h3 class="h5">Murda</h3>
                     <p>Saat diaktifkan, aksara pertama dari aksara-aksara ꦤ, ꦏ, ꦠ, ꦱ, ꦥ, ꦘ, ꦒ, ꦧ akan diubah ke dalam bentuk aksara murda-nya ꦟ, ꦑ, ꦡ, ꦯ, ꦦ, ꦟ, ꦓ, ꦨ.</p>
                     <p>Dalam aksara jawa, aksara murda digunakan layaknya huruf kapital dalam bahasa Indonesia dan dipakai khusus untuk penulisan nama, gelar, atau tempat.</p>
                 </li>
                 <li>
-                    <h5>Diftong</h5>
+                    <h3 class="h5">Diftong</h3>
                     <p>Saat diaktifkan, gugus vokal 'ai', 'au' dan vokal panjang 'aa', 'ii', 'uu' akan diubah menjadi karakter spesial aksara jawa, yakni ꦻ (Dirga Mure) untuk 'ai', ꦻꦴ (Dirga Mure Tarung) untuk 'au', ꦴ (Tarung) untuk 'aa', ꦷ (Dirga Melik) untuk 'ii', dan ꦹ (Dirga Mendhut) untuk 'uu'.</p>
                 </li>
                 <li>
-                    <h5>Tombol Karakter Spesial</h5>
+                    <h3 class="h5">Tombol Karakter Spesial</h3>
                     <p>Berisikan tombol-tombol untuk mengetikkan karakter-karakter spesial yang digunakan untuk merepresentasikan huruf-huruf aksara jawa yang tidak dapat diwakili oleh alfabet A-Z.</p>
                     <p>Berikut karakter-karakter spesial yang digunakan dalam konverter ini beserta hasil konversinya :</p>
                     <ul style="margin-bottom: 1rem">
@@ -131,7 +131,7 @@
                         <li>ñ menghasilkan ꦚ (Nya)</li>
                         <li>ŋ menghasilkan ꦔ (Nga)</li> 
                     </ul>
-                    <p>PS: karakter spesial ñ dan ŋ sama dengan ny dan ng dalam bahasa indonesia</p>
+                    <p><strong>PS:</strong> karakter spesial ñ dan ŋ sama dengan ny dan ng dalam bahasa indonesia</p>
                 </li>
             </ul>
         </div>
@@ -157,11 +157,41 @@ export default {
         }
     },
     head() {
+        const siteName = 'Konverter Aksara';
+        const title = `${siteName} — Alat Konversi Aksara Jawa-Latin`;
+        const description = `${siteName} merupakan alat untuk melakukan konversi ataupun transliterasi aksara Jawa-Latin.`;
+        const url = 'https://macaksara.adityarahmanda.com/konverter';
+        const image = 'https://i0.wp.com/adityarahmanda.com/wp-content/uploads/2022/04/macaksara-konverter.png?resize=768%2C436&ssl=1';
+
         return {
-            title: 'Konverter Aksara - Konversi Aksara Jawa ke Latin dan Sebaliknya',
+            title,
             meta: [
-                { hid: 'description', name: 'description', content: 'Konverter Aksara merupakan alat untuk melakukan konversi ataupun transliterasi antara aksara Jawa dan aksara latin permainan kuis untuk kemudahan menulis aksara Jawa.' },
-                { hid: 'title', name: 'title', content: 'Konverter Aksara - Konversi Aksara Jawa ke Latin dan Sebaliknya' }
+                { hid: 'title', name: 'title', content: title },
+                { hid: 'description', name: 'description', content: description },
+                { name:'keyword', content:'konverter, konversi, transliterasi, alat, aksara jawa, latin' },
+                { property: 'og:locale', content: 'id_ID' },
+                { property: 'og:type', content:'website' },
+                { property: 'og:title', content: title },
+                { property: 'og:description', content: description },
+                { property: 'og:url', content: url },
+                { property: 'og:site_name', content: siteName },
+                { property: 'fb:admins', content: '100005745649451' },
+                { property: 'og:image', content: image },
+                { property: 'og:image:secure_url', content: image },
+                { property: 'og:image:width', content: '768' },
+                { property: 'og:image:height', content: '436' },
+                { property: 'og:image:alt', content: siteName },
+                { property: 'og:image:type', content: 'image/png' },
+                { name: 'twitter:card', content:'summary_large_image' },
+                { name: 'twitter:url', content: url },
+                { name: 'twitter:title', content: title },
+                { name: 'twitter:description', content: description },
+                { name: 'twitter:image', content: image },
+                { name: 'twitter:site', content: '@arahmanda21' },    
+                { name: 'twitter:creator', content: '@arahmanda21' },
+            ], 
+            link: [
+                { hid: 'canonical', rel: 'canonical', href: 'https://macaksara.adityarahmanda.com/konverter' },
             ]
         };
     },

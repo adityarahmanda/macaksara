@@ -4,24 +4,49 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     htmlAttrs: {
-      lang: 'id'
+      lang: 'id-ID',
+      prefix: 'og:http://ogp.me/ns#'
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'robots', content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large' },
+      { 'http-equiv':'content-language', content:'id-ID' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { hid: 'canonical', rel: 'canonical', href: 'https://macaksara.adityarahmanda.com/' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&family=Noto+Sans+Javanese:wght@400;700&display=swap' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese:wght@400;700&display=swap' },
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css' },
-      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css' }
-
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css' },      
     ],
+    script: [
+      { src: 'https://www.googletagmanager.com/gtag/js?id=G-7CCPBZFMXT', async: true },
+      { 
+        type:'text/javascript', 
+        innerHTML: `window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-7CCPBZFMXT');`
+      }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [ '~assets/scss/app.scss' ],
+
+  sitemap: {
+    hostname: 'https://macaksara.adityarahmanda.com',
+    gzip: true,
+    exclude: [
+      '/kuis/**'
+    ],
+    routes: [
+      '/',
+      '/konverter',
+    ]
+  },
 
   loading: {
     color: '#47311C'
@@ -48,10 +73,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/bootstrap
-    // 'bootstrap-vue/nuxt',
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/sitemap',
     '@nuxt/content'
   ],
 
@@ -60,7 +83,7 @@ export default {
       const { $content } = require('@nuxt/content')
       const quizzesSlug = await $content('quizzes').only(['slug']).fetch()
       const quizzesRoutes = Object.keys(quizzesSlug).map((key) => {
-          return { route: `/${quizzesSlug[key].slug}` }
+          return { route: `/kuis/${quizzesSlug[key].slug}` }
       })
 
       return [

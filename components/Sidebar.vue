@@ -4,7 +4,7 @@
         
         <div class="user-progress">
             <div class="user-progress-header">
-                <h4>Perkembangan Permainan :</h4>
+                <h2 class="h4">Perkembangan Permainan :</h2>
             </div>
             <div class="user-progress-info mb-md-4 mb-3">
                 <div id="word-collected" class="row no-gutters align-items-center">

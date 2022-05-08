@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link v-slot="{ navigate }" :to="'/' + slug" custom>
+    <nuxt-link v-slot="{ navigate }" :to="'/kuis/' + slug" custom>
         <div class="quiz-card px-4 py-4" :class="{ 'is-loading' : isLoading }" @click="navigate">
             <div class="quiz-card-header">
                 <div class="quiz-card-header-title-and-status">

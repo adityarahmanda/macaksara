@@ -82,6 +82,7 @@
 <script>
 export default {
     layout: 'quiz',
+    serverMiddleware: ['quiz'],
     data() {
         return {
             isLoading: true,
@@ -131,14 +132,23 @@ export default {
             enableAudio: true
         }
     },
-    head() {
+    head () {
+        const title = this.title !== undefined ? 'Kuis ' + this.title : 'Kuis Tidak Ditemukan';
+        
         return {
-            title: this.title !== undefined ? 'Kuis ' + this.title + ' - Sinahu Aksara' : 'Kuis Tidak Ditemukan - Sinahu Aksara',
-        };
+            title: `${title} - Macaksara`,
+            meta: [
+                { name:'robots', content:'noindex, follow' }
+            ]
+        }
     },
     async mounted() {
         this.slug = this.$route.params.slug;
         this.quiz = await this.$content("quizzes", this.slug).fetch() || null;
+
+        if (this.quiz === null) {
+            this.$router.push('/')
+        }
 
         this.verifyUser();
         this.startQuiz();

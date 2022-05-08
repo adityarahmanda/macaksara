@@ -12,7 +12,7 @@ export default {
         return {
             navItems: [
                 { title: "Macaksara", link: "/" },
-                { title: "Belajar Aksara Jawa", link: "/aksara-jawa" }
+                { title: "Belajar Aksara Jawa", link: "https://adityarahmanda.com/2022/04/30/belajar-aksara-jawa-lengkap-beserta-contohnya/" }
             ]
         }
     }

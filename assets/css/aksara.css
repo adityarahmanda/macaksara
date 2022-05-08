@@ -1,0 +1,180 @@
+.aksara-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 1rem;
+  column-gap: 0.5rem;
+}
+.aksara-grid .aksara-grid-block {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+}
+.aksara-grid.pada {
+  grid-template-columns: repeat(4, 1fr);
+}
+.aksara-grid.pada .name {
+  margin-top: 0;
+}
+.aksara-grid.pada .javanese-text {
+  font-size: 2rem;
+}
+
+.aksara-wrapper:first-child {
+  margin-left: 0;
+}
+.aksara-wrapper:last-child {
+  margin-right: 0;
+}
+
+.aksara-grid, .aksara-wrapper {
+  margin-bottom: 2rem;
+}
+.aksara-grid .name, .aksara-wrapper .name {
+  font-weight: 700;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 0.5rem;
+}
+.aksara-grid .javanese-text, .aksara-wrapper .javanese-text {
+  display: flex;
+  justify-content: center;
+  font-size: 2.4rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.aksara-grid .transliteration, .aksara-wrapper .transliteration {
+  font-weight: 900;
+}
+.aksara-grid .description, .aksara-wrapper .description {
+  font-size: 0.8rem;
+}
+.aksara-grid .transliteration, .aksara-grid .translation, .aksara-grid .description, .aksara-wrapper .transliteration, .aksara-wrapper .translation, .aksara-wrapper .description {
+  text-align: center;
+}
+.aksara-grid.sandangan .transliteration, .aksara-wrapper.sandangan .transliteration {
+  font-weight: 400;
+}
+.aksara-grid.sandangan .transliteration b, .aksara-wrapper.sandangan .transliteration b {
+  font-weight: 900;
+}
+.aksara-grid.sandangan .diacritic-top,
+.aksara-grid.sandangan .diacritic-left, .aksara-wrapper.sandangan .diacritic-top,
+.aksara-wrapper.sandangan .diacritic-left {
+  color: #dad6d2;
+}
+.aksara-grid.sandangan .diacritic-top::before,
+.aksara-grid.sandangan .diacritic-left::before, .aksara-wrapper.sandangan .diacritic-top::before,
+.aksara-wrapper.sandangan .diacritic-left::before {
+  color: #47311C;
+}
+.aksara-grid.sandangan .diacritic-below,
+.aksara-grid.sandangan .diacritic-right, .aksara-wrapper.sandangan .diacritic-below,
+.aksara-wrapper.sandangan .diacritic-right {
+  color: #47311C;
+}
+.aksara-grid.sandangan .diacritic-below::before,
+.aksara-grid.sandangan .diacritic-right::before, .aksara-wrapper.sandangan .diacritic-below::before,
+.aksara-wrapper.sandangan .diacritic-right::before {
+  color: #dad6d2;
+}
+
+.diacritic-top,
+.diacritic-below,
+.diacritic-right,
+.diacritic-left,
+.diacritic-left.diacritic-right {
+  position: relative;
+  display: inline-block;
+}
+
+.diacritic-top::before,
+.diacritic-below::before,
+.diacritic-right::before,
+.diacritic-left::before,
+.diacritic-left.diacritic-right::before,
+.diacritic-left.diacritic-right::after {
+  content: attr(data-content);
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  cursor: text;
+}
+
+.diacritic-top,
+.diacritic-left {
+  color: #47311C;
+}
+
+.diacritic-top::before,
+.diacritic-left::before {
+  color: #876741;
+}
+
+.diacritic-top::before {
+  height: 0.625em;
+  width: 100%;
+}
+
+.diacritic-left::before {
+  width: 0.75em;
+  height: 150%;
+}
+
+.diacritic-below,
+.diacritic-right {
+  color: #876741;
+}
+
+.diacritic-below::before,
+.diacritic-right::before {
+  color: #47311C;
+}
+
+.diacritic-below::before {
+  width: 100%;
+  height: 1.2em;
+}
+
+.diacritic-right::before {
+  width: 100%;
+  height: 100%;
+}
+
+.diacritic-left.diacritic-right::before {
+  width: 100%;
+  height: 100%;
+}
+
+.diacritic-left.diacritic-right::after {
+  width: 0.75em;
+  height: 150%;
+}
+
+@media (max-width: 767.98px) {
+  .aksara-grid.aksara-md-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .aksara-grid.pepadan {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .aksara-grid.pada .javanese-text {
+    font-size: 1.2rem;
+  }
+
+  .aksara-grid, .aksara-wrapper {
+    margin-bottom: 1.5rem;
+  }
+  .aksara-grid .name, .aksara-grid .transliteration, .aksara-grid .translation, .aksara-wrapper .name, .aksara-wrapper .transliteration, .aksara-wrapper .translation {
+    font-size: 0.8rem;
+  }
+  .aksara-grid .description, .aksara-wrapper .description {
+    font-size: 0.6rem;
+  }
+  .aksara-grid .javanese-text, .aksara-wrapper .javanese-text {
+    font-size: 1.6rem;
+  }
+}
+
+/*# sourceMappingURL=aksara.css.map */
