@@ -26,7 +26,7 @@ export default {
         },
         titleLink: {
             type: String,
-            default: '/'
+            default: '/macaksara'
         },
         navItems: {
             type: Array,

@@ -1,6 +1,6 @@
 <template>
     <div class="container d-flex flex-column" style="min-height: 100vh;">
-        <Header title="Konverter Aksara" title-link="/konverter" :nav-items="navItems" />
+        <Header title="Konverter Aksara" title-link="/macaksara/konverter" :nav-items="navItems" />
         <Nuxt class="content" />
         <Footer/>
     </div>
