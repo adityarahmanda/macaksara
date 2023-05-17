@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/kuis/arane-anak-kewan", {data:[{}],fetch:{},mutations:void 0});
