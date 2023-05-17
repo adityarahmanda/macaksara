@@ -32,7 +32,7 @@ export default {
             type: Array,
             default() {
                 return [
-                    { title: 'Belajar Aksara Jawa', link: '#' },
+                    { title: 'Belajar Aksara Jawa', link: 'https://adityarahmanda.github.io/artikel/belajar-aksara-jawa' },
                     { title: 'Konverter Aksara', link: '/macaksara/konverter' },
                 ]
             }

@@ -12,7 +12,7 @@ export default {
         return {
             navItems: [
                 { title: "Macaksara", link: '/macaksara' },
-                { title: "Belajar Aksara Jawa", link: "#" }
+                { title: "Belajar Aksara Jawa", link: "https://adityarahmanda.github.io/artikel/belajar-aksara-jawa" }
             ]
         }
     }
