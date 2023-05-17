@@ -160,8 +160,8 @@ export default {
         const siteName = 'Konverter Aksara';
         const title = `${siteName} — Alat Konversi Aksara Jawa-Latin`;
         const description = `${siteName} merupakan alat untuk melakukan konversi ataupun transliterasi aksara Jawa-Latin.`;
-        const url = 'https://macaksara.adityarahmanda.com/konverter';
-        const image = 'https://i0.wp.com/adityarahmanda.com/wp-content/uploads/2022/04/macaksara-konverter.png?resize=768%2C436&ssl=1';
+        const url = 'https://adityarahmanda.github.io/macaksara/konverter';
+        const image = '#';
 
         return {
             title,

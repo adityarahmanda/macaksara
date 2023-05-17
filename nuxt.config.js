@@ -15,7 +15,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { hid: 'canonical', rel: 'canonical', href: 'https://macaksara.adityarahmanda.com/' },
+      { hid: 'canonical', rel: 'canonical', href: 'https://adityarahmanda.github.io/macaksara' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&family=Noto+Sans+Javanese:wght@400;700&display=swap' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese:wght@400;700&display=swap' },
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css' },
@@ -41,7 +41,7 @@ export default {
   css: [ '~assets/scss/app.scss' ],
 
   sitemap: {
-    hostname: 'https://macaksara.adityarahmanda.com',
+    hostname: 'https://adityarahmanda.github.io/macaksara',
     gzip: true,
     exclude: [
       '/kuis/**'

@@ -32,8 +32,8 @@ export default {
             type: Array,
             default() {
                 return [
-                    { title: 'Belajar Aksara Jawa', link: 'https://adityarahmanda.com/2022/04/30/belajar-aksara-jawa-lengkap-beserta-contohnya/' },
-                    { title: 'Konverter Aksara', link: '/konverter' },
+                    { title: 'Belajar Aksara Jawa', link: '#' },
+                    { title: 'Konverter Aksara', link: '/macaksara/konverter' },
                 ]
             }
         }

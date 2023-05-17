@@ -55,8 +55,8 @@ export default {
         const siteName = 'Macaksara';
         const title = `${siteName} — Permainan Kuis Membaca Aksara Jawa`;
         const description = `${siteName} merupakan website permainan kuis untuk menguji kemampuan membaca aksara Jawa yang didesain secara interaktif dan menyenangkan.`;
-        const url = 'https://macaksara.adityarahmanda.com/';
-        const image = 'https://i0.wp.com/adityarahmanda.com/wp-content/uploads/2022/04/macaksara-index.png?resize=768%2C436&ssl=1';
+        const url = 'https://adityarahmanda.github.io/macaksara';
+        const image = '#';
 
         return {
             title,
