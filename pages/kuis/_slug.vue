@@ -129,7 +129,8 @@ export default {
                     message: "Salah! Kehilangan Streak!"
                 }
             },
-            enableAudio: true
+            enableAudio: true,
+            audio: null
         }
     },
     head () {
@@ -158,7 +159,6 @@ export default {
     methods: {
         verifyUser() {
             this.user = JSON.parse(localStorage.getItem('userData'));
-            // console.log(this.user);
             
             if(!this.user) {
                 this.$router.push('/');
@@ -193,9 +193,6 @@ export default {
 
             // shuffle questions
             this.shuffleArray(this.questions);
-
-            // console.log(this.questions);
-
             this.startNewQuestion();
         },
         generateChoices(syllable) {
@@ -218,9 +215,7 @@ export default {
             // correct answer
             if(choice === this.syllables[this.currSyllable]) {
                 // play correct sound
-                if(this.enableAudio) {
-                    this.$sounds.correct.play();
-                }
+                this.playSound('correct.mp3');
                 
                 // calculate max streak
                 this.streakCount++;
@@ -252,9 +247,7 @@ export default {
             }
             
             // wrong answer
-            if(this.enableAudio) {
-                this.$sounds.wrong.play();
-            }
+            this.playSound('wrong.mp3');
 
             if(this.streakCount !== 0) {
                 // reset streak and send notification
@@ -279,23 +272,18 @@ export default {
                 this.startNewQuestion();
             } else {
                 // play correct sound
-                if(this.enableAtudio) {
-                    this.$sounds.tada.play();
-                }
+                this.playSound("tada.mp3");
 
                 // save quiz progress
                 const userQuizProgress = this.user.quizProgresses[this.slug];
 
                 if(!userQuizProgress.isCompleted) {
-                    // console.log(this.currentLevel + '===' + this.maxLevel);
-
                     if(this.currentLevel === this.maxLevel) {  
                         userQuizProgress.isCompleted = true;
                     } else {                                        
                         userQuizProgress.currentLevel++;
                     }
                     
-                    // console.log(userQuizProgress);
                     this.user.quizProgresses[this.slug] = userQuizProgress;
                     this.user.learnedWords += this.questions.length;
                     this.learnedNewWords = true;
@@ -326,6 +314,14 @@ export default {
         toggleAudio() {
             this.enableAudio = !this.enableAudio;
             localStorage.setItem("enableAudio", this.enableAudio);
+        },
+        playSound(fileName) {
+            if(this.enableAudio) {
+                this.audio = null;
+                this.audio = new Audio(require('@/assets/sounds/' + fileName));
+                this.audio.currentTime = 0;
+                this.audio.play();
+            }
         }
     }
 }

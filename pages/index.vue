@@ -56,14 +56,14 @@ export default {
         const title = `${siteName} — Permainan Kuis Membaca Aksara Jawa`;
         const description = `${siteName} merupakan website permainan kuis untuk menguji kemampuan membaca aksara Jawa yang didesain secara interaktif dan menyenangkan.`;
         const url = 'https://adityarahmanda.github.io/macaksara';
-        const image = '#';
+        const image = 'https://adityarahmanda.github.io/img/macaksara-summary.png';
 
         return {
             title,
             meta: [
                 { hid: 'title', name: 'title', content: title },
                 { hid: 'description', name: 'description', content: description },
-                { name:'keyword', content:'macaksara, aksara jawa, kuis, membaca, latihan, interaktif' },
+                { name:'keyword', content:'macaksara, aksara, jawa, kuis, membaca, latihan, interaktif' },
                 { property: 'og:locale', content: 'id_ID' },
                 { property: 'og:type', content:'website' },
                 { property: 'og:title', content: title },

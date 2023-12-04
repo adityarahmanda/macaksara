@@ -33,7 +33,7 @@ export default {
             default() {
                 return [
                     { title: 'Belajar Aksara Jawa', link: 'https://adityarahmanda.github.io/artikel/belajar-aksara-jawa' },
-                    { title: 'Konverter Aksara', link: '/macaksara/konverter' },
+                    { title: 'Alih Aksara', link: 'https://adityarahmanda.github.io/alih-aksara' },
                 ]
             }
         }
