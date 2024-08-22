@@ -21,15 +21,17 @@ export default {
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css' },      
     ],
     script: [
-      { src: 'https://www.googletagmanager.com/gtag/js?id=G-7CCPBZFMXT', async: true },
+      { src: 'https://www.googletagmanager.com/gtag/js?id=G-J57JE933K5', async: true },
       { 
         type:'text/javascript', 
         innerHTML: `window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-7CCPBZFMXT');`
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J57JE933K5');`
       }
-    ]
+    ],
+    __dangerouslyDisableSanitizers: ['script']
   },
 
   router: {
