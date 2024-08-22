@@ -1,1 +1,0 @@
-__NUXT_JSONP__("manifest.js", {routes:["\u002Fkuis\u002Farane-kewan","\u002Fkuis\u002Farane-kembang","\u002Fkuis\u002Farane-anak-kewan","\u002Fkuis\u002Fprenahe-sedulur","\u002Fkuis\u002Farane-godong","\u002Fkuis\u002Farane-wit-witan","\u002F","\u002Fkuis\u002Fperangane-awak"]})
