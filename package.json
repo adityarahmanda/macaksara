@@ -6,7 +6,14 @@
     "type": "git",
     "url": "git+https://github.com/adityarahmanda/macaksara.git"
   },
-  "keywords": [ "macaksara", "aksara, jawa", "kuis", "membaca", "latihan", "interaktif"],
+  "keywords": [
+    "macaksara",
+    "aksara, jawa",
+    "kuis",
+    "membaca",
+    "latihan",
+    "interaktif"
+  ],
   "author": "adityarahmanda",
   "license": "ISC",
   "bugs": {
@@ -35,8 +42,9 @@
     "xss": "^1.0.11"
   },
   "devDependencies": {
+    "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/style-resources": "^1.2.1",
-    "sass-loader": "^10.2.1",
-    "sass": "1.32.13"
+    "sass": "1.32.13",
+    "sass-loader": "^10.2.1"
   }
 }

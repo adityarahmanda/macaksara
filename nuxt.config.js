@@ -9,8 +9,11 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
       { name: 'robots', content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large' },
+      { name:"mobile-web-app-capable", content:"yes" },
+      { name:"apple-mobile-web-app-capable", content:"yes" },
+      { name:"apple-mobile-web-app-status-bar-style", content:"default" },
       { 'http-equiv':'content-language', content:'id-ID' },
     ],
     link: [
@@ -25,7 +28,7 @@ export default {
       { 
         type:'text/javascript', 
         innerHTML: `window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){window.dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-J57JE933K5');`
@@ -57,6 +60,54 @@ export default {
     color: '#47311C'
   },
 
+  pwa: {
+    icon: false,
+    meta: false,
+    manifest: {
+      name: 'Macaksara',
+      short_name: 'Macaksara',
+      description: 'Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca aksara Jawa yang didesain secara interaktif dan menyenangkan.',
+      theme_color: '#47311C',
+      display: 'standalone',
+      scope: '/macaksara',
+      start_url: '/macaksara/?standalone=true',
+      lang: 'id',
+      icons: [
+        {
+            src: "pwa-icon-64x64.png",
+            type: "image/png",
+            sizes: "64x64",
+            purpose: "any"
+        },
+        {
+            src: "pwa-icon-192x192.png",
+            type: "image/png",
+            sizes: "192x192",
+            purpose: "any"
+        },
+        {
+            src: "pwa-icon-512x512.png",
+            type: "image/png",
+            sizes: "512x512",
+            purpose: "any"
+        },
+        {
+            src: "maskable-icon-512x512.png",
+            type: "image/png",
+            sizes: "512x512",
+            purpose: "maskable"
+        }
+      ],
+    },
+    workbox: {
+      offlineAssets: [
+        'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&family=Noto+Sans+Javanese:wght@400;700&display=swap',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css'
+      ]
+    }
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/vue-bootstrap',
@@ -83,7 +134,8 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/pwa'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
