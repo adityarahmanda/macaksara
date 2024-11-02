@@ -135,26 +135,37 @@ export default {
     },
     head () {
         const title = this.title !== undefined ? 'Kuis ' + this.title : 'Kuis Tidak Ditemukan';
-        
+        const url = 'https://adityarahmanda.github.io/macaksara/' + this.$route.params.slug;
+
         return {
             title: `${title} - Macaksara`,
             meta: [
-                { name:'robots', content:'noindex, follow' }
-            ]
+                { name:'robots', content:'noindex, follow' },
+                { hid: 'title', name: 'title', content: title },
+                { property: 'og:title', content: title },
+                { property: 'og:url', content: url },
+                { name: 'twitter:title', content: title },
+                { name: 'twitter:url', content: url },
+            ],
+            link: [
+                { rel: 'canonical', href: url },     
+            ],
         }
     },
     async mounted() {
         this.slug = this.$route.params.slug;
-        this.quiz = await this.$content("quizzes", this.slug).fetch() || null;
 
-        if (this.quiz === null) {
-            this.$router.push('/')
+        try {
+            const quizzes = await this.$axios.$get(this.$router.options.base + 'quizzes.json')
+            this.quiz = quizzes.find(item => item.slug === this.slug);
+            this.verifyUser();
+            this.startQuiz();
+        } catch (err) {
+            console.log(err);
+            this.$router.push('/');
+        } finally {
+            this.isLoading = false; // Ensure loading state is updated regardless of success or failure
         }
-
-        this.verifyUser();
-        this.startQuiz();
-
-        this.isLoading = false;
     },
     methods: {
         verifyUser() {
@@ -175,6 +186,7 @@ export default {
             }
         },
         startQuiz() {
+            this.title = this.quiz.title;
             this.currentLevel = this.user.quizProgresses[this.slug].currentLevel;
             this.maxLevel = this.quiz.levels.length;
 

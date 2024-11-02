@@ -1,3 +1,10 @@
+const site_name = 'Macaksara';
+const host = 'https://adityarahmanda.github.io';
+const site_base = 'https://adityarahmanda.github.io/macaksara';
+const router_base = '/macaksara';
+const screenshot = 'https://adityarahmanda.github.io/macaksara/screenshot.png';
+const description = `Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca aksara Jawa yang didesain secara interaktif dan menyenangkan.`;
+
 export default {
   target: 'static',
   
@@ -8,21 +15,34 @@ export default {
       prefix: 'og:http://ogp.me/ns#'
     },
     meta: [
+      { hid: 'description', name: 'description', content: description },
+      { name:'keyword', content:'macaksara, aksara, jawa, kuis, membaca, latihan, interaktif' },
+      { property: 'og:description', content: description },
       { property: 'og:locale', content: 'id_ID' },
+      { property: 'og:image', content: screenshot },
+      { property: 'og:image:secure_url', content: screenshot },
+      { property: 'og:image:width', content: '720' },
+      { property: 'og:image:height', content: '354' },
+      { property: 'og:image:alt', content: site_name },
+      { property: 'og:image:type', content: 'image/png' },
       { property: 'fb:admins', content: '100005745649451' },
+      { name: 'twitter:description', content: description },
       { name: 'twitter:site', content: '@arahmanda21' },    
       { name: 'twitter:creator', content: '@arahmanda21' },
+      { name: 'twitter:card', content:'summary_large_image' },
+      { name: 'twitter:image', content: screenshot },
+      { name: 'twitter:image', content: screenshot },
       // { name: 'google-site-verification', content: 'xxxx' },
       // { name: 'yandex-verification', content: 'xxxx' },
       // { name: 'p:domain_verify', content: 'xxxx' },
       // { name: 'norton-safeweb-site-verification', content: 'xxxx' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'canonical', href: 'https://adityarahmanda.github.io/macaksara' },
+      { rel: 'icon', type: 'image/x-icon', href: router_base + '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&family=Noto+Sans+Javanese:wght@400;700&display=swap' },
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css' },
-      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css' },      
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css' },
+      { rel: 'manifest', href: router_base + '/manifest.json' }
     ],
     script: [
       { src: 'https://www.googletagmanager.com/gtag/js?id=G-J57JE933K5', async: true },
@@ -39,14 +59,14 @@ export default {
   },
 
   router: {
-    base: '/macaksara/'
+    base: router_base
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [ '~assets/scss/app.scss' ],
 
   sitemap: {
-    hostname: 'https://adityarahmanda.github.io/',
+    hostname: host,
     gzip: true,
     exclude: [
       '/kuis/**'
@@ -63,6 +83,7 @@ export default {
 
   pwa: {
     icon: false,
+    manifest: false,
     meta: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
@@ -71,53 +92,11 @@ export default {
       appleStatusBarStyle: 'default',
       theme_color: '#47311C',
       lang: 'id',
+      ogHost: site_base,
+      ogUrl: false,
       ogTitle: false,
       ogDescription: false,
       ogImage: false,
-    },
-    manifest: {
-      name: 'Macaksara',
-      short_name: 'Macaksara',
-      description: 'Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca aksara Jawa yang didesain secara interaktif dan menyenangkan.',
-      theme_color: '#47311C',
-      display: 'standalone',
-      scope: '/macaksara',
-      start_url: '/macaksara/?standalone=true',
-      lang: 'id',
-      icons: [
-        {
-            src: "pwa-icon-64x64.png",
-            type: "image/png",
-            sizes: "64x64",
-            purpose: "any"
-        },
-        {
-            src: "pwa-icon-192x192.png",
-            type: "image/png",
-            sizes: "192x192",
-            purpose: "any"
-        },
-        {
-            src: "pwa-icon-512x512.png",
-            type: "image/png",
-            sizes: "512x512",
-            purpose: "any"
-        },
-        {
-            src: "maskable-icon-512x512.png",
-            type: "image/png",
-            sizes: "512x512",
-            purpose: "maskable"
-        }
-      ],
-      screenshots: [
-        {
-          src: "screenshot.png",
-          sizes: "720x354",
-          type: "image/png",
-          form_factor: "wide"
-        }
-      ]
     },
     workbox: {
       offlineAnalytics: true,
@@ -126,9 +105,13 @@ export default {
         'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&family=Noto+Sans+Javanese:wght@400;700&display=swap',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css',
-        '~assets/sounds/correct.mp3',
-        '~assets/sounds/tada.mp3',
-        '~assets/sounds/wrong.mp3',
+        router_base + '/',
+        router_base + '/konverter',
+        router_base + '/kuis',
+        router_base + '/quizzes.json',
+        router_base + '/_nuxt/assets/sounds/correct.mp3',
+        router_base + '/_nuxt/assets/sounds/tada.mp3',
+        router_base + '/_nuxt/assets/sounds/wrong.mp3',
       ],
       cachingExtensions: '@/plugins/workbox-range-request.js'
     }
@@ -168,25 +151,10 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/sitemap',
-    '@nuxt/content'
+    '@nuxtjs/axios'
   ],
 
   generate: {
-    async routes () {
-      const { $content } = require('@nuxt/content')
-      const quizzesSlug = await $content('quizzes').only(['slug']).fetch()
-      const quizzesRoutes = Object.keys(quizzesSlug).map((key) => {
-          return { route: `/kuis/${quizzesSlug[key].slug}` }
-      })
-
-      return [
-        { route: '/', },
-        { route: '/konverter', },
-        ...quizzesRoutes
-      ]
-    },
     fallback: '404.html',
   },
-
-  
 }

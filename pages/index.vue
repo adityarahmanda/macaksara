@@ -52,43 +52,34 @@ export default {
         }
     },
     head() {
-        const siteName = 'Macaksara';
-        const title = `${siteName} — Permainan Kuis Membaca Aksara Jawa`;
-        const description = `${siteName} merupakan website permainan kuis untuk menguji kemampuan membaca aksara Jawa yang didesain secara interaktif dan menyenangkan.`;
+        const title = `Macaksara — Permainan Kuis Membaca Aksara Jawa`;
         const url = 'https://adityarahmanda.github.io/macaksara';
-        const image = 'https://adityarahmanda.github.io/macaksara/screenshot.png';
 
         return {
             title,
             meta: [
                 { name: 'robots', content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large' },
                 { hid: 'title', name: 'title', content: title },
-                { hid: 'description', name: 'description', content: description },
-                { name:'keyword', content:'macaksara, aksara, jawa, kuis, membaca, latihan, interaktif' },
                 { property: 'og:title', content: title },
-                { property: 'og:description', content: description },
                 { property: 'og:url', content: url },
-                { property: 'og:image', content: image },
-                { property: 'og:image:secure_url', content: image },
-                { property: 'og:image:width', content: '720' },
-                { property: 'og:image:height', content: '354' },
-                { property: 'og:image:alt', content: siteName },
-                { property: 'og:image:type', content: 'image/png' },
-                { name: 'twitter:card', content:'summary_large_image' },
-                { name: 'twitter:url', content: url },
                 { name: 'twitter:title', content: title },
-                { name: 'twitter:description', content: description },
-                { name: 'twitter:image', content: image },
-            ]
+                { name: 'twitter:url', content: url },
+            ],
+            link: [
+                { rel: 'canonical', href: url },     
+            ],
         };
     },
     async mounted() {
-        this.quizzes = await this.$content("quizzes").fetch() || null;
-
-        this.verifyUser();
-        this.initQuizCards();
-        
-        this.isLoading = false;
+        try {
+            this.quizzes = await this.$axios.$get(this.$router.options.base + 'quizzes.json');
+            this.verifyUser();
+            this.initQuizCards();
+        } catch (error) {
+            console.error(error);
+        } finally {
+            this.isLoading = false;
+        }
     },
     methods: {
         createNewUser() {
