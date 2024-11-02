@@ -107,6 +107,7 @@ export default {
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css',
         router_base + '/',
         router_base + '/konverter',
+        router_base + '/manifest.json',
         router_base + '/quizzes.json',
         router_base + '/_nuxt/assets/sounds/correct.mp3',
         router_base + '/_nuxt/assets/sounds/tada.mp3',
