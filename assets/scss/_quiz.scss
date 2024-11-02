@@ -77,7 +77,7 @@
 
     .notification {
         position: absolute;
-        width: fit-content;
+        width: max-content;
         padding: $notification-padding-y $notification-padding-x;
         bottom: 0;
         left: 50%;
