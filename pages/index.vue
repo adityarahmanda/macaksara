@@ -72,7 +72,7 @@ export default {
     },
     async mounted() {
         try {
-            this.quizzes = await this.$axios.$get(this.$router.options.base + 'quizzes.json');
+            this.quizzes = await this.$axios.$get('https://adityarahmanda.github.io/macaksara/quizzes.json');
             this.verifyUser();
             this.initQuizCards();
         } catch (error) {

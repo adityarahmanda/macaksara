@@ -156,7 +156,7 @@ export default {
         this.slug = this.$route.params.slug;
 
         try {
-            const quizzes = await this.$axios.$get(this.$router.options.base + 'quizzes.json')
+            const quizzes = await this.$axios.$get('https://adityarahmanda.github.io/macaksara/quizzes.json')
             this.quiz = quizzes.find(item => item.slug === this.slug);
             this.verifyUser();
             this.startQuiz();
