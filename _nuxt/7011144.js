@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{389:function(n,e,d){"use strict";d.r(e);var l={middleware:["alih-aksara"]},w=d(50),component=Object(w.a)(l,undefined,undefined,!1,null,null,null);e.default=component.exports}}]);
