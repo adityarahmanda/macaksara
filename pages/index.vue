@@ -56,25 +56,22 @@ export default {
         const title = `${siteName} — Permainan Kuis Membaca Aksara Jawa`;
         const description = `${siteName} merupakan website permainan kuis untuk menguji kemampuan membaca aksara Jawa yang didesain secara interaktif dan menyenangkan.`;
         const url = 'https://adityarahmanda.github.io/macaksara';
-        const image = 'https://adityarahmanda.github.io/img/macaksara-summary.png';
+        const image = 'https://adityarahmanda.github.io/macaksara/screenshot.png';
 
         return {
             title,
             meta: [
+                { name: 'robots', content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large' },
                 { hid: 'title', name: 'title', content: title },
                 { hid: 'description', name: 'description', content: description },
                 { name:'keyword', content:'macaksara, aksara, jawa, kuis, membaca, latihan, interaktif' },
-                { property: 'og:locale', content: 'id_ID' },
-                { property: 'og:type', content:'website' },
                 { property: 'og:title', content: title },
                 { property: 'og:description', content: description },
                 { property: 'og:url', content: url },
-                { property: 'og:site_name', content: siteName },
-                { property: 'fb:admins', content: '100005745649451' },
                 { property: 'og:image', content: image },
                 { property: 'og:image:secure_url', content: image },
-                { property: 'og:image:width', content: '768' },
-                { property: 'og:image:height', content: '436' },
+                { property: 'og:image:width', content: '720' },
+                { property: 'og:image:height', content: '354' },
                 { property: 'og:image:alt', content: siteName },
                 { property: 'og:image:type', content: 'image/png' },
                 { name: 'twitter:card', content:'summary_large_image' },
@@ -82,12 +79,6 @@ export default {
                 { name: 'twitter:title', content: title },
                 { name: 'twitter:description', content: description },
                 { name: 'twitter:image', content: image },
-                { name: 'twitter:site', content: '@arahmanda21' },    
-                { name: 'twitter:creator', content: '@arahmanda21' },
-                { name: 'google-site-verification', content: 'xxxx' },
-                { name: 'yandex-verification', content: 'xxxx' },
-                { name: 'p:domain_verify', content: 'xxxx' },
-                { name: 'norton-safeweb-site-verification', content: 'xxxx' }
             ]
         };
     },

@@ -8,13 +8,14 @@ export default {
       prefix: 'og:http://ogp.me/ns#'
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
-      { name: 'robots', content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large' },
-      { name:"mobile-web-app-capable", content:"yes" },
-      { name:"apple-mobile-web-app-capable", content:"yes" },
-      { name:"apple-mobile-web-app-status-bar-style", content:"default" },
-      { 'http-equiv':'content-language', content:'id-ID' },
+      { property: 'og:locale', content: 'id_ID' },
+      { property: 'fb:admins', content: '100005745649451' },
+      { name: 'twitter:site', content: '@arahmanda21' },    
+      { name: 'twitter:creator', content: '@arahmanda21' },
+      // { name: 'google-site-verification', content: 'xxxx' },
+      // { name: 'yandex-verification', content: 'xxxx' },
+      // { name: 'p:domain_verify', content: 'xxxx' },
+      // { name: 'norton-safeweb-site-verification', content: 'xxxx' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -62,7 +63,18 @@ export default {
 
   pwa: {
     icon: false,
-    meta: false,
+    meta: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
+      mobileApp: true,
+      mobileAppIOS: true,
+      appleStatusBarStyle: 'default',
+      theme_color: '#47311C',
+      lang: 'id',
+      ogTitle: false,
+      ogDescription: false,
+      ogImage: false,
+    },
     manifest: {
       name: 'Macaksara',
       short_name: 'Macaksara',
@@ -98,13 +110,27 @@ export default {
             purpose: "maskable"
         }
       ],
+      screenshots: [
+        {
+          src: "screenshot.png",
+          sizes: "720x354",
+          type: "image/png",
+          form_factor: "wide"
+        }
+      ]
     },
     workbox: {
+      offlineAnalytics: true,
+      cleanupOutdatedCaches: true,
       offlineAssets: [
         'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&family=Noto+Sans+Javanese:wght@400;700&display=swap',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css'
-      ]
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css',
+        '~assets/sounds/correct.mp3',
+        '~assets/sounds/tada.mp3',
+        '~assets/sounds/wrong.mp3',
+      ],
+      cachingExtensions: '@/plugins/workbox-range-request.js'
     }
   },
 
