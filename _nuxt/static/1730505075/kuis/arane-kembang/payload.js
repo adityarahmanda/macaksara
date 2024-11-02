@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/kuis/arane-kembang", {data:[{}],fetch:{},mutations:void 0});

@@ -1,4 +1,4 @@
-const options = {"workboxURL":"https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/workbox-sw.js","importScripts":[],"config":{"debug":false},"cacheOptions":{"cacheId":"macaksara-prod","directoryIndex":"/","revision":"Yqvdd4FBqhXd"},"clientsClaim":true,"skipWaiting":true,"cleanupOutdatedCaches":true,"offlineAnalytics":false,"preCaching":[{"revision":"Yqvdd4FBqhXd","url":"https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&family=Noto+Sans+Javanese:wght@400;700&display=swap"},{"revision":"Yqvdd4FBqhXd","url":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css"},{"revision":"Yqvdd4FBqhXd","url":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css"},{"revision":"Yqvdd4FBqhXd","url":"/macaksara/?standalone=true"}],"runtimeCaching":[{"urlPattern":"/macaksara/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/macaksara/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]}],"offlinePage":null,"pagesURLPattern":"/macaksara/","offlineStrategy":"NetworkFirst"}
+const options = {"workboxURL":"https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/workbox-sw.js","importScripts":[],"config":{"debug":false},"cacheOptions":{"cacheId":"macaksara-prod","directoryIndex":"/","revision":"E3bUm8myFtt0"},"clientsClaim":true,"skipWaiting":true,"cleanupOutdatedCaches":true,"offlineAnalytics":true,"preCaching":[{"revision":"E3bUm8myFtt0","url":"https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&family=Noto+Sans+Javanese:wght@400;700&display=swap"},{"revision":"E3bUm8myFtt0","url":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css"},{"revision":"E3bUm8myFtt0","url":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css"},{"revision":"E3bUm8myFtt0","url":"/macaksara/"},{"revision":"E3bUm8myFtt0","url":"/macaksara/konverter"},{"revision":"E3bUm8myFtt0","url":"/macaksara/kuis"},{"revision":"E3bUm8myFtt0","url":"/macaksara/quizzes.json"},{"revision":"E3bUm8myFtt0","url":"/macaksara/_nuxt/assets/sounds/correct.mp3"},{"revision":"E3bUm8myFtt0","url":"/macaksara/_nuxt/assets/sounds/tada.mp3"},{"revision":"E3bUm8myFtt0","url":"/macaksara/_nuxt/assets/sounds/wrong.mp3"}],"runtimeCaching":[{"urlPattern":"/macaksara/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/macaksara/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]}],"offlinePage":null,"pagesURLPattern":"/macaksara/","offlineStrategy":"NetworkFirst"}
 
 importScripts(...[options.workboxURL, ...options.importScripts])
 
@@ -106,7 +106,15 @@ function workboxExtensions(workbox, options) {
 }
 
 function cachingExtensions(workbox, options) {
-  
+  workbox.routing.registerRoute(
+    /\.(mp4|webm)/,
+    new workbox.strategies.CacheFirst({
+      plugins: [
+        new workbox.rangeRequests.RangeRequestsPlugin(),
+      ],
+    }),
+    'GET'
+  );
 }
 
 function routingExtensions(workbox, options) {

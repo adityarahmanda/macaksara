@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/kuis/arane-godong", {data:[{}],fetch:{},mutations:void 0});

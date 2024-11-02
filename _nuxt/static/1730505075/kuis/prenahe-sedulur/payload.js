@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/kuis/prenahe-sedulur", {data:[{}],fetch:{},mutations:void 0});
