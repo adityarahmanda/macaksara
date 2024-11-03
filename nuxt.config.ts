@@ -1,7 +1,6 @@
 const site_name = 'Macaksara';
 const host = 'https://adityarahmanda.github.io';
-const site_base = 'https://adityarahmanda.github.io/macaksara';
-const router_base = '/macaksara';
+const router_base = '/macaksara/';
 const screenshot = 'https://adityarahmanda.github.io/macaksara/screenshot.png';
 const description = `Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca aksara Jawa yang didesain secara interaktif dan menyenangkan.`;
 
@@ -9,7 +8,15 @@ const description = `Macaksara merupakan website permainan kuis untuk menguji ke
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr: false,
+
+  runtimeConfig: {
+    public: {
+      host: host,
+      router_base: router_base
+    }
+  },
+
   app: {
     baseURL: router_base,
     head:{
@@ -41,11 +48,10 @@ export default defineNuxtConfig({
         // { name: 'norton-safeweb-site-verification', content: 'xxxx' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: router_base + '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: router_base + 'favicon.ico' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&family=Noto+Sans+Javanese:wght@400;700&display=swap' },
         { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css' },
         { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css' },
-        { rel: 'manifest', href: router_base + '/manifest.json' }
       ],
       script: [
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-J57JE933K5', async: true },
@@ -60,12 +66,116 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   css: [
     '@/assets/scss/app.scss'
   ],
+
   plugins: [
     '~/plugins/macaksara-latintojava',
-    '~/plugins/macaksara-javatolatin',
     '~/plugins/macaksara-utility'
   ],
+
+  modules: ['@vite-pwa/nuxt'],
+
+  pwa: {
+    registerType: 'autoUpdate',
+    workbox: { 
+      clientsClaim: true,
+      skipWaiting: true,
+      cleanupOutdatedCaches: true,
+      offlineGoogleAnalytics: true,
+      globPatterns: [
+        '**/*.{js,html,css,png,ico,woff2,svg,json,mp3}',
+      ],
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'workbox-google-fonts-cache',
+            expiration: {
+              maxEntries: 10,
+              maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+            },
+            cacheableResponse: {
+              statuses: [0, 200]
+            }
+          }
+          },
+          {
+          urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'workbox-gstatic-fonts-cache',
+            expiration: {
+              maxEntries: 10,
+              maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+            },
+            cacheableResponse: {
+              statuses: [0, 200]
+            },
+          }
+        }
+      ]
+    },
+    manifest: {
+      "name": site_name,
+      "short_name": site_name,
+      "description": description,
+      "scope": router_base,
+      "start_url": router_base + "?standalone=true",
+      "display": "standalone",
+      "background_color": "#ffffff",
+      "theme_color": "#47311c",
+      "icons": [
+          {
+              "src": "pwa-64x64.png",
+              "type": "image/png",
+              "sizes": "64x64",
+              "purpose": "any"
+          },
+          {
+              "src": "pwa-192x192.png",
+              "type": "image/png",
+              "sizes": "192x192",
+              "purpose": "any"
+          },
+          {
+              "src": "pwa-512x512.png",
+              "type": "image/png",
+              "sizes": "512x512",
+              "purpose": "any"
+          },
+          {
+              "src": "maskable-icon-512x512.png",
+              "type": "image/png",
+              "sizes": "512x512",
+              "purpose": "maskable"
+          }
+      ],
+      "screenshots": [
+          {
+              "src": "screenshot-narrow.png",
+              "type": "image/jpg",
+              "sizes": "414x720",
+              "form_factor": "narrow"
+          },
+          {
+              "src": "screenshot.png",
+              "type": "image/jpg",
+              "sizes": "720x354",
+              "form_factor": "wide"
+          }
+      ]
+    }
+  },
+  generate: {
+    routes: [
+      '/',
+      '/konverter',
+      '/privacy-policy',
+      '/kuis'
+    ]
+  }
 })

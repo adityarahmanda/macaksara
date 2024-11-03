@@ -1,8 +1,3 @@
 <script setup>
-import { definePageMeta } from 'nuxt/app'
-
-// Define the middleware for the page
-definePageMeta({
-  middleware: ['alih-aksara']
-})
+navigateTo('https://adityarahmanda.github.io/alih-aksara/latin-jawa', { external: true })
 </script>

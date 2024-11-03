@@ -82,8 +82,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-const { $shuffleArray, $toSyllables, $generateJavaneseSyllable } = useNuxtApp()
 
+const { $shuffleArray, $toSyllables, $generateJavaneseSyllable } = useNuxtApp()
+const config = useRuntimeConfig()
 const route = useRoute();
 const router = useRouter();
 
@@ -143,7 +144,7 @@ definePageMeta({
 })
 
 useHead({
-    title: `${HeadTitle} - Macaksara`,
+    title: `${HeadTitle} — Macaksara`,
     meta: [
         { name:'robots', content:'noindex, follow' },
         { hid: 'title', name: 'title', content: HeadTitle },
@@ -161,7 +162,7 @@ onMounted(async () => {
     slug.value = route.params.id;
 
     try {
-        const response = await fetch('/quizzes.json')
+        const response = await fetch(config.public.router_base + 'quizzes.json')
         const quizzes = await response.json()
         quiz.value = quizzes.find((item) => item.slug === slug.value);
         verifyUser();
@@ -344,7 +345,7 @@ const toggleAudio = () => {
 const playSound = (fileName) => {
     if(enableAudio.value) {
         audio.value = null;
-        audio.value = new Audio('/sounds/' + fileName);
+        audio.value = new Audio(config.public.router_base + 'sounds/' + fileName);
         audio.value.currentTime = 0;
         audio.value.play();
     }

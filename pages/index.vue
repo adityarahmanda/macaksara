@@ -44,6 +44,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
+const config = useRuntimeConfig()
+
 const user = ref(undefined);
 const isLoading = ref(true);
 const quizzes = ref([]);
@@ -187,7 +189,7 @@ const resetGame = () => {
 
 onMounted(async () => {
     try {
-        const response = await fetch('/quizzes.json');
+        const response = await fetch(config.public.router_base + 'quizzes.json');
         quizzes.value = await response.json();
         verifyUser();
         initQuizCards();
