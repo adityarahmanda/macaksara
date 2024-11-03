@@ -30,7 +30,7 @@
             <p class="small">*Data permainan tersimpan secara otomatis pada perangkat yang digunakan.</p>
         </div>
 
-        <b-modal 
+        <!-- <b-modal 
             id="reset-progress-modal"
             body-class="text-center"
             centered 
@@ -49,28 +49,25 @@
                     </div>
                 </div>
             </template>
-        </b-modal>
+        </b-modal> -->
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        user: {
-            type: Object,
-            default() {
-                return {};
-            }
-        },
-        isLoading: {
-            type: Boolean,
-            default: false
+<script setup>
+import { ref } from 'vue'
+
+const props = defineProps({
+    user: {
+        type: Object,
+        default() {
+            return {};
         }
     },
-    data() {
-        return {
-            isEditName: false,
-        }
+    isLoading: {
+        type: Boolean,
+        default: false
     }
-}
+})
+
+const isEditName = ref(false)
 </script>

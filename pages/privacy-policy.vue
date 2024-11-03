@@ -60,26 +60,22 @@
     </div>
 </template>
 
-<script>
-export default {
-    head() {
-        const title = `Privacy Policy — Macaksara`;
-        const url = 'https://adityarahmanda.github.io/privacy-policy';
+<script setup>
+const title = `Privacy Policy — Macaksara`;
+const url = 'https://adityarahmanda.github.io/privacy-policy';
 
-        return {
-            title,
-            meta: [
-                { name: 'robots', content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large' },
-                { hid: 'title', name: 'title', content: title },
-                { property: 'og:title', content: title },
-                { property: 'og:url', content: url },
-                { name: 'twitter:title', content: title },
-                { name: 'twitter:url', content: url },
-            ],
-            link: [
-                { rel: 'canonical', href: url },     
-            ],
-        };
-    }
-}
+useHead({
+    title,
+    meta: [
+        { name: 'robots', content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large' },
+        { hid: 'title', name: 'title', content: title },
+        { property: 'og:title', content: title },
+        { property: 'og:url', content: url },
+        { name: 'twitter:title', content: title },
+        { name: 'twitter:url', content: url },
+    ],
+    link: [
+        { rel: 'canonical', href: url },     
+    ],
+})
 </script>

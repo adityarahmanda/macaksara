@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 const wyanjana = {
     'ꦲ':'h',      // ha 
     'ꦤ':'n',      // na
@@ -300,8 +298,10 @@ const getVowelsSandhanganSwara = (s) => { return sandhanganSwara[s]; }
 
 const getPunctuations = (s) => { return pada[s]; }
 
-Vue.mixin({
-    methods:{
-        javaToLatin
-    }
-});
+export default defineNuxtPlugin((nuxtApp) => {
+    nuxtApp.vueApp.mixin({
+        methods:{
+            javaToLatin
+        },
+    })
+})

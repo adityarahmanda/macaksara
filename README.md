@@ -1,38 +1,75 @@
-# Macaksara
+# Nuxt Minimal Starter
 
-Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca Aksara Jawa. 
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Demonstrasi
+## Setup
 
-[https://macaksara.adityarahmanda.com/](https://macaksara.adityarahmanda.com/).
-
-## Proses Generation Soal
-
-Data soal didapatkan dengan melakukan fetch data dari file [quizzes.json](https://github.com/adityarahmanda/macaksara/blob/main/content/quizzes.json).
-
-Selanjutnya pada data soal tersebut dilakukan pemenggalan suku kata yang sesuai dengan kaidah aksara jawa dengan menggunakan fungsi berikut.
-```jsx
-const toSyllables = (word) => {
-    const regex = /[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[aiueoê]/gi;
-    return word.match(regex);
-}
-```
-
-Masing-masing hasil pemenggalan data soal yang masih berupa huruf latin kemudian dikonversikan menjadi aksara Jawa dengan bantuan [Transliterator Aksara Jawa](https://github.com/adityarahmanda/macaksara/blob/main/plugins/macaksara-latintojava.js) untuk kemudian ditampilkan ke dalam website.
-
-## Build Setup
+Make sure to install dependencies:
 
 ```bash
-# install dependencies
-$ npm install
+# npm
+npm install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# pnpm
+pnpm install
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+# yarn
+yarn install
 
-# generate static project
-$ npm run generate
+# bun
+bun install
 ```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+
+# pnpm
+pnpm dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

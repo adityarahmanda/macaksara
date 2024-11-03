@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 // fungsi untuk melakukan pemenggalan suku kata bahasa jawa
 const toSyllables = (word) => {
     const regex = /[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[aiueoê]/gi;
@@ -72,10 +70,13 @@ const shuffleArray = (array) => {
     return array;
 }
 
-Vue.mixin({
-    methods:{
-        toSyllables,
-        generateJavaneseSyllable,
-        shuffleArray
-    },
+
+export default defineNuxtPlugin(() => {
+    return {
+        provide: {
+            shuffleArray,
+            toSyllables,
+            generateJavaneseSyllable,
+        }
+    }
 })

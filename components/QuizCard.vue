@@ -30,52 +30,49 @@
     </nuxt-link>
 </template>
 
-<script>
-export default {
-    props: {
-        slug: {
-            type: String,
-            default: ""
-        },
-        title: {
-            type: String,
-            default: "Nama Kuis"
-        },
-        titleTranslation: {
-            type: String,
-            default: "Terjemahan Nama Kuis"
-        },
-        icon: {
-            type: String,
-            default: ""
-        },
-        questionTotal: {
-            type: Number,
-            default: 0
-        },
-        currentLevel: {
-            type: Number,
-            default: 0
-        },
-        maxLevel: {
-            type: Number,
-            default: 0
-        },
-        isCompleted: {
-            type: Boolean,
-            default: false
-        },
-        isLoading: {
-            type: Boolean,
-            default: false
-        }
+<script setup>
+const props = defineProps({
+    slug: {
+        type: String,
+        default: ""
     },
-    computed: {
-        progressBarValue() {
-            if(this.isCompleted) return 100;
-
-            return ((this.currentLevel - 1) / this.maxLevel) * 100;
-        }
+    title: {
+        type: String,
+        default: "Nama Kuis"
+    },
+    titleTranslation: {
+        type: String,
+        default: "Terjemahan Nama Kuis"
+    },
+    icon: {
+        type: String,
+        default: ""
+    },
+    questionTotal: {
+        type: Number,
+        default: 0
+    },
+    currentLevel: {
+        type: Number,
+        default: 0
+    },
+    maxLevel: {
+        type: Number,
+        default: 0
+    },
+    isCompleted: {
+        type: Boolean,
+        default: false
+    },
+    isLoading: {
+        type: Boolean,
+        default: false
     }
-}
+})
+
+const progressBarValue = computed(() => {
+  if (props.isCompleted) return 100;
+
+  return ((props.currentLevel - 1) / props.maxLevel) * 100;
+})
 </script>

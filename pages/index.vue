@@ -41,160 +41,160 @@
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            user: undefined,
-            isLoading: true,
-            quizzes: [],
-            quizCards: {}
-        }
-    },
-    head() {
-        const title = `Macaksara — Permainan Kuis Membaca Aksara Jawa`;
-        const url = 'https://adityarahmanda.github.io/macaksara';
+<script setup>
+import { ref, onMounted } from 'vue'
 
-        return {
-            title,
-            meta: [
-                { name: 'robots', content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large' },
-                { hid: 'title', name: 'title', content: title },
-                { property: 'og:title', content: title },
-                { property: 'og:url', content: url },
-                { name: 'twitter:title', content: title },
-                { name: 'twitter:url', content: url },
-            ],
-            link: [
-                { rel: 'canonical', href: url },     
-            ],
+const user = ref(undefined);
+const isLoading = ref(true);
+const quizzes = ref([]);
+const quizCards = ref({});
+
+const title = `Macaksara — Permainan Kuis Membaca Aksara Jawa`
+const url = 'https://adityarahmanda.github.io/macaksara'
+
+useHead({
+  title,
+  meta: [
+    { name: 'robots', content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large' },
+    { hid: 'title', name: 'title', content: title },
+    { property: 'og:title', content: title },
+    { property: 'og:url', content: url },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:url', content: url },
+  ],
+  link: [
+    { rel: 'canonical', href: url },
+  ],
+})
+
+const createNewUser = () => {
+    user.value = {
+        learnedWords: 0, 
+        maxStreak: 0,
+        quizProgresses: {},
+    };
+
+    // get quizzes
+    for(let i = 0; i < quizzes.value.length; i++) {
+        const slug = quizzes.value[i].slug;
+
+        user.value.quizProgresses[slug] = {
+            currentLevel: 1,
+            isCompleted: false
         };
-    },
-    async mounted() {
-        try {
-            this.quizzes = await this.$axios.$get('https://adityarahmanda.github.io/macaksara/quizzes.json');
-            this.verifyUser();
-            this.initQuizCards();
-        } catch (error) {
-            console.error(error);
-        } finally {
-            this.isLoading = false;
+    }
+
+    localStorage.setItem('userData', JSON.stringify(user.value));
+}
+
+const verifyUser = () => {
+    user.value = JSON.parse(localStorage.getItem('userData'));
+    // console.log(user);
+
+    // verify user
+    if(user.value) {
+        const quizProgKeys = Object.keys(user.value.quizProgresses);
+
+        let updateUser = false;
+        if(user.value.learnedWords === undefined || user.value.learnedWords === null) {
+            user.value.learnedWords = 0;
+            updateUser = true;
         }
-    },
-    methods: {
-        createNewUser() {
-            this.user = {
-                learnedWords: 0, 
-                maxStreak: 0,
-                quizProgresses: {},
-            };
 
-            // get quizzes
-            for(let i = 0; i < this.quizzes.length; i++) {
-                const slug = this.quizzes[i].slug;
+        if(user.value.maxStreak === undefined || user.value.maxStreak === null) {
+            user.value.maxStreak = 0;
+            updateUser = true;
+        }
 
-                this.user.quizProgresses[slug] = {
+        if(quizProgKeys.length === quizzes.value.length) {
+            for(let i = 0; i < quizzes.value.length; i++) {
+                if(quizProgKeys[i] !== quizzes.value[i].slug || quizProgKeys[i] === "undefined") {
+                    user.value.quizProgresses[quizProgKeys[i]] = {
+                        currentLevel: 1,
+                        isCompleted: false
+                    }
+
+                    updateUser = true;
+                }
+            }
+        } else {
+            user.value.quizProgresses ={};
+            
+            for(let i = 0; i < quizzes.value.length; i++) {
+                const slug = quizzes.value[i].slug;
+
+                user.value.quizProgresses[slug] = {
                     currentLevel: 1,
                     isCompleted: false
                 };
             }
+            createNewUser();
+        }
 
-            localStorage.setItem('userData', JSON.stringify(this.user));
-        },
-        verifyUser() {
-            this.user = JSON.parse(localStorage.getItem('userData'));
-            // console.log(this.user);
+        if(updateUser) {
+            localStorage.setItem('userData', JSON.stringify(user.value));
+        }
+    } else {
+        createNewUser();
+    }
+}
 
-            // verify user
-            if(this.user) {
-                const quizProgKeys = Object.keys(this.user.quizProgresses);
+const initQuizCards = () => {
+    // create quiz card
+    for(let i = 0; i < quizzes.value.length; i++) {
+        var quiz = quizzes.value[i];
+        const slug = quiz.slug;
+        const title = quiz.title;
+        const titleTranslation = quiz.titleTranslation;
+        const icon = quiz.icon;
+        const currentLevel = user.value.quizProgresses[slug].currentLevel;
+        const maxLevel = quiz.levels.length;
+        const isCompleted = user.value.quizProgresses[slug].isCompleted;
 
-                let updateUser = false;
-                if(this.user.learnedWords === undefined || this.user.learnedWords === null) {
-                    this.user.learnedWords = 0;
-                    updateUser = true;
-                }
-
-                if(this.user.maxStreak === undefined || this.user.maxStreak === null) {
-                    this.user.maxStreak = 0;
-                    updateUser = true;
-                }
-
-                if(quizProgKeys.length === this.quizzes.length) {
-                    for(let i = 0; i < this.quizzes.length; i++) {
-                        if(quizProgKeys[i] !== this.quizzes[i].slug || quizProgKeys[i] === "undefined") {
-                            this.user.quizProgresses[quizProgKeys[i]] = {
-                                currentLevel: 1,
-                                isCompleted: false
-                            }
-
-                            updateUser = true;
-                        }
-                    }
-                } else {
-                    this.user.quizProgresses ={};
-                    
-                    for(let i = 0; i < this.quizzes.length; i++) {
-                        const slug = this.quizzes[i].slug;
-
-                        this.user.quizProgresses[slug] = {
-                            currentLevel: 1,
-                            isCompleted: false
-                        };
-                    }
-                    this.createNewUser();
-                }
-
-                if(updateUser) {
-                    localStorage.setItem('userData', JSON.stringify(this.user));
-                }
-            } else {
-                this.createNewUser();
-            }
-        },
-        initQuizCards() {
-            // create quiz card
-            for(let i = 0; i < this.quizzes.length; i++) {
-                const slug = this.quizzes[i].slug;
-                const title = this.quizzes[i].title;
-                const titleTranslation = this.quizzes[i].titleTranslation;
-                const icon = this.quizzes[i].icon;
-                const currentLevel = this.user.quizProgresses[slug].currentLevel;
-                const maxLevel = this.quizzes[i].levels.length;
-                const isCompleted = this.user.quizProgresses[slug].isCompleted;
-
-                let questionTotal = 0;
-                if(!isCompleted) {
-                    const levelKeys = Object.keys(this.quizzes[i].levels);
-                    for(const key in levelKeys) {
-                        if(this.quizzes[i].levels[key].value === currentLevel) {
-                            questionTotal = this.quizzes[i].levels[key].questions.length;
-                            break;
-                        }
-                    }
-                    // console.log(questionTotal);
-                }
-
-                this.quizCards[i] = {
-                    slug,
-                    title,
-                    titleTranslation,
-                    icon,
-                    currentLevel,
-                    maxLevel,
-                    questionTotal,
-                    isCompleted
+        let questionTotal = 0;
+        if(!isCompleted) {
+            const levelKeys = Object.keys(quiz.levels);
+            for(const key in levelKeys) {
+                if(quiz.levels[key].value === currentLevel) {
+                    questionTotal = quiz.levels[key].questions.length;
+                    break;
                 }
             }
-        },
-        resetGame() {
-            this.isLoading = true;
+            // console.log(questionTotal);
+        }
 
-            this.createNewUser();
-            this.initQuizCards();
-
-            this.isLoading = false;
+        quizCards.value[i] = {
+            slug,
+            title,
+            titleTranslation,
+            icon,
+            currentLevel,
+            maxLevel,
+            questionTotal,
+            isCompleted
         }
     }
 }
+
+const resetGame = () => {
+    isLoading.value = true;
+
+    createNewUser();
+    initQuizCards();
+
+    isLoading.value = false;
+}
+
+onMounted(async () => {
+    try {
+        const response = await fetch('/quizzes.json');
+        quizzes.value = await response.json();
+        verifyUser();
+        initQuizCards();
+    } catch (error) {
+        console.error(error);
+    } finally {
+        isLoading.value = false;
+    }
+})
 </script>

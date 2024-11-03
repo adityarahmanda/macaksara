@@ -4,45 +4,41 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        width: {
-            type: String,
-            default: null
-        },
-        height: {
-            type: Number,
-            default: 12
-        },
-        percentage: {
-            type: Number,
-            default: 0
-        },
-        backgroundColor: {
-            type: String,
-            default: null
-        },
-        colorFill: {
-            type: String,
-            default: null
-        }
+<script setup>
+import { computed } from 'vue'
+
+const props = defineProps({
+    width: {
+        type: String,
+        default: null
     },
-    computed: {
-        progressBar() {
-            return {
-                'width': this.width ? this.width : null,
-                'height': this.height >= 0 ? this.height + "px" : '0',
-                'background-color': this.backgroundColor ? this.backgroundColor : null,
-            };
-        },
-        progressFill() {
-            return {
-                'width': this.percentage >= 0 && this.percentage <= 100 ? this.percentage + '%' : '0%',
-                'height': this.height >= 0 ? this.height + "px" : '0',
-                'background-color': this.colorFill ? this.colorFill : null,
-            };
-        },
+    height: {
+        type: Number,
+        default: 12
+    },
+    percentage: {
+        type: Number,
+        default: 0
+    },
+    backgroundColor: {
+        type: String,
+        default: null
+    },
+    colorFill: {
+        type: String,
+        default: null
     }
-}
+})
+
+const progressBar = computed(() => ({
+  'width': props.width ? props.width : null,
+  'height': props.height >= 0 ? props.height + "px" : '0',
+  'background-color': props.backgroundColor ? props.backgroundColor : null,
+}))
+
+const progressFill = computed(() => ({
+  'width': props.percentage >= 0 && props.percentage <= 100 ? props.percentage + '%' : '0%',
+  'height': props.height >= 0 ? props.height + "px" : '0',
+  'background-color': props.colorFill ? props.colorFill : null,
+}))
 </script>

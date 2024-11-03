@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 const wyanjana = {
      b: "ꦧ",       // ba
      c: "ꦕ",       // ca
@@ -545,8 +543,10 @@ const isCakra = (s) => {
     return s === "ꦿ";
 }
 
-Vue.mixin({
-    methods:{
-        latinToJava
-    }
-});
+export default defineNuxtPlugin((nuxtApp) => {
+    nuxtApp.vueApp.mixin({
+        methods:{
+            latinToJava
+        },
+    })
+})

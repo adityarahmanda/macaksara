@@ -5,25 +5,23 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        visible: {
-            type: Boolean,
-            default: false
-        },
-        icon: {
-            type: String,
-            default: ''
-        },
-        variant: {
-            type: String,
-            default: "primary"
-        },
-        message: {
-            type: String,
-            default: "Notification Message"
-        },
-    }
-}
+<script setup>
+const props = defineProps({
+    visible: {
+        type: Boolean,
+        default: false
+    },
+    icon: {
+        type: String,
+        default: ''
+    },
+    variant: {
+        type: String,
+        default: "primary"
+    },
+    message: {
+        type: String,
+        default: "Notification Message"
+    },
+})
 </script>

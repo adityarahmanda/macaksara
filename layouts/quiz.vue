@@ -1,3 +1,3 @@
 <template>
-    <Nuxt class="content"/>
+    <NuxtPage class="content"/>
 </template>

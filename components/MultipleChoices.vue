@@ -6,15 +6,13 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        choices: {
-            type: Array,
-            default() {
-                return ['ha', 'na', 'ca', 'ra']
-            }
+<script setup>
+const props = defineProps({
+    choices: {
+        type: Array,
+        default() {
+            return ['ha', 'na', 'ca', 'ra']
         }
     }
-}
+})
 </script>
