@@ -1,12 +1,12 @@
 <template>
     <nuxt-link v-slot="{ navigate }" :to="'/kuis/' + slug" custom>
-        <div class="quiz-card px-4 py-4" :class="{ 'is-loading' : isLoading }" @click="navigate">
+        <div class="quiz-card" :class="{ 'is-loading' : isLoading }" style="padding: 1em;" @click="navigate">
             <div class="quiz-card-header">
                 <div class="quiz-card-header-title-and-status">
-                    <h3 class="quiz-card-header-title mb-0">
+                    <h3 class="quiz-card-header-title" style="margin-top: 0; margin-bottom: 0">
                         <span v-if="!isLoading">{{ title }}</span>
                     </h3>
-                    <div class="quiz-card-title-translation">
+                    <div class="quiz-card-title-translation" style="margin-top: 0;">
                         <span v-if="!isLoading">{{ titleTranslation }}</span>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="quiz-card-content">
-                <div class="quiz-card-status mb-1">
+                <div class="quiz-card-status">
                     <span v-if="!isCompleted && !isLoading">Level {{ currentLevel }} / {{ maxLevel }}</span>
                     <span v-if="isCompleted && !isLoading">Terselesaikan</span>
                 </div>

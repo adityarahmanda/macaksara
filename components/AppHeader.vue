@@ -1,18 +1,10 @@
 <template>
-    <nav class="navbar py-3 mb-3 mb-md-4 navbar-light navbar-expand-md">
-        <a target="_self" :href="titleLink">
-            <h1 class="navbar-brand">{{ title }}</h1>
-        </a> 
-        <button type="button" aria-label="Toggle navigation" class="navbar-toggler d-md-none d-block collapsed" :aria-expanded="expanded" aria-controls="nav-collapse" style="overflow-anchor: none;" @click="toggleExpand">
-            <i v-if="expanded" class="fa fa-solid fa-xmark"></i>
-            <i v-else class="fa fa-solid fa-bars"></i>
-        </button> 
-        <div id="nav-collapse" :class="navCollapseClass">
-            <ul class="navbar-nav ml-auto">
-                <li v-for="item in navItems" :key="item.title" class="nav-item pl-0 pl-md-2">
-                    <a :href="item.link" target="_self" class="nav-link">{{ item.title }}</a>
-                </li>
-            </ul>
+    <nav class="nav" style="height: 96px; margin-bottom: 1em;">
+        <div class="nav-left">
+            <a class="brand" :href="titleLink">{{ title }}</a>
+        </div>
+        <div class="nav-right">
+            <a v-for="item in navItems" :key="item.title" :href="item.link" target="_self">{{ item.title }}</a>
         </div>
     </nav>
 </template>
@@ -23,7 +15,7 @@ import { ref } from 'vue'
 const props = defineProps({
     title: {
         type: String,
-        default: 'Macaksara'
+        default: 'macaksara'
     },
     titleLink: {
         type: String,

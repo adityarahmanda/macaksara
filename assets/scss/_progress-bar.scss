@@ -2,15 +2,15 @@
     position: relative;
     width: 100%;
     height: 12px;
-    background-color: $lighter-brown;
-    border-radius: $rounded-pill;
+    border-radius: 50rem;
+    background-color: var(--color-lighterBrown);
 
     .progress-bar-fill {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: $dark-brown;
-        border-radius: $rounded-pill;
+        border-radius: 50rem;
+        background-color: var(--color-primary);
         -webkit-transition: .4s;
         transition: .4s;
     }

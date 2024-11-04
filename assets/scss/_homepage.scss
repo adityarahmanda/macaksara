@@ -4,7 +4,7 @@
     padding: $spacer * 4;
     flex-direction: column;
     height: 180px;
-    color: $lighter-brown;
+    color: var(--color-lighterBrown);
     background-color: $brown;
     border-radius: 1.2rem;
     cursor: pointer;
@@ -29,7 +29,7 @@
             right: 0;
     
             i {
-                color: $light-brown;
+                color: var(--color-lightBrown);
                 font-size: 48px;
             }
         }
@@ -52,7 +52,7 @@
             .play-icon {
                 display: flex;
                 justify-content: flex-end;
-                color: $primary;
+                color: var(--color-primary);
                 width: 36px;
             }
         }
@@ -60,10 +60,9 @@
 
     &.is-loading {
         h3, p {
-            background: linear-gradient(110deg, $light-brown 8%, $lighter-brown 18%, $light-brown 33%);
+            background: linear-gradient(110deg, var(--color-lightBrown) 8%, var(--color-lighterBrown) 18%, var(--color-lightBrown) 33%);
             background-size: 200% 100%;
             animation: 1.5s shine linear infinite;
-            border-radius: $border-radius;
         }
 
         .quiz-card-header-title-and-status {
@@ -83,12 +82,6 @@
             display: none;
         }
     }      
-}
-
-@include media-breakpoint-down(sm) {
-    .quiz-card {
-        height: 160px;
-    }
 }
 
 @keyframes shine {

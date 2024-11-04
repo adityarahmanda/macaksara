@@ -1,23 +1,19 @@
-.btn {
-    border: 2px solid $gray-200;
-}
-
 .pushable {
-    background: $dark-brown;
-    border-radius: $rounded-pill;
+    background: var(--color-primary);
+    border-radius: 50rem;
     border: none;
     padding: 0;
     outline-offset: 4px;
 
     .front {
         display: block;
-        padding: $spacer * .5 $spacer;
-        border-radius: $rounded-pill;
+        padding: 1.2rem;
         background: $white;
-        color: $primary;
-        font-weight: $font-weight-bold;
-        border: 2px solid $dark-brown;
+        color: var(--color-primary);
+        font-weight: var(--font-weight-bold);
+        border: 2px solid var(--color-primary);
         transform: translateY(-6px);
+        border-radius: 50rem;
     }
 
     &:active {
@@ -27,3 +23,16 @@
     }
 }
 
+.button {
+    &.white {
+        color: var(--color-primary);
+        background-color: var(--color-white);
+        border: 2px solid var(--color-grey);
+        z-index: 1;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 .2rem rgba(71, 49, 28, .25);
+        outline: 0;
+    }
+}

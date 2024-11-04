@@ -9,46 +9,37 @@
         right: 0;
     }
 
-    .close-icon, .sound-icon {
-        width: fit-content;
-        cursor: pointer;
-    }
-
-    .close-icon {
-        font-size: 2rem;
-    }
-    
-    .sound-icon {
-        font-size: 1.6rem;
-    }
-
     .thumbs-up-icon {
         position: relative;
         overflow: hidden;
     
         i {
-            font-size: 6rem;
+            font-size: 6em;
             color: $blue;
             animation: thumbs-up-animation 0.4s ease-out;
         }
     }
 
     .latin-syllable, .aksara-syllable {
-        color: rgba($dark-brown, .2);
+        color: rgba(71, 49, 28, .2);
         white-space: nowrap;
 
         &.current, &.answered {
-            color: $dark-brown;
+            color: var(--color-primary);
         }
     }
     
     .aksara-syllable {
-        font-size: 3rem;
+        font-size: 2.5em;
     }
 
     .latin-syllable {
-        font-weight: $font-weight-bold;
-        font-size: 1.2rem;
+        font-weight: 900;
+        font-size: 1.2em;
+    }
+
+    .quiz-translation {
+        font-size: 1.2em;
     }
 
     .quiz-translation,
@@ -68,8 +59,7 @@
 
     .next-question-button {
         color: $white;
-        background-color: $dark-brown;
-        border-radius: $rounded-pill;
+        background-color: var(--color-primary);
         padding-left: $spacer * 3;
         padding-right: $spacer * 3;
         border: 0;     
@@ -82,13 +72,12 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        visibility: hidden;
         opacity: 0;
         color: $white;
-        background-color: $dark-brown;
-        font-weight: $font-weight-bold;
+        background-color: var(--color-primary);
+        font-weight: var(--font-weight-bold);
         border: 0;
-        border-radius: $rounded-pill;
+        border-radius: 50rem;
         -webkit-transition: all .4s ease-in-out;
         transition: all .4s ease-in-out;
 
@@ -98,7 +87,7 @@
         }
 
         &.primary {
-            background-color: $primary;
+            background-color: var(--color-primary);
         }
 
         &.secondary {
@@ -119,22 +108,6 @@
 
         &.danger {
             background-color: $danger;
-        }
-    }
-}
-
-@include media-breakpoint-down(sm) {
-    .quiz-wrapper {
-        .quiz-instruction {
-            font-size: $h4-font-size;
-        }
-
-        .latin-syllable {
-            font-size: 1rem;
-        }
-
-        .aksara-syllable {
-            font-size: 2.5rem;
         }
     }
 }

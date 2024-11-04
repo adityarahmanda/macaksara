@@ -1,12 +1,13 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-12 mb-5">
+            <div class="col-12" style="margin-bottom: 2em;">
                 <div 
                     v-for="(syllable, i) in syllables"
                     :key="i" 
                     ref="aksaraSyllables"
-                    class="aksara-syllable d-inline-block" 
+                    class="aksara-syllable"
+                    style="display: inline-block"
                     :class="{ 
                         'current' : i === currentSyllable,
                         'answered' : i < currentSyllable
@@ -15,12 +16,13 @@
                     <span>{{ latinToJava(syllable) }}</span>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" style="margin-bottom: 0;">
                 <div
                     v-for="(syllable, i) in syllables" 
                     :key="i"
                     ref="latinSyllables"
-                    class="latin-syllable d-inline-block" 
+                    class="latin-syllable" 
+                    style="display: inline-block"
                     :class="{ 
                         'current' : i === currentSyllable,
                         'answered' : i < currentSyllable

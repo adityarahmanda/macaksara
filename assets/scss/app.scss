@@ -1,31 +1,7 @@
-@import "@/node_modules/bootstrap/scss/functions"; // Required
 @import "variables";
-@import "@/node_modules/bootstrap/scss/variables"; // Required
-@import "@/node_modules/bootstrap/scss/mixins"; // Required
 
-@import "@/node_modules/bootstrap/scss/root"; // Required
-@import "reboot"; // Custom reboot
-@import "@/node_modules/bootstrap/scss/reboot"; // Required
-@import "@/node_modules/bootstrap/scss/type";
-@import "@/node_modules/bootstrap/scss/grid";
-@import "@/node_modules/bootstrap/scss/buttons";
-@import "@/node_modules/bootstrap/scss/transitions";
-@import "@/node_modules/bootstrap/scss/nav";
-@import "@/node_modules/bootstrap/scss/navbar"; 
-@import "@/node_modules/bootstrap/scss/close";
-@import "@/node_modules/bootstrap/scss/modal";
-@import "@/node_modules/bootstrap/scss/tooltip";
-@import "@/node_modules/bootstrap/scss/utilities";
-
-@import "type";
-@import "buttons";
-@import "navbar";
-@import "sidebar";
-@import "footer";
 @import "homepage";
-@import "tooltip";
-@import "modal";
+@import "sidebar";
+@import "buttons";
 @import "progress-bar";
 @import "quiz";
-@import "article";
-@import "converter";

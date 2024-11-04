@@ -68,6 +68,8 @@ export default defineNuxtConfig({
   },
 
   css: [
+    '@/assets/css/chota.min.css',
+    '@/assets/css/style.css',
     '@/assets/scss/app.scss'
   ],
 

@@ -1,6 +1,6 @@
 <template>
-    <div class="notification" :class="[{ 'visible' : visible }, variant]">
-        <i v-if="icon !== ''" class="fa fa-solid mr-2" :class="'fa-' + icon"></i>
+    <div class="notification" :class="[{ 'visible' : visible, 'invisible' : !visible }, variant]">
+        <i v-if="icon !== ''" class="fa fa-solid" :class="'fa-' + icon" style="margin-right: .5em;"></i>
         <span>{{ message }}</span>
     </div>
 </template>

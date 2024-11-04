@@ -1,22 +1,8 @@
 .user-progress {
     position: relative;
-
-    .user-progress-info {
-        position: relative;
-        display: block;
-
-        .counter {
-            font-size: 36px;
-            font-weight: $font-weight-bold;
-        }
-    }
-}
-
-@include media-breakpoint-down(sm) {
-    .user-progress {
-        .user-progress-info {
-            display: flex;
-            justify-content: center;
-        }
+    
+    .counter {
+        font-size: 36px;
+        font-weight: var(--font-weight-bold);
     }
 }

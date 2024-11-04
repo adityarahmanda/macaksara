@@ -2,28 +2,28 @@
     <div class="row">
         <Sidebar :user="user" :is-loading="isLoading" @reset-game="resetGame"/>
 
-        <main class="col-12 col-lg-8">
-            <div class="mb-3 mb-md-4">
-                <h2>Pilih Kuis</h2>
-            </div>
+        <main class="col-12 col-8-lg">
+            <h2 style="margin-top: 0">Pilih Kuis</h2>
 
-            <div v-if="isLoading" class="row no-gutters">
+            <div v-if="isLoading" class="row">
                 <div 
                     v-for="index in 5" 
                     :key="index" 
-                    class="col-12 col-md-6 mb-3" 
-                    :class="index % 2 === 0 ? 'pl-md-2' : 'pr-md-2'"
+                    class="col-12 col-6-md"
+                    :style="index % 2 === 0 ? 'margin-left: 0' : ''"
+                    style="margin-bottom: 1em"
                 >
                     <QuizCard is-loading />
                 </div>
             </div>
 
-            <div v-else class="row no-gutters">
+            <div v-else class="row">
                 <div 
                     v-for="(card, i) in quizCards"   
                     :key="card.id" 
-                    class="col-12 col-md-6 mb-3" 
-                    :class="i % 2 === 0 ? 'pr-md-2' : 'pl-md-2'"
+                    class="col-12 col-6-md"
+                    :style="index % 2 === 0 ? 'margin-left: 0' : ''"
+                    style="margin-bottom: 1em"
                 >
                     <QuizCard 
                         :title="card.title" 

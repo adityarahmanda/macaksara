@@ -1,10 +1,10 @@
 <template>
     <div class="quiz-wrapper">
-        <div class="container position-relative d-flex flex-column h-100">
-            <div class="quiz-top-area-wrapper row align-items-center no-gutters px-4 px-md-0 py-4">
+        <div class="container is-full-screen" style="position: relative; display: flex; flex-direction: column;">
+            <div class="quiz-top-area-wrapper row is-center" style="position: relative; padding: 1.5em;">
                 <div class="col-2">
                     <nuxt-link v-slot="{ navigate }" to="/" custom>
-                        <div class="close-icon mr-auto" @click="navigate">
+                        <div class="text-left" style="font-size: 2em; cursor: pointer;" @click="navigate">
                             <i class="fa fa-solid fa-times"></i>
                         </div>
                     </nuxt-link>
@@ -13,17 +13,17 @@
                     <ProgressBar :percentage="questionPercentage"/>
                 </div>
                 <div class="col-2">
-                    <div class="sound-icon ml-auto" @click="toggleAudio">
+                    <div class="text-right" style="font-size: 2em; cursor: pointer;" @click="toggleAudio">
                         <i v-if="enableAudio" class="fa fa-solid fa-volume-up"></i>
                         <i v-else class="fa fa-solid fa-volume-mute"></i>
                     </div>
                 </div>
             </div>
 
-            <div v-if="!isCompleted" class="row align-content-center flex-grow-1" :class="isLoading ? 'invisible' : 'visible'">
-                <div class="col-12 text-center mb-4">
-                    <h3 v-if="questionAnswered" class="quiz-instruction px-3 px-md-0">Satu Kata Telah Terbaca Dengan Benar!</h3>
-                    <h3 v-else class="quiz-instruction">Pilih Cara Baca Yang Benar Dari Aksara Jawa Berikut!</h3>
+            <div v-if="!isCompleted" class="row is-center" :class="isLoading ? 'invisible' : 'visible'" style="flex-grow: 1; flex-direction: column; flex-wrap: wrap;">
+                <div class="col-12 text-center">
+                    <h4 v-if="questionAnswered" class="quiz-instruction px-3 px-md-0">Satu Kata Berhasil Dibaca!</h4>
+                    <h4 v-else class="quiz-instruction">Pilih Cara Baca Yang Benar</h4>
                 </div>
 
                 <Question 
@@ -32,37 +32,37 @@
                     :syllables="syllables"
                     :is-loading="isLoading"
                     class="col-12 text-center"
+                    style="margin-bottom: 0;"
                 />
                 
-                <div v-if="!questionAnswered" class="col-12 text-center mt-5" >
+                <div v-if="!questionAnswered" class="col-12 text-center" style="margin-top: 2em;">
                     <MultipleChoices :choices="choices" @select-choices="selectChoices"/>
                 </div>
                 
-                <div class="quiz-translation col-12 text-center" :class="questionAnswered ? 'visible  mb-5' : 'invisible'">
-                    <b v-if="questionAnswered">{{ questions[currQuestion].translation }}</b>
+                <div class="quiz-translation col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'">
+                    <b v-if="questionAnswered">terjemahan: {{ questions[currQuestion].translation }}</b>
                 </div>
 
-                <div class="quiz-next-button-area col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'">
-                    <button v-if="questionAnswered" class="btn next-question-button" @click="setNextQuestion">Lanjut</button>
+                <div class="quiz-next-button-area col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'" style="margin-top: 1em;">
+                    <button v-if="questionAnswered" class="button primary" style="font-weight: 900; border-radius: 50rem; padding-left: 4em; padding-right: 4em;" @click="setNextQuestion">Lanjut</button>
                 </div>
             </div>
 
-            <div v-if="isCompleted" class="row align-content-center flex-grow-1">
-                <div class="col-12 text-center mb-4">
-                    <h3>Selamat!</h3>
-                    <p class="mb-0">Kamu telah berhasil menyelesaikan kuis.</p>
+            <div v-if="isCompleted" class="row is-center" style="flex-grow: 1; flex-direction: column; flex-wrap: wrap;">
+                <div class="col-12 text-center">
+                    <h3>{{completeQuizMessage}}</h3>
                 </div>
-                <div class="col-12 text-center" :class="learnedNewWords || hasNewStreak ? 'mb-4' : 'mb-5'">
+                <div class="col-12 text-center" style="margin-bottom: 2em;">
                     <div class="thumbs-up-icon">
                         <i class="fa fa-solid fa-thumbs-up"></i>
                     </div>
                 </div>
-                <div v-if="learnedNewWords || hasNewStreak" class="col-12 text-center mb-4">
-                    <h5 v-if="learnedNewWords" :class="hasNewStreak ? 'mb-3' : 'mb-0'">{{ questions.length }} kata baru telah dibaca!</h5>
+                <div v-if="learnedNewWords || hasNewStreak" class="col-12 text-center">
+                    <h5 v-if="learnedNewWords" :style="hasNewStreak ? 'margin-bottom: 0em' : ''">{{ questions.length }} kata baru berhasil dibaca!</h5>
                     <h5 v-if="hasNewStreak" >{{ maxStreakCount }} streak baru didapatkan!</h5>
                 </div>
                 <div class="col-12 text-center">
-                    <nuxt-link to="/" class="btn btn-primary rounded-pill border-0 px-4">
+                    <nuxt-link to="/" class="button primary" style="font-weight: 900; border-radius: 50rem; padding-left: 4em; padding-right: 4em;">
                         Kembali ke Beranda
                     </nuxt-link>
                 </div>
@@ -111,16 +111,22 @@ const hasNewStreak = ref(false)
 const notification = ref({
     visible: false,
     timeout: {},
-    selected: {},
+    selected: {}
+})
+const enableAudio = ref(true)
+const audio = ref(null)
+const completeQuizMessage = ref("")
+
+const notificationVariant = {
     correct: {
         icon: "check",
         variant: "success",
-        message: "Jawaban Benar!"
+        message: "Benar"
     },
     wrong: {
-        icon: "times",
+        icon: "sad-tear",
         variant: "danger",
-        message: "Jawaban Salah!"
+        message: "Salah"
     },
     streak: {
         icon: "fire",
@@ -132,9 +138,32 @@ const notification = ref({
         variant: "danger",
         message: "Salah! Kehilangan Streak!"
     }
-})
-const enableAudio = ref(true)
-const audio = ref(null)
+}
+
+const correctMessages = [
+  'Mantap Betul!',
+  'Kerja Bagus!',
+  'Mainnya Hebat!',
+  'Mantul Dah!',
+];
+
+const wrongMessages = [
+  'Kurang Tepat Nih, Kamu Pasti Bisa Kok!',
+  'Kurang Tepat Nih, Jangan Patah Semangat!',
+  'Kurang Tepat Nih, Yuk Bisa Yuk!',
+];
+
+const loseStreakMessages = [
+  'Streaknya Hilang. Coba Lagi Yuk!',
+  'Streaknya Hilang. Pantang Mundur Yuk!',
+  'Streaknya Hilang. Yuk Bisa Yuk!',
+];
+
+const completeQuizMessages = [
+  'Selamat, kamu berhasil menyelesaikan kuis!',
+  'Kuisnya berhasil diselesaikan kuis dengan apik!',
+  'Kuisnya berhasil diselesaikan, hore!',
+];
 
 const HeadTitle = title.value !== undefined ? 'Kuis ' + title.value : 'Kuis Tidak Ditemukan';
 const url = 'https://adityarahmanda.github.io/macaksara/' + route.params.id;
@@ -246,11 +275,13 @@ const selectChoices = (choiceButton, choice) => {
         }
 
         // correct or streak notification
+        const goodJobMessage = getRandomMessages(correctMessages);
         if(streakCount.value >= 2) {
-            notification.value.streak.message = "Benar, " + streakCount.value + "x Streak";
-            setNotification(notification.value.streak);
+            setNotification(notificationVariant.streak);
+            notification.value.selected.message = goodJobMessage + " " + streakCount.value + "x Streak";
         } else {
-            setNotification(notification.value.correct);
+            setNotification(notificationVariant.correct);
+            notification.value.selected.message = goodJobMessage;
         }
         
         // set to next syllable
@@ -260,7 +291,6 @@ const selectChoices = (choiceButton, choice) => {
         } else {
             questionAnswered.value = true;
             questionPercentage.value = ((currQuestion.value + 1) / questions.value.length) * 100;
-            // console.log((currQuestion.value + 1) + '/' + quiz.value.length + '=' + questionPercentage.value);
         }
 
         // blur button
@@ -274,10 +304,14 @@ const selectChoices = (choiceButton, choice) => {
     if(streakCount.value !== 0) {
         // reset streak and send notification
         streakCount.value = 0;
-        setNotification(notification.value.losestreak);
+        setNotification(notificationVariant.losestreak);
+        const loseStreakMessage = getRandomMessages(loseStreakMessages);
+        notification.value.selected.message = loseStreakMessage;
     } else {
         // send wrong notification
-        setNotification(notification.value.wrong);
+        setNotification(notificationVariant.wrong);
+        const wrongMessage = getRandomMessages(wrongMessages);
+        notification.value.selected.message = wrongMessage;
     }
 }
 
@@ -296,6 +330,7 @@ const setNextQuestion = () => {
     } else {
         // play correct sound
         playSound("tada.mp3");
+        completeQuizMessage.value = getRandomMessages(completeQuizMessages)
 
         // save quiz progress
         const userQuizProgress = user.value.quizProgresses[slug.value];
@@ -349,5 +384,10 @@ const playSound = (fileName) => {
         audio.value.currentTime = 0;
         audio.value.play();
     }
+}
+
+const getRandomMessages = (messages) => {
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    return messages[randomIndex];
 }
 </script>
