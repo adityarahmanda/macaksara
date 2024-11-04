@@ -22,6 +22,10 @@
     }
 }
 
+.modal-backdrop {
+    opacity: .5;
+}
+
 @include media-breakpoint-down(sm) {
     .modal {
         .modal-content {
