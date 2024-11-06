@@ -16,7 +16,7 @@
                     <span>{{ latinToJava(syllable) }}</span>
                 </div>
             </div>
-            <div class="" style="margin-bottom: 0;">
+            <div class="col-12" style="margin-bottom: 0;">
                 <div
                     v-for="(syllable, i) in syllables" 
                     :key="i"
