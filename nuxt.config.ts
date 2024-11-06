@@ -48,9 +48,7 @@ export default defineNuxtConfig({
         // { name: 'norton-safeweb-site-verification', content: 'xxxx' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: router_base + 'favicon.ico' },
-        { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css' },
-        { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css' },
+        { rel: 'icon', type: 'image/x-icon', href: router_base + 'favicon.ico' }
       ],
       script: [
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-J57JE933K5', async: true },
@@ -76,7 +74,10 @@ export default defineNuxtConfig({
     '~/plugins/macaksara-utility'
   ],
 
-  modules: ['@vite-pwa/nuxt'],
+  modules: [
+    '@vite-pwa/nuxt',
+    '@vesp/nuxt-fontawesome'
+  ],
 
   pwa: {
     registerType: 'autoUpdate',
@@ -168,6 +169,12 @@ export default defineNuxtConfig({
               "form_factor": "wide"
           }
       ]
+    }
+  },
+  fontawesome: {
+    component: 'fa',
+    icons: {
+      solid: ['play', 'user-group', 'hand', 'horse', 'dog', 'tree', 'spa', 'leaf', 'xmark', 'bars', 'volume-up', 'volume-mute', 'thumbs-up', 'check', 'sad-tear', 'fire'],
     }
   },
   generate: {

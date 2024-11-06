@@ -3,8 +3,8 @@
         <div class="nav-left nav-brand">
             <a class="brand" :href="titleLink">{{ title }}</a>
             <button class="toggler" @click="toggleExpand">
-                <i v-if="expanded" class="fa fa-solid fa-xmark"></i>
-                <i v-else class="fa fa-solid fa-bars"></i>
+                <fa v-if="expanded" icon="xmark" />
+                <fa v-else icon="bars" />
             </button>
         </div>
         <div class="nav-collapse nav-collapse-md" :class="[{'show' : expanded}]" style="width: 100%;">

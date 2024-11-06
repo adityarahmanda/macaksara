@@ -28,8 +28,7 @@
             top: 0;
             right: 0;
     
-            i {
-                color: var(--color-lightBrown);
+            svg {
                 font-size: 48px;
             }
         }
@@ -52,7 +51,6 @@
             .play-icon {
                 display: flex;
                 justify-content: flex-end;
-                color: var(--color-primary);
                 width: 36px;
             }
         }

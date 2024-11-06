@@ -29,9 +29,9 @@
         </div>
 
         <div v-if="isShowModal" class="is-center" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 1040; background-color: rgba(0, 0, 0, .5)">
-            <div class="card" style="margin: 1em; border: 2px solid var(--color-primary); border-radius: 1.4rem; box-shadow: none;">
+            <div class="card" style="margin: 1em; border: 2px solid var(--color-primary); border-radius: 1.4rem; box-shadow: none; min-width: 400px;">
                 <div class="text-center" style="font-weight: 900; border-radius: 50rem; margin-bottom: .5em;">
-                    Yakin atur ulang permainan? Semua perkembangan permainan bakal hilang loh.
+                    Yakin atur ulang permainan?
                 </div>
                 <footer class="row">
                     <button class="button primary col-12 col-6-md" style="font-weight: 900; border-radius: 50rem;" @click="hideModal">Batalin</button>

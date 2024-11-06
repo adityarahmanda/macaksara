@@ -46,3 +46,13 @@ a:hover:not(.button) {
 .invisible {
     visibility: hidden;
 }
+
+.col-2-important {
+    flex: 0 0 calc(16.66667% - var(--grid-gutter)) !important;
+    max-width: calc(16.66667% - var(--grid-gutter)) !important;
+}
+
+.col-8-important {
+    flex: 0 0 calc(66.66667% - var(--grid-gutter)) !important;
+    max-width: calc(66.66667% - var(--grid-gutter)) !important;
+}

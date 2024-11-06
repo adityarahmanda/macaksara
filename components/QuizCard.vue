@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="quiz-card-icon">
-                    <i class="fa fa-solid" :class="icon"></i>
+                    <fa :icon="icon" />
                 </div>
             </div>
             <div class="quiz-card-content">
@@ -22,7 +22,7 @@
                 <div class="quiz-card-progress-bar">
                     <ProgressBar :height="8" :percentage="progressBarValue"/>
                     <div class="play-icon">
-                        <i class="fa fa-solid fa-play"></i>
+                        <fa icon="play" />
                     </div>
                 </div>
             </div>

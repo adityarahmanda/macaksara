@@ -1,21 +1,21 @@
 <template>
     <div class="quiz-wrapper">
         <div class="container is-full-screen" style="position: relative; display: flex; flex-direction: column;">
-            <div class="quiz-top-area-wrapper row is-center" style="position: relative; padding: 1.5em;">
-                <div class="col-2">
+            <div class="quiz-top-area-wrapper row is-center" style="padding: 1.5em;">
+                <div class="col-2-important">
                     <nuxt-link v-slot="{ navigate }" to="/" custom>
                         <div class="text-left" style="font-size: 2em; cursor: pointer;" @click="navigate">
-                            <i class="fa fa-solid fa-times"></i>
+                            <fa icon="times" />
                         </div>
                     </nuxt-link>
                 </div>
-                <div class="col-8">
+                <div class="col-8-important">
                     <ProgressBar :percentage="questionPercentage"/>
                 </div>
-                <div class="col-2">
+                <div class="col-2-important">
                     <div class="text-right" style="font-size: 2em; cursor: pointer;" @click="toggleAudio">
-                        <i v-if="enableAudio" class="fa fa-solid fa-volume-up"></i>
-                        <i v-else class="fa fa-solid fa-volume-mute"></i>
+                        <fa v-if="enableAudio" icon="volume-up" />
+                        <fa v-else icon="volume-mute" />
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 </div>
                 
                 <div class="quiz-translation col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'">
-                    <b v-if="questionAnswered">terjemahan: {{ questions[currQuestion].translation }}</b>
+                    <span v-if="questionAnswered">terjemahan: {{ questions[currQuestion].translation }}</span>
                 </div>
 
                 <div class="quiz-next-button-area col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'" style="margin-top: 1em;">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-12 text-center" style="margin-bottom: 2em;">
                     <div class="thumbs-up-icon">
-                        <i class="fa fa-solid fa-thumbs-up"></i>
+                        <fa icon="thumbs-up" />
                     </div>
                 </div>
                 <div v-if="learnedNewWords || hasNewStreak" class="col-12 text-center">
