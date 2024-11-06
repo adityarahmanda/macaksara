@@ -15,7 +15,7 @@
     
         i {
             font-size: 6em;
-            color: $blue;
+            color: var(--color-blue);
             animation: thumbs-up-animation 0.4s ease-out;
         }
     }
@@ -58,22 +58,22 @@
     }
 
     .next-question-button {
-        color: $white;
+        color: var(--color-white);
         background-color: var(--color-primary);
-        padding-left: $spacer * 3;
-        padding-right: $spacer * 3;
+        padding-left: 3rem;
+        padding-right: 3rem;
         border: 0;     
     }
 
     .notification {
         position: absolute;
         width: max-content;
-        padding: $notification-padding-y $notification-padding-x;
+        padding: .4rem 1.2rem;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
         opacity: 0;
-        color: $white;
+        color: var(--color-white);
         background-color: var(--color-primary);
         font-weight: var(--font-weight-bold);
         border: 0;
@@ -83,7 +83,7 @@
 
         &.visible {
             opacity: 1;
-            transform: translate(-50%, $spacer * -3);
+            transform: translate(-50%, -3rem);
         }
 
         &.primary {
@@ -91,23 +91,15 @@
         }
 
         &.secondary {
-            background-color: $secondary;
-        }
-
-        &.info {
-            background-color: $info;
+            background-color: var(--color-secondary);
         }
 
         &.success {
-            background-color: $success;
-        }
-
-        &.warning {
-            background-color: $warning;
+            background-color: var(--color-success);
         }
 
         &.danger {
-            background-color: $danger;
+            background-color: var(--color-error);
         }
     }
 }

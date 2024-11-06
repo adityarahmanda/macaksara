@@ -1,11 +1,11 @@
 .quiz-card {
     position: relative;
     display: flex;
-    padding: $spacer * 4;
+    padding: 4rem;
     flex-direction: column;
     height: 180px;
     color: var(--color-lighterBrown);
-    background-color: $brown;
+    background-color: var(--color-secondary);
     border-radius: 1.2rem;
     cursor: pointer;
 
@@ -19,7 +19,7 @@
             z-index: 1;
         
             .quiz-card-header-title {
-                color: $white;
+                color: var(--color-white);
             }    
         }
 
@@ -41,7 +41,7 @@
 
         .quiz-card-status {
             font-weight: 700;
-            color: $white;
+            color: var(--color-white);
         }
 
         .quiz-card-progress-bar {
@@ -70,7 +70,7 @@
         
             .quiz-card-header-title {
                 height: 26px;
-                margin-bottom: $spacer * .5;
+                margin-bottom: .5rem;
             }
         
             .quiz-card-header-status {

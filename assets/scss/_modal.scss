@@ -2,12 +2,12 @@
     .modal-content {
         padding: $spacer * 1.5;
         border-radius: 1.4rem;
-        border: 2px solid $primary;
+        border: 2px solid var(--color-primary);
 
         .modal-body {
             padding: 0;
-            font-weight: $font-weight-bold;
-            margin-bottom: $spacer;
+            font-weight: 900;
+            margin-bottom: 1rem;
         }
 
         .modal-footer {
@@ -29,11 +29,11 @@
 @include media-breakpoint-down(sm) {
     .modal {
         .modal-content {
-            padding: $spacer;
+            padding: 1rem;
         }
 
         .modal-body {
-            margin-bottom: $spacer * .5;
+            margin-bottom: .5rem;
         }
     }
 }

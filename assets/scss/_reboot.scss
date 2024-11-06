@@ -1,15 +1,48 @@
-a {
-    font-weight: $font-weight-bold;
+:root {
+    --color-primary: #47311c;
+    --color-secondary: #6a492b;
+    --color-lightBrown: #876741;
+    --color-lighterBrown: #d2ac7f;
+    --color-white: #fff;
+    --color-blue: #183153;
+    --color-grey: #ebe7e3;
+    --color-success: #1caa9e;
+    --color-error: #b54242;
+    --font-family-sans: "Mulish","Noto Sans Kawi","Noto Sans Javanese",sans-serif;
 }
 
-ul {
-    list-style-position: outside;
-    padding-left: 1.3rem;
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
-.five-cols {
-    .col  {
-        flex: 0 0 20%;
-        max-width: 20%;
-    }
+main {
+    display: flex;
+    flex-flow: column;
+    min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 900;
+}
+
+footer h5 {
+    font-weight: initial;
+}
+
+a:hover:not(.button) {
+    opacity: 1;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.invisible {
+    visibility: hidden;
 }

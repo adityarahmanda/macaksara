@@ -8,7 +8,7 @@
     .front {
         display: block;
         padding: 1.2rem;
-        background: $white;
+        background: var(--color-white);
         color: var(--color-primary);
         font-weight: var(--font-weight-bold);
         border: 2px solid var(--color-primary);

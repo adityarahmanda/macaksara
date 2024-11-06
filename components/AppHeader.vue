@@ -1,10 +1,16 @@
 <template>
-    <nav class="nav" style="height: 96px; margin-bottom: 1em;">
-        <div class="nav-left">
+    <nav class="nav">
+        <div class="nav-left nav-brand">
             <a class="brand" :href="titleLink">{{ title }}</a>
+            <button class="toggler" @click="toggleExpand">
+                <i v-if="expanded" class="fa fa-solid fa-xmark"></i>
+                <i v-else class="fa fa-solid fa-bars"></i>
+            </button>
         </div>
-        <div class="nav-right">
-            <a v-for="item in navItems" :key="item.title" :href="item.link" target="_self">{{ item.title }}</a>
+        <div class="nav-collapse nav-collapse-md" :class="[{'show' : expanded}]" style="width: 100%;">
+            <div>
+                <a v-for="item in navItems" :key="item.title" :href="item.link" target="_self">{{ item.title }}</a>
+            </div>
         </div>
     </nav>
 </template>
