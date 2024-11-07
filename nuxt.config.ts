@@ -87,7 +87,7 @@ export default defineNuxtConfig({
       cleanupOutdatedCaches: true,
       offlineGoogleAnalytics: true,
       globPatterns: [
-        '**/*.{js,html,css,png,ico,woff2,svg,json,mp3}',
+        '**/*.{js,ts,html,css,png,ico,woff2,svg,json,mp3}',
       ]
     },
     manifest: {

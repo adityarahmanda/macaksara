@@ -1,6 +1,6 @@
 // fungsi untuk melakukan pemenggalan suku kata bahasa jawa
-const toSyllables = (word) => {
-    const regex = /[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[aiueoê]/gi;
+const toSyllables = (word:string) => {
+    const regex = /[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[^aiueoê\s]+[aiueoê]|[aiueoê](ng|r|h)?(?![aiueoê])/gi;
     return word.match(regex);
 }
 
@@ -40,7 +40,7 @@ const generateJavaneseSyllable = () => {
 }
 
 // fungsi untuk mendapatkan data acak dari array dengan peluang tertentu
-const randomWithWeight = (array) => {
+const randomWithWeight = (array:Array<any>) => {
     let total = 0;
     
     for (let i = 0; i < array.length; ++i) {
@@ -62,7 +62,7 @@ const randomWithWeight = (array) => {
 }
 
 // fungsi untuk mengacak array
-const shuffleArray = (array) => {
+const shuffleArray = (array:Array<any>) => {
     for(let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
@@ -70,8 +70,7 @@ const shuffleArray = (array) => {
     return array;
 }
 
-
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
     return {
         provide: {
             shuffleArray,
