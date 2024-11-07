@@ -66,22 +66,16 @@ const url = 'https://adityarahmanda.github.io/privacy-policy';
 
 useHead({
     title,
+    meta: [
+        { name: 'robots', content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large' },
+        { hid: 'title', name: 'title', content: title },
+        { property: 'og:title', content: title },
+        { property: 'og:url', content: url },
+        { name: 'twitter:title', content: title },
+        { name: 'twitter:url', content: url },
+    ],
     link: [
         { rel: 'canonical', href: url },     
     ],
-})
-
-useSeoMeta({
-    robots: {
-        follow: true,
-        index: true,
-        maxSnippet: -1,
-        maxVideoPreview: -1,
-        maxImagePreview: 'large'
-    },
-    title: title,
-    ogTitle: title,
-    ogUrl: url,
-    twitterTitle: title,
 })
 </script>
