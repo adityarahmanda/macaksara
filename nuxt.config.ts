@@ -8,7 +8,6 @@ const description = `Macaksara merupakan website permainan kuis untuk menguji ke
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  ssr: false,
 
   runtimeConfig: {
     public: {
@@ -25,8 +24,17 @@ export default defineNuxtConfig({
         prefix: 'og:http://ogp.me/ns#'
       },
       meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
+        { name:"mobile-web-app-capable", content:"yes" },
+        { name:"apple-mobile-web-app-capable", content:"yes" },
+        { name:"apple-mobile-web-app-status-bar-style", content:"default" },
+        { name:"theme-color", content:"#47311c" },
+        { hid: 'title', name: 'title', content: site_name },
         { hid: 'description', name: 'description', content: description },
         { name:'keyword', content:'macaksara, aksara, jawa, kuis, membaca, latihan, interaktif' },
+        { property: 'og:title', content: site_name },
+        { property: 'og:url', content: host + router_base },
         { property: 'og:description', content: description },
         { property: 'og:locale', content: 'id_ID' },
         { property: 'og:image', content: screenshot },
@@ -36,11 +44,12 @@ export default defineNuxtConfig({
         { property: 'og:image:alt', content: site_name },
         { property: 'og:image:type', content: 'image/png' },
         { property: 'fb:admins', content: '100005745649451' },
+        { name: 'twitter:title', content: site_name },
+        { name: 'twitter:url', content: host + router_base },
         { name: 'twitter:description', content: description },
         { name: 'twitter:site', content: '@arahmanda21' },    
         { name: 'twitter:creator', content: '@arahmanda21' },
         { name: 'twitter:card', content:'summary_large_image' },
-        { name: 'twitter:image', content: screenshot },
         { name: 'twitter:image', content: screenshot },
         // { name: 'google-site-verification', content: 'xxxx' },
         // { name: 'yandex-verification', content: 'xxxx' },
@@ -48,7 +57,8 @@ export default defineNuxtConfig({
         // { name: 'norton-safeweb-site-verification', content: 'xxxx' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: router_base + 'favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: router_base + 'favicon.ico' },
+		    { rel:"mask-icon", href: router_base + 'maskable-icon-512x512.png', color:'#FFFFFF' }
       ],
       script: [
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-J57JE933K5', async: true },
