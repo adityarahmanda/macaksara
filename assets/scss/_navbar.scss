@@ -36,6 +36,7 @@
 
 @media screen and (max-width: 599px) {
     .nav {
+        flex-direction: column;
         min-height: 0;
 
         .nav-brand {
