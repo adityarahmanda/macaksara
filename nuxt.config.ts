@@ -1,7 +1,6 @@
 const site_name = 'Macaksara';
 const host = 'https://adityarahmanda.github.io';
 const router_base = '/macaksara/';
-const screenshot = 'https://adityarahmanda.github.io/macaksara/screenshot.png';
 const description = `Macaksara merupakan website permainan kuis untuk menguji kemampuan membaca aksara Jawa yang didesain secara interaktif dan menyenangkan.`;
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -24,29 +23,6 @@ export default defineNuxtConfig({
         lang: 'id-ID',
         prefix: 'og:http://ogp.me/ns#'
       },
-      meta: [
-        { hid: 'description', name: 'description', content: description },
-        { name:'keyword', content:'macaksara, aksara, jawa, kuis, membaca, latihan, interaktif' },
-        { property: 'og:description', content: description },
-        { property: 'og:locale', content: 'id_ID' },
-        { property: 'og:image', content: screenshot },
-        { property: 'og:image:secure_url', content: screenshot },
-        { property: 'og:image:width', content: '720' },
-        { property: 'og:image:height', content: '354' },
-        { property: 'og:image:alt', content: site_name },
-        { property: 'og:image:type', content: 'image/png' },
-        { property: 'fb:admins', content: '100005745649451' },
-        { name: 'twitter:description', content: description },
-        { name: 'twitter:site', content: '@arahmanda21' },    
-        { name: 'twitter:creator', content: '@arahmanda21' },
-        { name: 'twitter:card', content:'summary_large_image' },
-        { name: 'twitter:image', content: screenshot },
-        { name: 'twitter:image', content: screenshot },
-        // { name: 'google-site-verification', content: 'xxxx' },
-        // { name: 'yandex-verification', content: 'xxxx' },
-        // { name: 'p:domain_verify', content: 'xxxx' },
-        // { name: 'norton-safeweb-site-verification', content: 'xxxx' }
-      ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: router_base + 'favicon.ico' }
       ],

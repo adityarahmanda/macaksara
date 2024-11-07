@@ -174,17 +174,20 @@ definePageMeta({
 
 useHead({
     title: `${HeadTitle} — Macaksara`,
-    meta: [
-        { name:'robots', content:'noindex, follow' },
-        { hid: 'title', name: 'title', content: HeadTitle },
-        { property: 'og:title', content: HeadTitle },
-        { property: 'og:url', content: url },
-        { name: 'twitter:title', content: HeadTitle },
-        { name: 'twitter:url', content: url },
-    ],
     link: [
         { rel: 'canonical', href: url },     
     ],
+})
+
+useSeoMeta({
+    robots: {
+        follow: false,
+        index: false,
+    },
+    title: HeadTitle,
+    ogTitle: HeadTitle,
+    ogUrl: url,
+    twitterTitle: HeadTitle,
 })
 
 onMounted(async () => {
