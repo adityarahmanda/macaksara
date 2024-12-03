@@ -9,10 +9,6 @@ const wyanjana = [['h', 4],['n', 7],['c', 1],['r', 9],['k', 11],
                   ['d', 2],['t', 9],['s', 9],['w', 5],['l', 6],
                   ['p', 9],['dh', 3],['j', 3],['y', 3],['ny', 1],
                   ['m', 7],['g', 14],['b', 5],['th', 1],['ng', 3]];
-const wyanjanaMati = [['h', 0],['n', 3],['c', 0],['r', 0],['k', 1],
-                  ['d', 1],['t', 1],['s', 3],['w', 0],['l', 1],
-                  ['p', 0],['dh', 0],['j', 0],['y', 0],['ny', 0],
-                  ['m', 3],['g', 0],['b', 0],['th', 0],['ng', 0]];
 const sandanganSwara = [['a', 48],['i', 19],['u', 14],['ê', 7],['o', 7],['e', 10]];
 const panyigeg = [['h', 9],['n', 31],['c', 0],['r', 4],['k', 4],
                   ['d', 1],['t', 4],['s', 5],['w', 0],['l', 3],
@@ -28,15 +24,10 @@ const generateJavaneseSyllable = (weightOptions:any) => {
     if (weightOptions.isLearningNglegena)
     {
         const sandhanganSwaraOverride = [['a', 1]];
-
         const structures = [
-            [[ sandhanganSwaraOverride ], weightOptions.sandanganSwaraWeight], 
-            [[ panyigeg ], weightOptions.panyigegWeight], 
-            [[ wyanjana, sandhanganSwaraOverride ], weightOptions.wyanjanaSwaraWeight], 
-            [[ wyanjanaMati, wyanjana, sandhanganSwaraOverride ], 10], 
-            [[ rekan, sandhanganSwaraOverride ], weightOptions.rekanSwaraWeight], 
-            [[ wyanjana, sandhanganSwaraOverride, panyigeg ], weightOptions.wyanjanaSwaraPanyigegWeight],
-            [[ wyanjana, sandangan, sandhanganSwaraOverride ], weightOptions.wyanjanaSandanganSwaraWeight]
+            [[ sandhanganSwaraOverride ], 1], 
+            [[ wyanjana, sandhanganSwaraOverride ], 3], 
+            [[ panyigeg, wyanjana, sandhanganSwaraOverride ], 1]
         ];
 
         structure = randomWithWeight(structures);
@@ -50,16 +41,27 @@ const generateJavaneseSyllable = (weightOptions:any) => {
 
         structure = randomWithWeight(structures);
     }
+    else if (weightOptions.isLearningSandhangan)
+    {
+        const structures = [
+            [[ wyanjana, sandanganSwara ], 1], // na
+            [[ rekan, sandanganSwara ], 1], // fa
+            [[ wyanjana, sandanganSwara, panyigeg ], 1], // nang
+            [[ wyanjana, sandangan, sandanganSwara ], 1] // nra
+        ];
+
+        structure = randomWithWeight(structures);
+    }
     else
     {
         const structures = [
-            [[ sandanganSwara ], weightOptions.sandanganSwaraWeight], 
-            [[ panyigeg ], weightOptions.panyigegWeight], 
-            [[ wyanjana, sandanganSwara ], weightOptions.wyanjanaSwaraWeight], 
-            [[ wyanjanaMati, wyanjana, sandanganSwara ], weightOptions.wyanjanaWyanjanaSwaraWeight], 
-            [[ rekan, sandanganSwara ], weightOptions.rekanSwaraWeight], 
-            [[ wyanjana, sandanganSwara, panyigeg ], weightOptions.wyanjanaSwaraPanyigegWeight],
-            [[ wyanjana, sandangan, sandanganSwara ], weightOptions.wyanjanaSandanganSwaraWeight]
+            [[ sandanganSwara ], 1], // a
+            [[ panyigeg ], 1], // n
+            [[ wyanjana, sandanganSwara ], 12], // na
+            [[ panyigeg, wyanjana, sandanganSwara ], 1], // nka
+            [[ rekan, sandanganSwara ], 1], // fa
+            [[ wyanjana, sandanganSwara, panyigeg ], 1], // nang
+            [[ wyanjana, sandangan, sandanganSwara ], 1] // nra
         ];
 
         structure = randomWithWeight(structures);

@@ -378,16 +378,9 @@ const populateChoices = () => {
     const question = questions.value[currQuestion.value];
 
     let weightOptions = {
-        swaraWeight: 0, 
-        sandanganSwaraWeight: 1, 
-        panyigegWeight: 1, 
-        wyanjanaSwaraWeight: 20, 
-        wyanjanaWyanjanaSwaraWeight: 1, 
-        rekanSwaraWeight: 1, 
-        wyanjanaSwaraPanyigegWeight: 0, 
-        wyanjanaSandanganSwaraWeight: 0,
         isLearningNglegena: question.isLearningNglegena,
-        isLearningSwara: question.isLearningSwara
+        isLearningSwara: question.isLearningSwara,
+        isLearningSandhangan: question.isLearningSandhangan
     }
 
     choices.value = generateChoices(syllables.value[currSyllable.value], weightOptions);

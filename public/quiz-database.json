@@ -98,47 +98,47 @@
             {
                 "value": 1,
                 "questions": [
-                    { "value":"ki" },
-                    { "value":"ku" },
-                    { "value":"kê" },
-                    { "value":"ke" },
-                    { "value":"ko" },
-                    { "value":"kah" },
-                    { "value":"kang" },
-                    { "value":"kar" },
-                    { "value":"k" },
-                    { "value":"kra" },
-                    { "value":"krê" }
+                    { "value":"ni", "isLearningSandhangan": true },
+                    { "value":"cu", "isLearningSandhangan": true },
+                    { "value":"dhê", "isLearningSandhangan": true },
+                    { "value":"ke", "isLearningSandhangan": true },
+                    { "value":"do", "isLearningSandhangan": true },
+                    { "value":"ta", "isLearningSandhangan": true },
+                    { "value":"se", "isLearningSandhangan": true },
+                    { "value":"wa", "isLearningSandhangan": true },
+                    { "value":"li", "isLearningSandhangan": true },
+                    { "value":"pê", "isLearningSandhangan": true },
+                    { "value":"jo", "isLearningSandhangan": true }
                 ]
             },
             {
                 "value": 2,
                 "questions": [
-                    { "value":"ki" },
-                    { "value":"bu" },
-                    { "value":"sê" },
-                    { "value":"me" },
-                    { "value":"no" },
-                    { "value":"rah" },
-                    { "value":"hang" },
-                    { "value":"par" },
-                    { "value":"t" },
-                    { "value":"pra" },
-                    { "value":"nyrê" }
+                    { "value":"kri", "isLearningSandhangan": true },
+                    { "value":"byuh", "isLearningSandhangan": true },
+                    { "value":"sêr", "isLearningSandhangan": true },
+                    { "value":"mre", "isLearningSandhangan": true },
+                    { "value":"c", "isLearningSandhangan": true },
+                    { "value":"rah", "isLearningSandhangan": true },
+                    { "value":"hang", "isLearningSandhangan": true },
+                    { "value":"par", "isLearningSandhangan": true },
+                    { "value":"t", "isLearningSandhangan": true },
+                    { "value":"pra", "isLearningSandhangan": true },
+                    { "value":"nyrê", "isLearningSandhangan": true }
                 ]
             },
             {
                 "value": 3,
                 "questions": [
-                    { "value":"aku" },
-                    { "value":"kowe" },
-                    { "value":"kangkung" },
-                    { "value":"krêsêk" },
-                    { "value":"ambyar" },
-                    { "value":"bubrah" },
-                    { "value":"bocah" },
-                    { "value":"srêngenge" },
-                    { "value":"kidang" }
+                    { "value":"aku", "isLearningSandhangan": true, "translation":"aku (ngoko)" },
+                    { "value":"kowe", "isLearningSandhangan": true, "translation":"kamu (ngoko)" },
+                    { "value":"kangkung", "isLearningSandhangan": true, "translation":"kangkung" },
+                    { "value":"kresek", "isLearningSandhangan": true, "translation":"kantong kresek" },
+                    { "value":"ambyar", "isLearningSandhangan": true, "translation":"hancur" },
+                    { "value":"bubrah", "isLearningSandhangan": true, "translation":"tercerai-berai" },
+                    { "value":"bocah", "isLearningSandhangan": true, "translation":"bocah" },
+                    { "value":"srêngenge", "isLearningSandhangan": true, "translation":"matahari" },
+                    { "value":"kidang", "isLearningSandhangan": true, "translation":"kijang" }
                 ]
             }
         ]
@@ -271,15 +271,15 @@
             { 
                 "value": 1,
                 "questions": [
-                    { "value":"baya" , "translation":"buaya" },
-                    { "value":"cêcak" , "translation":"cicak" },
-                    { "value":"coro" , "translation":"kecoak" },
-                    { "value":"pe" , "translation":"ikan pari" },
-                    { "value":"dara" , "translation":"burung merpati" },
-                    { "value":"kupu" , "translation":"kupu-kupu" },
-                    { "value":"kura" , "translation":"kura-kura" },
-                    { "value":"tikus" , "translation":"tikus" },
-                    { "value":"yuyu" , "translation":"ketam" }
+                    { "value":"baya", "translation":"buaya" },
+                    { "value":"cêcak", "translation":"cicak" },
+                    { "value":"coro", "translation":"kecoak" },
+                    { "value":"pe", "translation":"ikan pari" },
+                    { "value":"dara", "translation":"burung merpati" },
+                    { "value":"kupu", "translation":"kupu-kupu" },
+                    { "value":"kura", "translation":"kura-kura" },
+                    { "value":"tikus", "translation":"tikus" },
+                    { "value":"yuyu", "translation":"ketam" }
                 ]
             },
             { 
