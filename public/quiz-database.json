@@ -78,13 +78,13 @@
             {
                 "value": 1,
                 "questions": [
-                    { "value":"A" },
-                    { "value":"I" },
-                    { "value":"U" },
-                    { "value":"E" },
-                    { "value":"O" },
-                    { "value":"lê" },
-                    { "value": "rê" }
+                    { "value":"A", "isLearningSwara": true },
+                    { "value":"I", "isLearningSwara": true },
+                    { "value":"U", "isLearningSwara": true },
+                    { "value":"E", "isLearningSwara": true },
+                    { "value":"O", "isLearningSwara": true },
+                    { "value":"lê", "isLearningSwara": true },
+                    { "value": "rê", "isLearningSwara": true }
                 ]
             }
         ]

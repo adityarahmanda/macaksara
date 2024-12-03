@@ -14,7 +14,6 @@ const wyanjanaMati = [['h', 0],['n', 3],['c', 0],['r', 0],['k', 1],
                   ['p', 0],['dh', 0],['j', 0],['y', 0],['ny', 0],
                   ['m', 3],['g', 0],['b', 0],['th', 0],['ng', 0]];
 const sandanganSwara = [['a', 48],['i', 19],['u', 14],['ê', 7],['o', 7],['e', 10]];
-const swara = [['A', 48],['I', 19],['U', 14],['Ê', 7],['O', 7],['E', 10]];
 const panyigeg = [['h', 9],['n', 31],['c', 0],['r', 4],['k', 4],
                   ['d', 1],['t', 4],['s', 5],['w', 0],['l', 3],
                   ['p', 2],['dh', 0],['j', 0],['y', 0],['ny', 0],
@@ -25,25 +24,46 @@ const rekan = [['kh', 1],['q', 0],['dz', 1],['f', 1],['v', 0],['gh', 1]];
 // fungsi untuk melakukan generation suku kata bahasa jawa
 const generateJavaneseSyllable = (weightOptions:any) => {
     // array struktur suku kata bahasa jawa dan peluang kemunculannya
-    let sandhanganSwaraOverride = sandanganSwara;
+    let structure;
     if (weightOptions.isLearningNglegena)
     {
-        sandhanganSwaraOverride = [['a', 1]];
-        weightOptions.wyanjanaWyanjanaSwaraWeight = 10;
-    }
+        const sandhanganSwaraOverride = [['a', 1]];
 
-    const structures = [
-        [[ swara ], weightOptions.swaraWeight], 
-        [[ sandhanganSwaraOverride ], weightOptions.sandanganSwaraWeight], 
-        [[ panyigeg ], weightOptions.panyigegWeight], 
-        [[ wyanjana,  sandhanganSwaraOverride ], weightOptions.wyanjanaSwaraWeight], 
-        [[ wyanjanaMati, wyanjana,  sandhanganSwaraOverride ], weightOptions.wyanjanaWyanjanaSwaraWeight], 
-        [[ rekan,  sandhanganSwaraOverride ], weightOptions.rekanSwaraWeight], 
-        [[ wyanjana,  sandhanganSwaraOverride, panyigeg ], weightOptions.wyanjanaSwaraPanyigegWeight],
-        [[ wyanjana, sandangan,  sandhanganSwaraOverride ], weightOptions.wyanjanaSandanganSwaraWeight]
-    ];
-    
-    const structure = randomWithWeight(structures);
+        const structures = [
+            [[ sandhanganSwaraOverride ], weightOptions.sandanganSwaraWeight], 
+            [[ panyigeg ], weightOptions.panyigegWeight], 
+            [[ wyanjana, sandhanganSwaraOverride ], weightOptions.wyanjanaSwaraWeight], 
+            [[ wyanjanaMati, wyanjana, sandhanganSwaraOverride ], 10], 
+            [[ rekan, sandhanganSwaraOverride ], weightOptions.rekanSwaraWeight], 
+            [[ wyanjana, sandhanganSwaraOverride, panyigeg ], weightOptions.wyanjanaSwaraPanyigegWeight],
+            [[ wyanjana, sandangan, sandhanganSwaraOverride ], weightOptions.wyanjanaSandanganSwaraWeight]
+        ];
+
+        structure = randomWithWeight(structures);
+    }
+    else if (weightOptions.isLearningSwara)
+    {
+        const swara = [['A', 1],['I', 1],['U', 1],['Ê', 1],['O', 1],['E', 1], ['lê', 1], ['rê', 1]];
+        const structures = [
+            [[ swara ], weightOptions.swaraWeight]
+        ];
+
+        structure = randomWithWeight(structures);
+    }
+    else
+    {
+        const structures = [
+            [[ sandanganSwara ], weightOptions.sandanganSwaraWeight], 
+            [[ panyigeg ], weightOptions.panyigegWeight], 
+            [[ wyanjana, sandanganSwara ], weightOptions.wyanjanaSwaraWeight], 
+            [[ wyanjanaMati, wyanjana, sandanganSwara ], weightOptions.wyanjanaWyanjanaSwaraWeight], 
+            [[ rekan, sandanganSwara ], weightOptions.rekanSwaraWeight], 
+            [[ wyanjana, sandanganSwara, panyigeg ], weightOptions.wyanjanaSwaraPanyigegWeight],
+            [[ wyanjana, sandangan, sandanganSwara ], weightOptions.wyanjanaSandanganSwaraWeight]
+        ];
+
+        structure = randomWithWeight(structures);
+    }
     
     let syllable = '';
     for(let i = 0; i < structure.length; i++) {
