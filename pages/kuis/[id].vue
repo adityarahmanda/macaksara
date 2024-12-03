@@ -31,6 +31,7 @@
                     :current-syllable="currSyllable" 
                     :syllables="syllables"
                     :is-loading="isLoading"
+                    :is-murda="choiceOptions.isMurda"
                     class="col-12 text-center"
                     style="margin-bottom: 0;"
                 />
@@ -102,6 +103,7 @@ const syllables = ref([])
 const currSyllable = ref(0)
 const choices = ref([])
 const totalChoices = ref(4)
+const choiceOptions = ref({})
 const questionPercentage = ref(0)
 const questionAnswered = ref(false)
 const streakCount = ref(0)
@@ -255,12 +257,12 @@ const startQuiz = () => {
     startNewQuestion();
 }
 
-const generateChoices = (syllable, choiceOptions) => {
+const generateChoices = (syllable) => {
     let choices = [syllable];
     
     for(let i = 1; i < totalChoices.value; i++) {
         let generatedSyllable;
-        do { generatedSyllable = $generateJavaneseSyllable(choiceOptions); } 
+        do { generatedSyllable = $generateJavaneseSyllable(choiceOptions.value); } 
         while (generatedSyllable === syllable);
         choices = [...choices, generatedSyllable];
     }
@@ -377,7 +379,7 @@ const startNewQuestion = () => {
 const populateChoices = () => {
     const question = questions.value[currQuestion.value];
 
-    let choiceOptions = {
+    choiceOptions.value = {
         isLearningNglegena: question.isLearningNglegena,
         isLearningSwara: question.isLearningSwara,
         isLearningSandhangan: question.isLearningSandhangan,

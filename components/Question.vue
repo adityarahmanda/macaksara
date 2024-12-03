@@ -13,7 +13,7 @@
                         'answered' : i < currentSyllable
                     }"
                 >
-                    <span>{{ latinToJava(syllable) }}</span>
+                    <span>{{ latinToJava(syllable, true, isMurda) }}</span>
                 </div>
             </div>
             <div class="col-12" style="margin-bottom: 0;">
@@ -53,6 +53,10 @@ const props = defineProps({
     questionAnswered: {
         type: Boolean,
         default: false
+    },
+    isMurda: {
+        type: Boolean,
+        default: true
     },
     isLoading: {
         type: Boolean,

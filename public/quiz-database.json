@@ -155,7 +155,7 @@
         "icon": "aksara-murda",
         "levels": [
             { 
-                "value": 2,
+                "value": 1,
                 "questions": [
                     { "value":"na", "isMurda": true },
                     { "value":"ka", "isMurda": true },
@@ -167,17 +167,17 @@
                     { "value":"ba", "isMurda": true }
                 ]
             },
-            { 
+            {
                 "value": 2,
                 "questions": [
-                    { "value":"n", "isMurda": true },
-                    { "value":"k", "isMurda": true },
-                    { "value":"t", "isMurda": true },
-                    { "value":"s", "isMurda": true },
-                    { "value":"p", "isMurda": true },
-                    { "value":"ny", "isMurda": true },
-                    { "value":"g", "isMurda": true },
-                    { "value":"b", "isMurda": true }
+                    { "value":"najwa", "isMurda": true },
+                    { "value":"dayat", "isMurda": true },
+                    { "value":"raka", "isMurda": true },
+                    { "value":"solo", "isMurda": true },
+                    { "value":"purwaharja", "isMurda": true },
+                    { "value":"vanya", "isMurda": true },
+                    { "value":"gowa", "isMurda": true },
+                    { "value":"bali", "isMurda": true }
                 ]
             }
         ]

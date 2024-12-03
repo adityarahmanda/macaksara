@@ -1,6 +1,6 @@
 // fungsi untuk melakukan pemenggalan suku kata bahasa jawa
 const toSyllables = (word:string) => {
-    const regex = /[0-9]|[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[^aiueoê\s]+[aiueoê]|[aiueoê](ng|r|h)?(?![aiueoê])|[0-9]/gi;
+    const regex = /[0-9]|[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[^aiueoê\s]+[aiueoê]|[aiueoê](ng|r|h)?(?![aiueoê])/gi;
     return word.match(regex);
 }
 
@@ -9,6 +9,7 @@ const wyanjana = [['h', 4],['n', 7],['c', 1],['r', 9],['k', 11],
                   ['d', 2],['t', 9],['s', 9],['w', 5],['l', 6],
                   ['p', 9],['dh', 3],['j', 3],['y', 3],['ny', 1],
                   ['m', 7],['g', 14],['b', 5],['th', 1],['ng', 3]];
+const swara = [['A', 1],['I', 1],['U', 1],['Ê', 1],['O', 1],['E', 1], ['lê', 1], ['rê', 1]];
 const sandanganSwara = [['a', 48],['i', 19],['u', 14],['ê', 7],['o', 7],['e', 10]];
 const panyigeg = [['h', 9],['n', 31],['c', 0],['r', 4],['k', 4],
                   ['d', 1],['t', 4],['s', 5],['w', 0],['l', 3],
@@ -36,7 +37,6 @@ const generateJavaneseSyllable = (choiceOptions:any) => {
     }
     else if (choiceOptions.isLearningSwara)
     {
-        const swara = [['A', 1],['I', 1],['U', 1],['Ê', 1],['O', 1],['E', 1], ['lê', 1], ['rê', 1]];
         const structures = [
             [[ swara ], choiceOptions.swaraWeight]
         ];
