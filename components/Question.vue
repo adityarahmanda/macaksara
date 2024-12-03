@@ -13,7 +13,9 @@
                         'answered' : i < currentSyllable
                     }"
                 >
-                    <span>{{ latinToJava(syllable) }}</span>
+                    
+                    <span v-if="isPasangan">{{ latinToJavaPasangan(syllable) }}</span>
+                    <span v-else>{{ latinToJava(syllable) }}</span>
                 </div>
             </div>
             <div class="col-12" style="margin-bottom: 0;">

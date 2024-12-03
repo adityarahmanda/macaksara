@@ -83,7 +83,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-const { $shuffleArray, $toSyllables, $generateJavaneseSyllable } = useNuxtApp()
+const { $shuffleArray, $toSyllables, $generateJavaneseSyllable, $generatePasanganWyanjanaSyllable } = useNuxtApp()
 const config = useRuntimeConfig()
 const route = useRoute();
 const router = useRouter();
@@ -255,12 +255,12 @@ const startQuiz = () => {
     startNewQuestion();
 }
 
-const generateChoices = (syllable) => {
+const generateChoices = (syllable, weightOptions) => {
     let choices = [syllable];
     
     for(let i = 1; i < totalChoices.value; i++) {
         let generatedSyllable;
-        do { generatedSyllable = $generateJavaneseSyllable(); } 
+        do { generatedSyllable = $generateJavaneseSyllable(weightOptions); } 
         while (generatedSyllable === syllable);
         choices = [...choices, generatedSyllable];
     }
@@ -297,7 +297,7 @@ const selectChoices = (choiceButton, choice) => {
         // set to next syllable
         if(currSyllable.value < syllables.value.length - 1) {
             currSyllable.value++;
-            choices.value = generateChoices(syllables.value[currSyllable.value]);
+            populateChoices();
         } else {
             questionAnswered.value = true;
             questionPercentage.value = ((currQuestion.value + 1) / questions.value.length) * 100;
@@ -369,8 +369,27 @@ const setNextQuestion = () => {
 
 const startNewQuestion = () => {
     questionAnswered.value = false;
-    syllables.value = $toSyllables(questions.value[currQuestion.value].value);
-    choices.value = generateChoices(syllables.value[currSyllable.value]);
+    const question = questions.value[currQuestion.value];
+    syllables.value = $toSyllables(question.value);
+    populateChoices()
+}
+
+const populateChoices = () => {
+    const question = questions.value[currQuestion.value];
+    
+    let weightOptions = {
+        swaraWeight: 0, 
+        sandanganSwaraWeight: 1, 
+        panyigegWeight: 1, 
+        wyanjanaSwaraWeight: 20, 
+        wyanjanaWyanjanaSwaraWeight: 1, 
+        rekanSwaraWeight: 1, 
+        wyanjanaSwaraPanyigegWeight: 0, 
+        wyanjanaSandanganSwaraWeight: 0,
+        isLearningNglegena: question.isLearningNglegena 
+    }
+
+    choices.value = generateChoices(syllables.value[currSyllable.value], weightOptions);
 }
 
 const setNotification = (newNotification) => {

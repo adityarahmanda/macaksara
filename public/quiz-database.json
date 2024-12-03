@@ -10,61 +10,61 @@
             { 
                 "value": 1,
                 "questions": [
-                    { "value":"ha" },
-                    { "value":"na" },
-                    { "value":"ca" },
-                    { "value":"ra" },
-                    { "value":"ka" },
-                    { "value":"da" },
-                    { "value":"ta" },
-                    { "value":"sa" },
-                    { "value":"wa" },
-                    { "value":"la" }
+                    { "value":"ha", "isLearningNglegena": true },
+                    { "value":"na", "isLearningNglegena": true },
+                    { "value":"ca", "isLearningNglegena": true },
+                    { "value":"ra", "isLearningNglegena": true },
+                    { "value":"ka", "isLearningNglegena": true },
+                    { "value":"da", "isLearningNglegena": true },
+                    { "value":"ta", "isLearningNglegena": true },
+                    { "value":"sa", "isLearningNglegena": true },
+                    { "value":"wa", "isLearningNglegena": true },
+                    { "value":"la", "isLearningNglegena": true }
                 ]
             },
             { 
                 "value": 2,
                 "questions": [
-                    { "value":"pa" },
-                    { "value":"dha" },
-                    { "value":"ja" },
-                    { "value":"ya" },
-                    { "value":"nya" },
-                    { "value":"ma" },
-                    { "value":"ga" },
-                    { "value":"ba" },
-                    { "value":"tha" },
-                    { "value":"nga" }
+                    { "value":"pa", "isLearningNglegena": true },
+                    { "value":"dha", "isLearningNglegena": true },
+                    { "value":"ja", "isLearningNglegena": true },
+                    { "value":"ya", "isLearningNglegena": true },
+                    { "value":"nya", "isLearningNglegena": true },
+                    { "value":"ma", "isLearningNglegena": true },
+                    { "value":"ga", "isLearningNglegena": true },
+                    { "value":"ba", "isLearningNglegena": true },
+                    { "value":"tha", "isLearningNglegena": true },
+                    { "value":"nga", "isLearningNglegena": true }
                 ]
             },
             { 
                 "value": 3,
                 "questions": [
-                    { "value":"h", "is-pasangan": true },
-                    { "value":"n", "is-pasangan": true },
-                    { "value":"c", "is-pasangan": true },
-                    { "value":"r", "is-pasangan": true },
-                    { "value":"k", "is-pasangan": true },
-                    { "value":"d", "is-pasangan": true },
-                    { "value":"t", "is-pasangan": true },
-                    { "value":"s", "is-pasangan": true },
-                    { "value":"w", "is-pasangan": true },
-                    { "value":"l", "is-pasangan": true }
+                    { "value":"alha", "isLearningNglegena": true },
+                    { "value":"ratna", "isLearningNglegena": true },
+                    { "value":"manca", "isLearningNglegena": true },
+                    { "value":"balka", "isLearningNglegena": true },
+                    { "value":"tanda", "isLearningNglegena": true },
+                    { "value":"asta", "isLearningNglegena": true },
+                    { "value":"maksa", "isLearningNglegena": true },
+                    { "value":"satwa", "isLearningNglegena": true },
+                    { "value":"atla", "isLearningNglegena": true }
                 ]
             },
-            {
+            { 
                 "value": 4,
                 "questions": [
-                    { "value":"p", "is-pasangan": true },
-                    { "value":"dh", "is-pasangan": true },
-                    { "value":"j", "is-pasangan": true },
-                    { "value":"y", "is-pasangan": true },
-                    { "value":"ny", "is-pasangan": true },
-                    { "value":"m", "is-pasangan": true },
-                    { "value":"g", "is-pasangan": true },
-                    { "value":"b", "is-pasangan": true },
-                    { "value":"th", "is-pasangan": true },
-                    { "value":"ng", "is-pasangan": true }
+                    { "value":"rampa", "isLearningNglegena": true },
+                    { "value":"sabdha", "isLearningNglegena": true },
+                    { "value":"manja", "isLearningNglegena": true },
+                    { "value":"satya", "isLearningNglegena": true },
+                    { "value":"haknya", "isLearningNglegena": true },
+                    { "value":"padhma", "isLearningNglegena": true },
+                    { "value":"astha", "isLearningNglegena": true },
+                    { "value":"satga", "isLearningNglegena": true },
+                    { "value":"mamba", "isLearningNglegena": true },
+                    { "value":"baptha", "isLearningNglegena": true },
+                    { "value":"malnga", "isLearningNglegena": true }
                 ]
             }
         ]
@@ -157,27 +157,27 @@
             { 
                 "value": 2,
                 "questions": [
-                    { "value":"na", "is-murda": true },
-                    { "value":"ka", "is-murda": true },
-                    { "value":"ta", "is-murda": true },
-                    { "value":"sa", "is-murda": true },
-                    { "value":"pa", "is-murda": true },
-                    { "value":"nya", "is-murda": true },
-                    { "value":"ga", "is-murda": true },
-                    { "value":"ba", "is-murda": true }
+                    { "value":"na", "isMurda": true },
+                    { "value":"ka", "isMurda": true },
+                    { "value":"ta", "isMurda": true },
+                    { "value":"sa", "isMurda": true },
+                    { "value":"pa", "isMurda": true },
+                    { "value":"nya", "isMurda": true },
+                    { "value":"ga", "isMurda": true },
+                    { "value":"ba", "isMurda": true }
                 ]
             },
             { 
                 "value": 2,
                 "questions": [
-                    { "value":"n", "is-murda": true, "is-pasangan": true },
-                    { "value":"k", "is-murda": true, "is-pasangan": true },
-                    { "value":"t", "is-murda": true, "is-pasangan": true },
-                    { "value":"s", "is-murda": true, "is-pasangan": true },
-                    { "value":"p", "is-murda": true, "is-pasangan": true },
-                    { "value":"ny", "is-murda": true, "is-pasangan": true },
-                    { "value":"g", "is-murda": true, "is-pasangan": true },
-                    { "value":"b", "is-murda": true, "is-pasangan": true }
+                    { "value":"n", "isMurda": true },
+                    { "value":"k", "isMurda": true },
+                    { "value":"t", "isMurda": true },
+                    { "value":"s", "isMurda": true },
+                    { "value":"p", "isMurda": true },
+                    { "value":"ny", "isMurda": true },
+                    { "value":"g", "isMurda": true },
+                    { "value":"b", "isMurda": true }
                 ]
             }
         ]
@@ -246,14 +246,14 @@
                     { "value":"Ū" },
                     { "value":"Ai" },
                     { "value":"Eu" },
-                    { "value":"c", "is-special": true, "is-pasangan": true },
-                    { "value":"r", "is-special": true, "is-pasangan": true },
-                    { "value":"q", "is-pasangan": true },
-                    { "value":"d", "is-pasangan": true },
-                    { "value":"ṣ", "is-pasangan": true },
-                    { "value":"ḍh", "is-pasangan": true },
-                    { "value":"jh", "is-pasangan": true },
-                    { "value":"ṭh", "is-pasangan": true }
+                    { "value":"c", "is-special": true },
+                    { "value":"r", "is-special": true },
+                    { "value":"q" },
+                    { "value":"d" },
+                    { "value":"ṣ" },
+                    { "value":"ḍh" },
+                    { "value":"jh" },
+                    { "value":"ṭh" }
                 ]
             }
         ]

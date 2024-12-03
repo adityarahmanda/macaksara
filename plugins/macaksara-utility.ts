@@ -9,7 +9,12 @@ const wyanjana = [['h', 4],['n', 7],['c', 1],['r', 9],['k', 11],
                   ['d', 2],['t', 9],['s', 9],['w', 5],['l', 6],
                   ['p', 9],['dh', 3],['j', 3],['y', 3],['ny', 1],
                   ['m', 7],['g', 14],['b', 5],['th', 1],['ng', 3]];
-const swara = [['a', 48],['i', 19],['u', 14],['ê', 7],['o', 7],['e', 10]];
+const wyanjanaMati = [['h', 0],['n', 3],['c', 0],['r', 0],['k', 1],
+                  ['d', 1],['t', 1],['s', 3],['w', 0],['l', 1],
+                  ['p', 0],['dh', 0],['j', 0],['y', 0],['ny', 0],
+                  ['m', 3],['g', 0],['b', 0],['th', 0],['ng', 0]];
+const sandanganSwara = [['a', 48],['i', 19],['u', 14],['ê', 7],['o', 7],['e', 10]];
+const swara = [['A', 48],['I', 19],['U', 14],['Ê', 7],['O', 7],['E', 10]];
 const panyigeg = [['h', 9],['n', 31],['c', 0],['r', 4],['k', 4],
                   ['d', 1],['t', 4],['s', 5],['w', 0],['l', 3],
                   ['p', 2],['dh', 0],['j', 0],['y', 0],['ny', 0],
@@ -17,18 +22,27 @@ const panyigeg = [['h', 9],['n', 31],['c', 0],['r', 4],['k', 4],
 const sandangan = [['y', 1],['r', 1],['l', 1],['w', 0]];
 const rekan = [['kh', 1],['q', 0],['dz', 1],['f', 1],['v', 0],['gh', 1]];
 
-// array struktur suku kata bahasa jawa dan peluang kemunculannya
-const structures = [
-        [[ swara ], 1], 
-        [[ panyigeg ], 1], 
-        [[ wyanjana, swara ], 20], 
-        [[ rekan, swara ], 1], 
-        [[ wyanjana, swara, panyigeg ], 0],
-        [[ wyanjana, sandangan, swara ], 0]
-];
-
 // fungsi untuk melakukan generation suku kata bahasa jawa
-const generateJavaneseSyllable = () => {
+const generateJavaneseSyllable = (weightOptions:any) => {
+    // array struktur suku kata bahasa jawa dan peluang kemunculannya
+    let sandhanganSwaraOverride = sandanganSwara;
+    if (weightOptions.isLearningNglegena)
+    {
+        sandhanganSwaraOverride = [['a', 1]];
+        weightOptions.wyanjanaWyanjanaSwaraWeight = 10;
+    }
+
+    const structures = [
+        [[ swara ], weightOptions.swaraWeight], 
+        [[ sandhanganSwaraOverride ], weightOptions.sandanganSwaraWeight], 
+        [[ panyigeg ], weightOptions.panyigegWeight], 
+        [[ wyanjana,  sandhanganSwaraOverride ], weightOptions.wyanjanaSwaraWeight], 
+        [[ wyanjanaMati, wyanjana,  sandhanganSwaraOverride ], weightOptions.wyanjanaWyanjanaSwaraWeight], 
+        [[ rekan,  sandhanganSwaraOverride ], weightOptions.rekanSwaraWeight], 
+        [[ wyanjana,  sandhanganSwaraOverride, panyigeg ], weightOptions.wyanjanaSwaraPanyigegWeight],
+        [[ wyanjana, sandangan,  sandhanganSwaraOverride ], weightOptions.wyanjanaSandanganSwaraWeight]
+    ];
+    
     const structure = randomWithWeight(structures);
     
     let syllable = '';
@@ -75,7 +89,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         provide: {
             shuffleArray,
             toSyllables,
-            generateJavaneseSyllable,
+            generateJavaneseSyllable
         }
     }
 })
