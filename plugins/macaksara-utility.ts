@@ -1,6 +1,6 @@
 // fungsi untuk melakukan pemenggalan suku kata bahasa jawa
 const toSyllables = (word:string) => {
-    const regex = /[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[^aiueoê\s]+[aiueoê]|[aiueoê](ng|r|h)?(?![aiueoê])/gi;
+    const regex = /[0-9]|[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[^aiueoê\s]+[aiueoê]|[aiueoê](ng|r|h)?(?![aiueoê])|[0-9]/gi;
     return word.match(regex);
 }
 
@@ -16,12 +16,14 @@ const panyigeg = [['h', 9],['n', 31],['c', 0],['r', 4],['k', 4],
                   ['m', 2],['g', 2],['b', 1],['th', 0],['ng', 39]];
 const sandangan = [['y', 1],['r', 1],['l', 1],['w', 0]];
 const rekan = [['kh', 1],['q', 0],['dz', 1],['f', 1],['v', 0],['gh', 1]];
+const angka = [['1', 1],['2', 1],['3', 1],['4', 1],['5', 1],
+                ['6', 1],['7', 1],['8', 1],['9', 1],['0', 1]];
 
 // fungsi untuk melakukan generation suku kata bahasa jawa
-const generateJavaneseSyllable = (weightOptions:any) => {
+const generateJavaneseSyllable = (choiceOptions:any) => {
     // array struktur suku kata bahasa jawa dan peluang kemunculannya
     let structure;
-    if (weightOptions.isLearningNglegena)
+    if (choiceOptions.isLearningNglegena)
     {
         const sandhanganSwaraOverride = [['a', 1]];
         const structures = [
@@ -32,22 +34,30 @@ const generateJavaneseSyllable = (weightOptions:any) => {
 
         structure = randomWithWeight(structures);
     }
-    else if (weightOptions.isLearningSwara)
+    else if (choiceOptions.isLearningSwara)
     {
         const swara = [['A', 1],['I', 1],['U', 1],['Ê', 1],['O', 1],['E', 1], ['lê', 1], ['rê', 1]];
         const structures = [
-            [[ swara ], weightOptions.swaraWeight]
+            [[ swara ], choiceOptions.swaraWeight]
         ];
 
         structure = randomWithWeight(structures);
     }
-    else if (weightOptions.isLearningSandhangan)
+    else if (choiceOptions.isLearningSandhangan)
     {
         const structures = [
             [[ wyanjana, sandanganSwara ], 1], // na
             [[ rekan, sandanganSwara ], 1], // fa
             [[ wyanjana, sandanganSwara, panyigeg ], 1], // nang
             [[ wyanjana, sandangan, sandanganSwara ], 1] // nra
+        ];
+
+        structure = randomWithWeight(structures);
+    }
+    else if (choiceOptions.isLearningAngka)
+    {
+        const structures = [
+            [[ angka], 1], // 1
         ];
 
         structure = randomWithWeight(structures);

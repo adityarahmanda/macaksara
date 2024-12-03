@@ -255,12 +255,12 @@ const startQuiz = () => {
     startNewQuestion();
 }
 
-const generateChoices = (syllable, weightOptions) => {
+const generateChoices = (syllable, choiceOptions) => {
     let choices = [syllable];
     
     for(let i = 1; i < totalChoices.value; i++) {
         let generatedSyllable;
-        do { generatedSyllable = $generateJavaneseSyllable(weightOptions); } 
+        do { generatedSyllable = $generateJavaneseSyllable(choiceOptions); } 
         while (generatedSyllable === syllable);
         choices = [...choices, generatedSyllable];
     }
@@ -377,13 +377,14 @@ const startNewQuestion = () => {
 const populateChoices = () => {
     const question = questions.value[currQuestion.value];
 
-    let weightOptions = {
+    let choiceOptions = {
         isLearningNglegena: question.isLearningNglegena,
         isLearningSwara: question.isLearningSwara,
-        isLearningSandhangan: question.isLearningSandhangan
+        isLearningSandhangan: question.isLearningSandhangan,
+        isLearningAngka: question.isLearningAngka
     }
 
-    choices.value = generateChoices(syllables.value[currSyllable.value], weightOptions);
+    choices.value = generateChoices(syllables.value[currSyllable.value], choiceOptions);
 }
 
 const setNotification = (newNotification) => {
