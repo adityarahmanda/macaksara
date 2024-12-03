@@ -40,7 +40,7 @@
                 </div>
                 
                 <div class="quiz-translation col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'">
-                    <span v-if="questionAnswered">terjemahan: {{ questions[currQuestion].translation }}</span>
+                    <span v-if="questionAnswered && questions[currQuestion].translation">terjemahan: {{ questions[currQuestion].translation }}</span>
                 </div>
 
                 <div class="quiz-next-button-area col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'" style="margin-top: 1em;">
@@ -191,9 +191,19 @@ onMounted(async () => {
     slug.value = route.params.id;
 
     try {
-        const response = await fetch(config.public.router_base + 'quizzes.json')
-        const quizzes = await response.json()
-        quiz.value = quizzes.find((item) => item.slug === slug.value);
+        const response = await fetch(config.public.router_base + 'quiz-database.json')
+        const database = await response.json()
+        for(let i = 0; i < database.length; i++) {
+            const data = database[i];
+            for(let j = 0; j < data.quizzes.length; j++) {
+                const quizData = data.quizzes[j];
+                if (quizData.slug == slug.value)
+                {
+                   quiz.value = quizData;
+                   break; 
+                }
+            }
+        }
         verifyUser();
         startQuiz();
     } catch (err) {

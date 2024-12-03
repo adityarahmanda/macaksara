@@ -1,0 +1,598 @@
+[{
+    "category": "Kuis Tingkat Dasar",
+    "quizzes": [
+    { 
+        "title": "Aksara Nglegena", 
+        "description": "Huruf Dasar Aksara Jawa",
+        "slug": "aksara-wyanjana",
+        "icon": "aksara-wyanjana",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"ha" },
+                    { "value":"na" },
+                    { "value":"ca" },
+                    { "value":"ra" },
+                    { "value":"ka" },
+                    { "value":"da" },
+                    { "value":"ta" },
+                    { "value":"sa" },
+                    { "value":"wa" },
+                    { "value":"la" }
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"pa" },
+                    { "value":"dha" },
+                    { "value":"ja" },
+                    { "value":"ya" },
+                    { "value":"nya" },
+                    { "value":"ma" },
+                    { "value":"ga" },
+                    { "value":"ba" },
+                    { "value":"tha" },
+                    { "value":"nga" }
+                ]
+            },
+            { 
+                "value": 3,
+                "questions": [
+                    { "value":"h", "is-pasangan": true },
+                    { "value":"n", "is-pasangan": true },
+                    { "value":"c", "is-pasangan": true },
+                    { "value":"r", "is-pasangan": true },
+                    { "value":"k", "is-pasangan": true },
+                    { "value":"d", "is-pasangan": true },
+                    { "value":"t", "is-pasangan": true },
+                    { "value":"s", "is-pasangan": true },
+                    { "value":"w", "is-pasangan": true },
+                    { "value":"l", "is-pasangan": true }
+                ]
+            },
+            {
+                "value": 4,
+                "questions": [
+                    { "value":"p", "is-pasangan": true },
+                    { "value":"dh", "is-pasangan": true },
+                    { "value":"j", "is-pasangan": true },
+                    { "value":"y", "is-pasangan": true },
+                    { "value":"ny", "is-pasangan": true },
+                    { "value":"m", "is-pasangan": true },
+                    { "value":"g", "is-pasangan": true },
+                    { "value":"b", "is-pasangan": true },
+                    { "value":"th", "is-pasangan": true },
+                    { "value":"ng", "is-pasangan": true }
+                ]
+            }
+        ]
+    },
+    { 
+        "title": "Aksara Swara", 
+        "description": "Huruf Vokal Aksara Jawa",
+        "slug": "aksara-swara",
+        "icon": "aksara-swara",
+        "levels": [
+            {
+                "value": 1,
+                "questions": [
+                    { "value":"A" },
+                    { "value":"I" },
+                    { "value":"U" },
+                    { "value":"E" },
+                    { "value":"O" },
+                    { "value":"lê" },
+                    { "value": "rê" }
+                ]
+            }
+        ]
+    },
+    { 
+        "title": "Sandangan", 
+        "description": "Diakritik Pengubah Bunyi Aksara.",
+        "slug": "sandhangan",
+        "icon": "sandhangan",
+        "levels": [
+            {
+                "value": 1,
+                "questions": [
+                    { "value":"ki" },
+                    { "value":"ku" },
+                    { "value":"kê" },
+                    { "value":"ke" },
+                    { "value":"ko" },
+                    { "value":"kah" },
+                    { "value":"kang" },
+                    { "value":"kar" },
+                    { "value":"k" },
+                    { "value":"kra" },
+                    { "value":"krê" }
+                ]
+            },
+            {
+                "value": 2,
+                "questions": [
+                    { "value":"ki" },
+                    { "value":"bu" },
+                    { "value":"sê" },
+                    { "value":"me" },
+                    { "value":"no" },
+                    { "value":"rah" },
+                    { "value":"hang" },
+                    { "value":"par" },
+                    { "value":"t" },
+                    { "value":"pra" },
+                    { "value":"nyrê" }
+                ]
+            },
+            {
+                "value": 3,
+                "questions": [
+                    { "value":"aku" },
+                    { "value":"kowe" },
+                    { "value":"kangkung" },
+                    { "value":"krêsêk" },
+                    { "value":"ambyar" },
+                    { "value":"bubrah" },
+                    { "value":"bocah" },
+                    { "value":"srêngenge" },
+                    { "value":"kidang" }
+                ]
+            }
+        ]
+    }]
+},
+
+{
+    "category": "Kuis Tingkat Lanjutan",
+    "quizzes": [
+    { 
+        "title": "Aksara Murda", 
+        "description": "Huruf Penanda Nama Orang atau Tempat",
+        "slug": "aksara-murda",
+        "icon": "aksara-murda",
+        "levels": [
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"na", "is-murda": true },
+                    { "value":"ka", "is-murda": true },
+                    { "value":"ta", "is-murda": true },
+                    { "value":"sa", "is-murda": true },
+                    { "value":"pa", "is-murda": true },
+                    { "value":"nya", "is-murda": true },
+                    { "value":"ga", "is-murda": true },
+                    { "value":"ba", "is-murda": true }
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"n", "is-murda": true, "is-pasangan": true },
+                    { "value":"k", "is-murda": true, "is-pasangan": true },
+                    { "value":"t", "is-murda": true, "is-pasangan": true },
+                    { "value":"s", "is-murda": true, "is-pasangan": true },
+                    { "value":"p", "is-murda": true, "is-pasangan": true },
+                    { "value":"ny", "is-murda": true, "is-pasangan": true },
+                    { "value":"g", "is-murda": true, "is-pasangan": true },
+                    { "value":"b", "is-murda": true, "is-pasangan": true }
+                ]
+            }
+        ]
+    },
+    { 
+        "title": "Aksara Angka", 
+        "description": "Angka Aksara Jawa",
+        "slug": "aksara-angka",
+        "icon": "aksara-angka",
+        "levels": [
+            {
+                "value": 1,
+                "questions": [
+                    { "value":"1" },
+                    { "value":"2" },
+                    { "value":"3" },
+                    { "value":"4" },
+                    { "value":"5" },
+                    { "value":"6" },
+                    { "value":"7" },
+                    { "value":"8" },
+                    { "value":"9" },
+                    { "value":"0" }
+                ]
+            },
+            {
+                "value": 2,
+                "questions": [
+                    { "value":"12" },
+                    { "value":"34" },
+                    { "value":"63" },
+                    { "value":"56" },
+                    { "value":"77" },
+                    { "value":"90" },
+                    { "value":"81" }
+                ]
+            }
+        ]
+    },
+    { 
+        "title": "Aksara Lampau", 
+        "description": "Huruf Lampau yang Tak Lagi Digunakan",
+        "slug": "aksara-lampau",
+        "icon": "aksara-lampau",
+        "levels": [
+            {
+                "value": 1,
+                "questions": [
+                    { "value":"ca", "is-special": true },
+                    { "value":"ra", "is-special": true },
+                    { "value":"qa" },
+                    { "value":"da" },
+                    { "value":"ṣa" },
+                    { "value":"ḍha" },
+                    { "value":"jha" },
+                    { "value":"ṭha" },
+                    { "value": "lêu" },
+                    { "value": "rêu" }
+                ]
+            },
+            {
+                "value": 2,
+                "questions": [
+                    { "value":"Ā" },
+                    { "value":"Ī" },
+                    { "value":"Ū" },
+                    { "value":"Ai" },
+                    { "value":"Eu" },
+                    { "value":"c", "is-special": true, "is-pasangan": true },
+                    { "value":"r", "is-special": true, "is-pasangan": true },
+                    { "value":"q", "is-pasangan": true },
+                    { "value":"d", "is-pasangan": true },
+                    { "value":"ṣ", "is-pasangan": true },
+                    { "value":"ḍh", "is-pasangan": true },
+                    { "value":"jh", "is-pasangan": true },
+                    { "value":"ṭh", "is-pasangan": true }
+                ]
+            }
+        ]
+    }]
+},
+{
+    "category": "Kuis Tantangan",
+    "quizzes": [
+    { 
+        "title": "Arane Kewan", 
+        "description": "Nama-Nama Hewan",
+        "slug": "arane-kewan",
+        "icon": "fa-horse",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"baya" , "translation":"buaya" },
+                    { "value":"cêcak" , "translation":"cicak" },
+                    { "value":"coro" , "translation":"kecoak" },
+                    { "value":"pe" , "translation":"ikan pari" },
+                    { "value":"dara" , "translation":"burung merpati" },
+                    { "value":"kupu" , "translation":"kupu-kupu" },
+                    { "value":"kura" , "translation":"kura-kura" },
+                    { "value":"tikus" , "translation":"tikus" },
+                    { "value":"yuyu" , "translation":"ketam" }
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"ampal" , "translation":"ampal" },
+                    { "value":"banyak" , "translation":"angsa" },
+                    { "value":"celeng" , "translation":"babi" },
+                    { "value":"nyambik" , "translation":"biawak" },
+                    { "value":"tongkol" , "translation":"ikan tongkol" },
+                    { "value":"lingsang" , "translation":"berang-berang" },
+                    { "value":"lintah" , "translation":"lintah" },
+                    { "value":"kalajêngking" , "translation":"kalajengking" },
+                    { "value":"kucing" , "translation":"kucing" },
+                    { "value":"bandêng" , "translation":"bandeng" }
+                ]
+            },
+            { 
+                "value": 3,
+                "questions": [
+                    { "value":"mênjangan" , "translation":"rusa" },
+                    { "value":"mênthok" , "translation":"entok" },
+                    { "value":"brati" , "translation":"bebek brati" },
+                    { "value":"jangkrik" , "translation":"jangkrik" },
+                    { "value":"krêmi" , "translation":"cacing kremi" },
+                    { "value":"kêmangga" , "translation":"laba-laba" },
+                    { "value":"kwangwung" , "translation":"kumbang badak" },
+                    { "value":"êmprit" , "translation":"burung pipit" },
+                    { "value":"tambra" , "translation":"ikan semah" },
+                    { "value":"kintêl" , "translation":"kodok belentung" },
+                    { "value":"sêmbilang" , "translation":"ikan sembilang" }
+                ]
+            }
+        ]
+    },
+    { 
+        "title": "Arane Anak Kewan", 
+        "description": "Nama-Nama Anak Hewan",
+        "slug": "arane-anak-kewan",
+        "icon": "fa-dog",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"piyik" , "translation":"anak ayam" },
+                    { "value":"meri" , "translation":"anak bebek" },
+                    { "value":"kuthuk" , "translation":"anak soang" },
+                    { "value":"gudel" , "translation":"anak kerbau"},
+                    { "value":"kowe" , "translation":"anak monyet" },
+                    { "value":"belo" , "translation":"anak kuda" },
+                    { "value":"pacêt" , "translation":"anak lintah" },
+                    { "value":"rete" , "translation":"anak buaya" },
+                    { "value":"cêlolo" , "translation":"anak tokek" },
+                    { "value":"cêriwi" , "translation":"anak laba-laba" },
+                    { "value":"kêtupa" , "translation":"anak kalajengking" }
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"pêdhet" , "translation":"anak sapi" },
+                    { "value":"warêng" , "translation":"anak banteng" },
+                    { "value":"cêmêng" , "translation":"anak kucing" },
+                    { "value":"kirik" , "translation":"anak anjing" },
+                    { "value":"êngkak" , "translation":"anak gagak" },
+                    { "value":"gogor" , "translation":"anak macan" },
+                    { "value":"sawiyah" , "translation":"anak cicak" },
+                    { "value":"menter" , "translation":"anak ikan betik" },
+                    { "value":"gênyong" , "translation":"anak ikan pari" },
+                    { "value":"bokol" , "translation":"anak ikan semah" }
+                ]
+            },
+            { 
+                "value": 3,
+                "questions": [
+                    { "value":"kompreng" , "translation":"anak rusa" },
+                    { "value":"cêmpe" , "translation":"anak kambing" },
+                    { "value":"minthi" , "translation":"anak entog" },
+                    { "value":"gêndhot" , "translation":"anak kumbang badak" },
+                    { "value":"caplek" , "translation":"anak ikan kakap" },
+                    { "value":"gêndhala" , "translation":"anak jangkrik" },
+                    { "value":"mêndhet" , "translation":"anak kecoak" },
+                    { "value":"blêngur" , "translation":"anak angsa" },
+                    { "value":"gêmbluk" , "translation":"anak babi" },
+                    { "value":"blêdug" , "translation":"anak gajah" },
+                    { "value":"jênthit" , "translation":"anak capung" }
+                ]
+            }
+        ]
+    },
+    
+    { 
+        "title": "Arane Wit-Witan", 
+        "description": "Nama-Nama Batang Pohon",
+        "slug": "arane-wit-witan",
+        "icon": "fa-tree",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"ruyung" , "translation":"batang aren" },
+                    { "value":"dêbog" , "translation":"batang pisang" },
+                    { "value":"têbon" , "translation":"batang jagung" },
+                    { "value":"pucang" , "translation":"batang jambe"},
+                    { "value":"damen" , "translation":"batang padi"},
+                    { "value":"jangglengan" , "translation":"batang jati" },
+                    { "value":"randhu" , "translation":"batang kapuk" },
+                    { "value":"tal" , "translation":"batang siwalan" },
+                    { "value":"glugu" , "translation":"batang kelapa" },
+                    { "value":"bonggol" , "translation":"batang ketela" },
+                    { "value":"bung " , "translation":"batang bambu muda" },
+                    { "value":"bungkilan" , "translation":"batang bambu tua" },
+                    { "value":"so" , "translation":"batang melinjo"}
+                ]
+            }
+        ]
+    },
+    { 
+        "title": "Arane Kembang", 
+        "description": "Nama-Nama Bunga",
+        "slug": "arane-kembang",
+        "icon": "fa-spa",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"juwis" , "translation":"bunga jarak" },
+                    { "value":"kadi" , "translation":"bunga kapas" },
+                    { "value":"kêpek" , "translation":"bunga kacang kara"},
+                    { "value":"sêdhet" , "translation":"bunga kencur" },
+                    { "value":"mênik" , "translation":"bunga cabai" },
+                    { "value":"pudhak" , "translation":"bunga pandan" },
+                    { "value":"maya" , "translation":"bunga belimbing" },
+                    { "value":"dangu" , "translation":"bunga aren" },
+                    { "value":"sinuwun " , "translation":"bunga jagung" },
+                    { "value":"karuk" , "translation":"bunga kapuk randu" }
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"mayang" , "translation":"bunga pinang" },
+                    { "value":"kêcuwis" , "translation":"bunga jengkol" },
+                    { "value":"gadhing" , "translation":"bunga cempaka" },
+                    { "value":"limaran" , "translation":"bunga kelor" },
+                    { "value":"cêthethet" , "translation":"bunga kecipir" },
+                    { "value":"jedhidhing" , "translation":"bunga lamtoro" },
+                    { "value":"manggar" , "translation":"bunga kelapa" },
+                    { "value":"angkup" , "translation":"bunga nangka" },
+                    { "value":"polong" , "translation":"bunga cengkeh" },
+                    { "value":"torong" , "translation":"bunga kecubung" }
+                ]
+            },
+            { 
+                "value": 3,
+                "questions": [
+                    { "value":"janggleng" , "translation":"bunga jati" },
+                    { "value":"pancal" , "translation":"bunga keladi" },
+                    { "value":"blanggreng" , "translation":"bunga kopi" },
+                    { "value":"ontong" , "translation":"bunga pisang" },
+                    { "value":"kroto" , "translation":"bunga melinjo" },
+                    { "value":"nyrêwenteh" , "translation":"bunga mengkudu" },
+                    { "value":"pêndul" , "translation":"bunga petai" },
+                    { "value":"krosak" , "translation":"bunga bambu" },
+                    { "value":"mantra" , "translation":"bunga gambas" },
+                    { "value":"dlangap" , "translation":"bunga durian" },
+                    { "value":"puspanyindra" , "translation":"bunga ganyong" }
+                ]
+            }
+        ]
+    },
+    { 
+        "title": "Arane Godong", 
+        "description": "Nama-Nama Dedaunan",
+        "slug": "arane-godong",
+        "icon": "fa-leaf",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"sinom" , "translation":"daun asam" },
+                    { "value":"tawa" , "translation":"daun cocor bebek" },
+                    { "value":"kumuda" , "translation":"daun keladi" },
+                    { "value":"baladewa" , "translation":"daun randu"},
+                    { "value":"damen" , "translation":"daun padi"},
+                    { "value":"so" , "translation":"daun melinjo"},
+                    { "value":"kajang" , "translation":"daun gebang" },
+                    { "value":"cêthethet" , "translation":"daun kecipir"},
+                    { "value":"limaran" , "translation":"daun kelor"},
+                    { "value":"lirih" , "translation":"daun lempuyang" }
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"dliring" , "translation":"daun aren" },
+                    { "value":"klaras" , "translation":"daun pisang kering" },
+                    { "value":"procot" , "translation":"daun jambe" },
+                    { "value":"lêmbayung" , "translation":"daun kacang lanjaran"},
+                    { "value":"kleyang" , "translation":"daun kluwih" },
+                    { "value":"blarak" , "translation":"daun kelapa" },
+                    { "value":"sabrang" , "translation":"daun cabai" },
+                    { "value":"elarmanyura" , "translation":"daun bambu" },
+                    { "value":"lumbu " , "translation":"daun talas" },
+                    { "value":"trawas" , "translation":"daun bidara putih"},
+                    { "value":"randhu" , "translation":"batang kapuk" },
+                    { "value":"lontar" , "translation":"daun siwalan" },
+                    { "value":"rênding" , "translation":"daun kacang tanah" },
+                    { "value":"jompong" , "translation":"daun jati" }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Prenahe Sedulur", 
+        "description": "Kerabat Keluarga",
+        "slug": "prenahe-sedulur",
+        "icon": "fa-user-group",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"bapak" , "translation":"bapak"},
+                    { "value":"ibu" , "translation":"ibu"},
+                    { "value":"bojo" , "translation":"suami/istri" },
+                    { "value":"mas" , "translation":"kakak" },
+                    { "value":"adhik" , "translation":"adik" },
+                    { "value":"bulik" , "translation":"bibi kecil (adik perempuan dari ayah atau ibu)" },
+                    { "value":"budhe" , "translation":"bibi besar (kakak perempuan dari ayah atau ibu)" },
+                    { "value":"simbah" , "translation":"kakek/nenek" },
+                    { "value":"maratuwa" , "translation":"mertua" },
+                    { "value":"besan" , "translation":"besan" },
+                    { "value":"ipe" , "translation":"ipar"},
+                    { "value":"putu" , "translation":"cucu" }
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"paklik" , "translation":"paman kecil (adik laki-laki dari ayah atau ibu)"},
+                    { "value":"pakdhe" , "translation":"paman besar (kakak laki-laki dari ayah atau ibu)" },
+                    { "value":"mantu" , "translation":"menantu" },
+                    { "value":"misanan" , "translation":"sepupu" },
+                    { "value":"mindhowan" , "translation":"saudara sebuyut" },
+                    { "value":"ponakan" , "translation":"keponakan" },
+                    { "value":"sêdulur" , "translation":"saudara kandung" },
+                    { "value":"pêmbarêp" , "translation":"anak sulung" },
+                    { "value":"panêngah" , "translation":"anak tengah" },
+                    { "value":"wuragil" , "translation":"anak bungsu" },
+                    { "value":"putra" , "translation":"anak laki-laki" },
+                    { "value":"putri" , "translation":"anak perempuan" }
+                ]
+            }
+        ]
+    },
+    { 
+        "title": "Perangane Awak", 
+        "description": "Anggota Tubuh",
+        "slug": "perangane-awak",
+        "icon": "fa-hand",
+        "levels": [
+            { 
+                "value": 1,
+                "questions": [
+                    { "value":"alis" , "translation":"alis" },
+                    { "value":"mata" , "translation":"mata" },
+                    { "value":"idêp" , "translation":"bulu mata"},
+                    { "value":"godheg" , "translation":"cambang"},
+                    { "value":"suku" , "translation":"kaki" },
+                    { "value":"tangan" , "translation":"tangan" },
+                    { "value":"bathuk" , "translation":"dahi" },
+                    { "value":"gulu" , "translation":"leher"},
+                    { "value":"pipi" , "translation":"pipi" },
+                    { "value":"kulit" , "translation":"kulit"},
+                    { "value":"dhadha" , "translation":"dada" },
+                    { "value":"rai" , "translation":"muka" },
+                    { "value":"lêngên" , "translation":"lengan"}
+                ]
+            },
+            { 
+                "value": 2,
+                "questions": [
+                    { "value":"bokong" , "translation":"pantat" },
+                    { "value":"irung" , "translation":"hidung" },
+                    { "value":"janggut" , "translation":"janggut" },
+                    { "value":"wêtêng" , "translation":"perut"},
+                    { "value":"sirah" , "translation":"kepala"},
+                    { "value":"gêgêr" , "translation":"punggung" },
+                    { "value":"kuping" , "translation":"telinga"},
+                    { "value":"sikil" , "translation":"kaki"},
+                    { "value":"awak" , "translation":"badan" },
+                    { "value":"ilat" , "translation":"lidah" },
+                    { "value":"pilingan" , "translation":"pelipis"},
+                    { "value":"dêngkul" , "translation":"lutut" }
+                ]
+            },
+            { 
+                "value": 3,
+                "questions": [
+                    { "value":"bangkekan" , "translation":"punggung" },
+                    { "value":"driji" , "translation":"jari" },
+                    { "value":"kempol" , "translation":"betis" },
+                    { "value":"lambe" , "translation":"bibir"},
+                    { "value":"mripat" , "translation":"mata" },
+                    { "value":"pundhak" , "translation":"pundak" },
+                    { "value":"rambut" , "translation":"rambut" },
+                    { "value":"untu" , "translation":"gigi" },
+                    { "value":"brengos" , "translation":"kumis" },
+                    { "value":"asta" , "translation":"tangan"},
+                    { "value":"mustaka" , "translation":"kepala"},
+                    { "value":"grana" , "translation":"hidung"}
+                ]
+            }
+        ]
+    }]
+}]

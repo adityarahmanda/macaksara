@@ -7,11 +7,11 @@
                         <span v-if="!isLoading">{{ title }}</span>
                     </h3>
                     <div class="quiz-card-title-translation" style="margin-top: 0;">
-                        <span v-if="!isLoading">{{ titleTranslation }}</span>
+                        <span v-if="!isLoading">{{ description }}</span>
                     </div>
                 </div>
                 <div class="quiz-card-icon">
-                    <fa :icon="icon" />
+                    <!-- <fa :icon="icon" /> -->
                 </div>
             </div>
             <div class="quiz-card-content">
@@ -40,7 +40,7 @@ const props = defineProps({
         type: String,
         default: "Nama Kuis"
     },
-    titleTranslation: {
+    description: {
         type: String,
         default: "Terjemahan Nama Kuis"
     },
