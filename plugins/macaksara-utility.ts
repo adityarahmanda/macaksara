@@ -21,6 +21,7 @@ const angka = [['1', 1],['2', 1],['3', 1],['4', 1],['5', 1],
                 ['6', 1],['7', 1],['8', 1],['9', 1],['0', 1]];
 const lampauWyanjana = [['ch', 1],['ṛ', 1],['q', 1],['ḍh', 1],['ṣ', 1],['jh', 1],['ṭh', 1]];
 const lampauSwara = [['Aa', 1],['Ii', 1],['Uu', 1],['Ai', 1],['Eu', 1],['lêu', 1], ['rêu', 1]];
+const murda = [['n', 1],['k', 1],['t', 1],['s', 1],['p', 1],['ny', 1],['g', 1],['b', 1]];
 
 // fungsi untuk melakukan generation suku kata bahasa jawa
 const generateJavaneseSyllable = (choiceOptions:any) => {
@@ -52,6 +53,15 @@ const generateJavaneseSyllable = (choiceOptions:any) => {
             [[ rekan, sandanganSwara ], 1], // fa
             [[ wyanjana, sandanganSwara, panyigeg ], 1], // nang
             [[ wyanjana, sandangan, sandanganSwara ], 1] // nra
+        ];
+
+        structure = randomWithWeight(structures);
+    }
+    else if (choiceOptions.isLearningMurda)
+    {
+        const sandhanganSwaraOverride = [['a', 1]];
+        const structures = [
+            [[ murda, sandhanganSwaraOverride ], 1],
         ];
 
         structure = randomWithWeight(structures);

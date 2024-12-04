@@ -156,14 +156,14 @@
             { 
                 "value": 1,
                 "questions": [
-                    { "value":"na", "isMurda": true, "description":"aksara na murda" },
-                    { "value":"ka", "isMurda": true, "description":"aksara ka murda" },
-                    { "value":"ta", "isMurda": true, "description":"aksara ta murda" },
-                    { "value":"sa", "isMurda": true, "description":"aksara sa murda" },
-                    { "value":"pa", "isMurda": true, "description":"aksara pa murda" },
-                    { "value":"nya", "isMurda": true, "description":"aksara nya murda" },
-                    { "value":"ga", "isMurda": true, "description":"aksara ga murda" },
-                    { "value":"ba", "isMurda": true, "description":"aksara ba murda" }
+                    { "value":"na", "isLearningMurda": true, "isMurda": true, "description":"aksara na murda" },
+                    { "value":"ka", "isLearningMurda": true, "isMurda": true, "description":"aksara ka murda" },
+                    { "value":"ta", "isLearningMurda": true, "isMurda": true, "description":"aksara ta murda" },
+                    { "value":"sa", "isLearningMurda": true, "isMurda": true, "description":"aksara sa murda" },
+                    { "value":"pa", "isLearningMurda": true, "isMurda": true, "description":"aksara pa murda" },
+                    { "value":"nya", "isLearningMurda": true, "isMurda": true, "description":"aksara nya murda" },
+                    { "value":"ga", "isLearningMurda": true, "isMurda": true, "description":"aksara ga murda" },
+                    { "value":"ba", "isLearningMurda": true, "isMurda": true, "description":"aksara ba murda" }
                 ]
             },
             {

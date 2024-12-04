@@ -392,6 +392,7 @@ const populateChoices = () => {
         isLearningNglegena: question.isLearningNglegena,
         isLearningSwara: question.isLearningSwara,
         isLearningSandhangan: question.isLearningSandhangan,
+        isLearningMurda: question.isLearningMurda,
         isLearningAngka: question.isLearningAngka,
         isLearningLampau: question.isLearningLampau,
         isMurda: question.isMurda,
