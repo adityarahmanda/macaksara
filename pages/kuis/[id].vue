@@ -267,10 +267,13 @@ const generateChoices = (syllable) => {
     let choices = [syllable];
     
     for(let i = 1; i < totalChoices.value; i++) {
-        let generatedSyllable;
-        do { generatedSyllable = $generateJavaneseSyllable(choiceOptions.value); } 
-        while (generatedSyllable === syllable);
-        choices = [...choices, generatedSyllable];
+        let newChoice;
+        do 
+        { 
+            newChoice = $generateJavaneseSyllable(choiceOptions.value);
+        } 
+        while (choices.includes(newChoice));
+        choices = [...choices, newChoice];
     }
     
     return $shuffleArray(choices);
