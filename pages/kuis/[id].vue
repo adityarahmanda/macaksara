@@ -272,7 +272,7 @@ const generateChoices = (syllable) => {
         { 
             newChoice = $generateJavaneseSyllable(choiceOptions.value);
         } 
-        while (choices.includes(newChoice));
+        while (choices.includes(newChoice) || syllable === 'ha' && newChoice === 'a' || syllable === 'a' && newChoice === 'ha');
         choices = [...choices, newChoice];
     }
     
