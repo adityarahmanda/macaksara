@@ -1,6 +1,6 @@
 // fungsi untuk melakukan pemenggalan suku kata bahasa jawa
 const toSyllables = (word:string) => {
-    const regex = /[0-9]|[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[^aiueoê\s]+[aiueoê]|[aiueoê](ng|r|h)?(?![aiueoê])/gi;
+    const regex = /[0-9]|(lêu|rêu)|[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[^aiueoê\s]+[aiueoê]|[aiueoê](ng|r|h)?(?![aiueoê])/g;
     return word.match(regex);
 }
 
@@ -19,6 +19,8 @@ const sandangan = [['y', 1],['r', 1],['l', 1],['w', 0]];
 const rekan = [['kh', 1],['q', 0],['dz', 1],['f', 1],['v', 0],['gh', 1]];
 const angka = [['1', 1],['2', 1],['3', 1],['4', 1],['5', 1],
                 ['6', 1],['7', 1],['8', 1],['9', 1],['0', 1]];
+const lampauWyanjana = [['ch', 1],['ṛ', 1],['q', 1],['ḍh', 1],['ṣ', 1],['jh', 1],['ṭh', 1]];
+const lampauSwara = [['Aa', 1],['Ii', 1],['Uu', 1],['Ai', 1],['Eu', 1],['lêu', 1], ['rêu', 1]];
 
 // fungsi untuk melakukan generation suku kata bahasa jawa
 const generateJavaneseSyllable = (choiceOptions:any) => {
@@ -57,7 +59,17 @@ const generateJavaneseSyllable = (choiceOptions:any) => {
     else if (choiceOptions.isLearningAngka)
     {
         const structures = [
-            [[ angka], 1], // 1
+            [[ angka ], 1],
+        ];
+
+        structure = randomWithWeight(structures);
+    }
+    else if (choiceOptions.isLearningLampau)
+    {
+        const sandhanganSwaraOverride = [['a', 1]];
+        const structures = [
+            [[ lampauWyanjana, sandhanganSwaraOverride ], 1],
+            [[ lampauSwara ], 1],
         ];
 
         structure = randomWithWeight(structures);

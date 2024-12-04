@@ -32,6 +32,7 @@
                     :syllables="syllables"
                     :is-loading="isLoading"
                     :is-murda="choiceOptions.isMurda"
+                    :is-dipthong="choiceOptions.isDipthong"
                     class="col-12 text-center"
                     style="margin-bottom: 0;"
                 />
@@ -42,6 +43,10 @@
                 
                 <div class="quiz-translation col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'">
                     <span v-if="questionAnswered && questions[currQuestion].translation">terjemahan: {{ questions[currQuestion].translation }}</span>
+                </div>
+
+                <div class="quiz-translation col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'">
+                    <span v-if="questionAnswered && questions[currQuestion].description">keterangan: {{ questions[currQuestion].description }}</span>
                 </div>
 
                 <div class="quiz-next-button-area col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'" style="margin-top: 1em;">
@@ -84,7 +89,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-const { $shuffleArray, $toSyllables, $generateJavaneseSyllable, $generatePasanganWyanjanaSyllable } = useNuxtApp()
+const { $shuffleArray, $toSyllables, $generateJavaneseSyllable } = useNuxtApp()
 const config = useRuntimeConfig()
 const route = useRoute();
 const router = useRouter();
@@ -383,7 +388,10 @@ const populateChoices = () => {
         isLearningNglegena: question.isLearningNglegena,
         isLearningSwara: question.isLearningSwara,
         isLearningSandhangan: question.isLearningSandhangan,
-        isLearningAngka: question.isLearningAngka
+        isLearningAngka: question.isLearningAngka,
+        isLearningLampau: question.isLearningLampau,
+        isMurda: question.isMurda,
+        isDipthong: question.isDipthong
     }
 
     choices.value = generateChoices(syllables.value[currSyllable.value], choiceOptions);

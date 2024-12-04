@@ -226,34 +226,20 @@
             {
                 "value": 1,
                 "questions": [
-                    { "value":"ca", "is-special": true },
-                    { "value":"ra", "is-special": true },
-                    { "value":"qa" },
-                    { "value":"da" },
-                    { "value":"ṣa" },
-                    { "value":"ḍha" },
-                    { "value":"jha" },
-                    { "value":"ṭha" },
-                    { "value": "lêu" },
-                    { "value": "rêu" }
-                ]
-            },
-            {
-                "value": 2,
-                "questions": [
-                    { "value":"Ā" },
-                    { "value":"Ī" },
-                    { "value":"Ū" },
-                    { "value":"Ai" },
-                    { "value":"Eu" },
-                    { "value":"c", "is-special": true },
-                    { "value":"r", "is-special": true },
-                    { "value":"q" },
-                    { "value":"d" },
-                    { "value":"ṣ" },
-                    { "value":"ḍh" },
-                    { "value":"jh" },
-                    { "value":"ṭh" }
+                    { "value":"cha", "isLearningLampau": true, "description":"aksara ca mahaprana" },
+                    { "value":"ṛa", "isLearningLampau": true, "description":"aksara ra agung" },
+                    { "value":"qa", "isLearningLampau": true, "description":"aksara ka sasak" },
+                    { "value":"ḍha", "isLearningLampau": true, "description":"aksara dha mahaprana" },
+                    { "value":"ṣa", "isLearningLampau": true, "description":"aksara sa mahaprana" },
+                    { "value":"jha", "isLearningLampau": true, "description":"aksara ja mahaprana" },
+                    { "value":"ṭha", "isLearningLampau": true, "description":"aksara tha mahaprana" },
+                    { "value":"Aa", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara A dirga" },
+                    { "value":"Ii", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara I dirga" },
+                    { "value":"Uu", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara U dirga" },
+                    { "value":"Ai", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara Ai" },
+                    { "value":"Eu", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara Eu" },
+                    { "value":"lêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara nga lêlêt raswadi" },
+                    { "value":"rêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara pa cêrêt-tarung" }
                 ]
             }
         ]

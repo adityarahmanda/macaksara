@@ -13,7 +13,7 @@
                         'answered' : i < currentSyllable
                     }"
                 >
-                    <span>{{ latinToJava(syllable, true, isMurda) }}</span>
+                    <span>{{ $convert(syllable, true, isMurda, isDipthong) }}</span>
                 </div>
             </div>
             <div class="col-12" style="margin-bottom: 0;">
@@ -38,6 +38,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+const { $convert } = useNuxtApp()
 
 const props = defineProps({
     currentSyllable: {
@@ -55,6 +56,10 @@ const props = defineProps({
         default: false
     },
     isMurda: {
+        type: Boolean,
+        default: true
+    },
+    isDipthong: {
         type: Boolean,
         default: true
     },
