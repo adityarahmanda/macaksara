@@ -169,7 +169,7 @@ const loseStreakMessages = [
 
 const completeQuizMessages = [
   'Selamat, kamu berhasil menyelesaikan kuis!',
-  'Kuisnya berhasil diselesaikan kuis dengan apik!',
+  'Kuisnya berhasil diselesaikan dengan apik!',
   'Kuisnya berhasil diselesaikan, hore!',
 ];
 
