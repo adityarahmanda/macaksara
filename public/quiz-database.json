@@ -10,61 +10,60 @@
             { 
                 "value": 1,
                 "questions": [
-                    { "value":"ha", "isLearningNglegena": true },
-                    { "value":"na", "isLearningNglegena": true },
-                    { "value":"ca", "isLearningNglegena": true },
-                    { "value":"ra", "isLearningNglegena": true },
-                    { "value":"ka", "isLearningNglegena": true },
-                    { "value":"da", "isLearningNglegena": true },
-                    { "value":"ta", "isLearningNglegena": true },
-                    { "value":"sa", "isLearningNglegena": true },
-                    { "value":"wa", "isLearningNglegena": true },
-                    { "value":"la", "isLearningNglegena": true }
+                    { "value":"ha", "isLearningNglegena": true, "description":"aksara ha" },
+                    { "value":"na", "isLearningNglegena": true, "description":"aksara na" },
+                    { "value":"ca", "isLearningNglegena": true, "description":"aksara ca" },
+                    { "value":"ra", "isLearningNglegena": true, "description":"aksara ra" },
+                    { "value":"ka", "isLearningNglegena": true, "description":"aksara ka" },
+                    { "value":"da", "isLearningNglegena": true, "description":"aksara da" },
+                    { "value":"ta", "isLearningNglegena": true, "description":"aksara ta" },
+                    { "value":"sa", "isLearningNglegena": true, "description":"aksara sa" },
+                    { "value":"wa", "isLearningNglegena": true, "description":"aksara wa" },
+                    { "value":"la", "isLearningNglegena": true, "description":"aksara la" }
                 ]
             },
             { 
                 "value": 2,
                 "questions": [
-                    { "value":"pa", "isLearningNglegena": true },
-                    { "value":"dha", "isLearningNglegena": true },
-                    { "value":"ja", "isLearningNglegena": true },
-                    { "value":"ya", "isLearningNglegena": true },
-                    { "value":"nya", "isLearningNglegena": true },
-                    { "value":"ma", "isLearningNglegena": true },
-                    { "value":"ga", "isLearningNglegena": true },
-                    { "value":"ba", "isLearningNglegena": true },
-                    { "value":"tha", "isLearningNglegena": true },
-                    { "value":"nga", "isLearningNglegena": true }
+                    { "value":"pa", "isLearningNglegena": true, "description":"aksara pa" },
+                    { "value":"dha", "isLearningNglegena": true, "description":"aksara dha" },
+                    { "value":"ja", "isLearningNglegena": true, "description":"aksara ja" },
+                    { "value":"ya", "isLearningNglegena": true, "description":"aksara ya" },
+                    { "value":"nya", "isLearningNglegena": true, "description":"aksara nya" },
+                    { "value":"ma", "isLearningNglegena": true, "description":"aksara ma" },
+                    { "value":"ga", "isLearningNglegena": true, "description":"aksara ga" },
+                    { "value":"ba", "isLearningNglegena": true, "description":"aksara ba" },
+                    { "value":"tha", "isLearningNglegena": true, "description":"aksara tha" },
+                    { "value":"nga", "isLearningNglegena": true, "description":"aksara nga" }
                 ]
             },
             { 
                 "value": 3,
                 "questions": [
-                    { "value":"alha", "isLearningNglegena": true },
-                    { "value":"ratna", "isLearningNglegena": true },
-                    { "value":"manca", "isLearningNglegena": true },
-                    { "value":"balka", "isLearningNglegena": true },
-                    { "value":"tanda", "isLearningNglegena": true },
-                    { "value":"asta", "isLearningNglegena": true },
-                    { "value":"maksa", "isLearningNglegena": true },
-                    { "value":"satwa", "isLearningNglegena": true },
-                    { "value":"atla", "isLearningNglegena": true }
+                    { "value":"alha", "isLearningNglegena": true, "description":"aksara ha + aksara la + pasangan ha" },
+                    { "value":"ratna", "isLearningNglegena": true, "description":"aksara ra + aksara ta + pasangan na" },
+                    { "value":"manca", "isLearningNglegena": true, "description":"aksara ma + aksara nya + pasangan ca" },
+                    { "value":"balka", "isLearningNglegena": true, "description":"aksara ba + aksara la + pasangan ka" },
+                    { "value":"tanda", "isLearningNglegena": true , "description":"aksara ta + aksara na + pasangan da"},
+                    { "value":"asta", "isLearningNglegena": true, "description":"aksara ha + aksara sa + pasangan ta" },
+                    { "value":"maksa", "isLearningNglegena": true, "description":"aksara ma + aksara ka + pasangan sa" },
+                    { "value":"satwa", "isLearningNglegena": true, "description":"aksara sa + aksara ta + pasangan wa" },
+                    { "value":"atla", "isLearningNglegena": true, "description":"aksara ha + aksara ta + pasangan la" }
                 ]
             },
             { 
                 "value": 4,
                 "questions": [
-                    { "value":"rampa", "isLearningNglegena": true },
-                    { "value":"sabdha", "isLearningNglegena": true },
-                    { "value":"manja", "isLearningNglegena": true },
-                    { "value":"satya", "isLearningNglegena": true },
-                    { "value":"haknya", "isLearningNglegena": true },
-                    { "value":"padhma", "isLearningNglegena": true },
-                    { "value":"astha", "isLearningNglegena": true },
-                    { "value":"satga", "isLearningNglegena": true },
-                    { "value":"mamba", "isLearningNglegena": true },
-                    { "value":"baptha", "isLearningNglegena": true },
-                    { "value":"malnga", "isLearningNglegena": true }
+                    { "value":"rampa", "isLearningNglegena": true, "description":"aksara ra + aksara ma + pasangan pa" },
+                    { "value":"sabdha", "isLearningNglegena": true, "description":"aksara sa + aksara ba + pasangan dha" },
+                    { "value":"manja", "isLearningNglegena": true, "description":"aksara ma + aksara nya + pasangan ja" },
+                    { "value":"satya", "isLearningNglegena": true, "description":"aksara sa + aksara ta + pasangan ya" },
+                    { "value":"haknya", "isLearningNglegena": true, "description":"aksara ha + aksara ka + pasangan nya" },
+                    { "value":"padhma", "isLearningNglegena": true, "description":"aksara pa + aksara dha + pasangan ma" },
+                    { "value":"satga", "isLearningNglegena": true, "description":"aksara sa + aksara ta + pasangan ga" },
+                    { "value":"mamba", "isLearningNglegena": true, "description":"aksara ma + aksara ma + pasangan ba" },
+                    { "value":"astha", "isLearningNglegena": true, "description":"aksara ha + aksara sa + pasangan tha" },
+                    { "value":"malnga", "isLearningNglegena": true, "description":"aksara ma + aksara la + pasangan nga" }
                 ]
             }
         ]
@@ -78,13 +77,13 @@
             {
                 "value": 1,
                 "questions": [
-                    { "value":"A", "isLearningSwara": true },
-                    { "value":"I", "isLearningSwara": true },
-                    { "value":"U", "isLearningSwara": true },
-                    { "value":"E", "isLearningSwara": true },
-                    { "value":"O", "isLearningSwara": true },
-                    { "value":"lê", "isLearningSwara": true },
-                    { "value": "rê", "isLearningSwara": true }
+                    { "value":"A", "isLearningSwara": true, "description":"aksara swara A" },
+                    { "value":"I", "isLearningSwara": true, "description":"aksara swara I" },
+                    { "value":"U", "isLearningSwara": true, "description":"aksara swara U" },
+                    { "value":"E", "isLearningSwara": true, "description":"aksara swara E" },
+                    { "value":"O", "isLearningSwara": true, "description":"aksara swara O" },
+                    { "value":"lê", "isLearningSwara": true, "description":"aksara ganten nga lêlêt" },
+                    { "value": "rê", "isLearningSwara": true, "description":"aksara ganten pa cêrêt" }
                 ]
             }
         ]
@@ -98,33 +97,33 @@
             {
                 "value": 1,
                 "questions": [
-                    { "value":"ni", "isLearningSandhangan": true },
-                    { "value":"cu", "isLearningSandhangan": true },
-                    { "value":"dhê", "isLearningSandhangan": true },
-                    { "value":"ke", "isLearningSandhangan": true },
-                    { "value":"do", "isLearningSandhangan": true },
-                    { "value":"ta", "isLearningSandhangan": true },
-                    { "value":"se", "isLearningSandhangan": true },
-                    { "value":"wa", "isLearningSandhangan": true },
-                    { "value":"li", "isLearningSandhangan": true },
-                    { "value":"pê", "isLearningSandhangan": true },
-                    { "value":"jo", "isLearningSandhangan": true }
+                    { "value":"ni", "isLearningSandhangan": true, "description":"aksara na + wulu (i)" },
+                    { "value":"cu", "isLearningSandhangan": true, "description":"aksara ca + suku (u)" },
+                    { "value":"dhê", "isLearningSandhangan": true, "description":"aksara dha + pêpêt (ê)" },
+                    { "value":"ke", "isLearningSandhangan": true, "description":"aksara ka + tarung (e)" },
+                    { "value":"do", "isLearningSandhangan": true, "description":"aksara da + taling-tarung (o)" },
+                    { "value":"ta", "isLearningSandhangan": true, "description":"aksara ta tanpa sandangan" },
+                    { "value":"se", "isLearningSandhangan": true, "description":"aksara sa + tarung (e)" },
+                    { "value":"wa", "isLearningSandhangan": true, "description":"aksara wa tanpa sandangan" },
+                    { "value":"li", "isLearningSandhangan": true, "description":"aksara la + wulu (i)" },
+                    { "value":"pê", "isLearningSandhangan": true, "description":"aksara pa + pêpêt (ê)" },
+                    { "value":"jo", "isLearningSandhangan": true, "description":"aksara ja + taling-tarung (o)" }
                 ]
             },
             {
                 "value": 2,
                 "questions": [
-                    { "value":"kri", "isLearningSandhangan": true },
-                    { "value":"byuh", "isLearningSandhangan": true },
-                    { "value":"sêr", "isLearningSandhangan": true },
-                    { "value":"mre", "isLearningSandhangan": true },
-                    { "value":"c", "isLearningSandhangan": true },
-                    { "value":"rah", "isLearningSandhangan": true },
-                    { "value":"hang", "isLearningSandhangan": true },
-                    { "value":"par", "isLearningSandhangan": true },
-                    { "value":"t", "isLearningSandhangan": true },
-                    { "value":"pra", "isLearningSandhangan": true },
-                    { "value":"nyrê", "isLearningSandhangan": true }
+                    { "value":"kri", "isLearningSandhangan": true, "description":"aksara ka + cakra (r) + wulu (i)" },
+                    { "value":"byuh", "isLearningSandhangan": true, "description":"aksara ba + pengkal (y) + suku (u) + wignyan (h)" },
+                    { "value":"sêr", "isLearningSandhangan": true, "description":"aksara sa + pêpêt (ê) + layar (r)" },
+                    { "value":"mre", "isLearningSandhangan": true, "description":"aksara ma + cakra (r) + tarung (e)" },
+                    { "value":"c", "isLearningSandhangan": true, "description":"aksara ca + pangkon" },
+                    { "value":"rah", "isLearningSandhangan": true, "description":"aksara ra + wignyan (h)" },
+                    { "value":"hang", "isLearningSandhangan": true, "description":"aksara ha + cecak (ng)" },
+                    { "value":"par", "isLearningSandhangan": true, "description":"aksara pa + layar (r)" },
+                    { "value":"t", "isLearningSandhangan": true, "description":"aksara ta + pangkon" },
+                    { "value":"pra", "isLearningSandhangan": true, "description":"aksara pa + cakra (r)" },
+                    { "value":"nyrê", "isLearningSandhangan": true, "description":"aksara nya + cakra kêrêt (rê)" }
                 ]
             },
             {
@@ -157,27 +156,27 @@
             { 
                 "value": 1,
                 "questions": [
-                    { "value":"na", "isMurda": true },
-                    { "value":"ka", "isMurda": true },
-                    { "value":"ta", "isMurda": true },
-                    { "value":"sa", "isMurda": true },
-                    { "value":"pa", "isMurda": true },
-                    { "value":"nya", "isMurda": true },
-                    { "value":"ga", "isMurda": true },
-                    { "value":"ba", "isMurda": true }
+                    { "value":"na", "isMurda": true, "description":"aksara na murda" },
+                    { "value":"ka", "isMurda": true, "description":"aksara ka murda" },
+                    { "value":"ta", "isMurda": true, "description":"aksara ta murda" },
+                    { "value":"sa", "isMurda": true, "description":"aksara sa murda" },
+                    { "value":"pa", "isMurda": true, "description":"aksara pa murda" },
+                    { "value":"nya", "isMurda": true, "description":"aksara nya murda" },
+                    { "value":"ga", "isMurda": true, "description":"aksara ga murda" },
+                    { "value":"ba", "isMurda": true, "description":"aksara ba murda" }
                 ]
             },
             {
                 "value": 2,
                 "questions": [
-                    { "value":"najwa", "isMurda": true },
-                    { "value":"dayat", "isMurda": true },
-                    { "value":"raka", "isMurda": true },
-                    { "value":"solo", "isMurda": true },
-                    { "value":"purwaharja", "isMurda": true },
-                    { "value":"vanya", "isMurda": true },
-                    { "value":"gowa", "isMurda": true },
-                    { "value":"bali", "isMurda": true }
+                    { "value":"najwa", "isMurda": true, "description":"Najwa (nama orang)" },
+                    { "value":"dayat", "isMurda": true, "description":"Dayat (nama orang)" },
+                    { "value":"raka", "isMurda": true, "description":"Raka (nama orang)" },
+                    { "value":"solo", "isMurda": true, "description":"Solo (nama tempat)" },
+                    { "value":"purwaharja", "isMurda": true, "description":"Purwoharjo (nama tempat)" },
+                    { "value":"ranya", "isMurda": true, "description":"Ranya (nama orang)" },
+                    { "value":"gowa", "isMurda": true, "description":"Gowa (nama tempat)" },
+                    { "value":"bali", "isMurda": true, "description":"Bali (nama tempat)" }
                 ]
             }
         ]
@@ -191,28 +190,28 @@
             {
                 "value": 1,
                 "questions": [
-                    { "value":"1", "isLearningAngka": true },
-                    { "value":"2", "isLearningAngka": true },
-                    { "value":"3", "isLearningAngka": true },
-                    { "value":"4", "isLearningAngka": true },
-                    { "value":"5", "isLearningAngka": true },
-                    { "value":"6", "isLearningAngka": true },
-                    { "value":"7", "isLearningAngka": true },
-                    { "value":"8", "isLearningAngka": true },
-                    { "value":"9", "isLearningAngka": true },
-                    { "value":"0", "isLearningAngka": true }
+                    { "value":"1", "isLearningAngka": true, "description":"aksara angka 1" },
+                    { "value":"2", "isLearningAngka": true, "description":"aksara angka 2" },
+                    { "value":"3", "isLearningAngka": true, "description":"aksara angka 3" },
+                    { "value":"4", "isLearningAngka": true, "description":"aksara angka 4" },
+                    { "value":"5", "isLearningAngka": true, "description":"aksara angka 5" },
+                    { "value":"6", "isLearningAngka": true, "description":"aksara angka 6" },
+                    { "value":"7", "isLearningAngka": true, "description":"aksara angka 7" },
+                    { "value":"8", "isLearningAngka": true, "description":"aksara angka 8" },
+                    { "value":"9", "isLearningAngka": true, "description":"aksara angka 9" },
+                    { "value":"0", "isLearningAngka": true, "description":"aksara angka 0" }
                 ]
             },
             {
                 "value": 2,
                 "questions": [
-                    { "value":"12", "isLearningAngka": true },
-                    { "value":"34", "isLearningAngka": true },
-                    { "value":"63", "isLearningAngka": true },
-                    { "value":"56", "isLearningAngka": true },
-                    { "value":"77", "isLearningAngka": true },
-                    { "value":"90", "isLearningAngka": true },
-                    { "value":"81", "isLearningAngka": true }
+                    { "value":"12", "isLearningAngka": true, "description":"aksara angka 12" },
+                    { "value":"34", "isLearningAngka": true, "description":"aksara angka 34" },
+                    { "value":"63", "isLearningAngka": true, "description":"aksara angka 63" },
+                    { "value":"56", "isLearningAngka": true, "description":"aksara angka 56" },
+                    { "value":"77", "isLearningAngka": true, "description":"aksara angka 77" },
+                    { "value":"90", "isLearningAngka": true, "description":"aksara angka 90" },
+                    { "value":"81", "isLearningAngka": true, "description":"aksara angka 81" }
                 ]
             }
         ]
@@ -238,8 +237,8 @@
                     { "value":"Uu", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara U dirga" },
                     { "value":"Ai", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara Ai" },
                     { "value":"Eu", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara Eu" },
-                    { "value":"lêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara nga lêlêt raswadi" },
-                    { "value":"rêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara pa cêrêt-tarung" }
+                    { "value":"lêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara ganten nga lêlêt raswadi" },
+                    { "value":"rêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara ganten pa cêrêt-tarung" }
                 ]
             }
         ]
