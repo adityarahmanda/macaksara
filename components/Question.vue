@@ -57,11 +57,11 @@ const props = defineProps({
     },
     isMurda: {
         type: Boolean,
-        default: true
+        default: false
     },
     isDipthong: {
         type: Boolean,
-        default: true
+        default: false
     },
     isLoading: {
         type: Boolean,
