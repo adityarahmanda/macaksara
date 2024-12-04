@@ -31,6 +31,9 @@
                     :current-syllable="currSyllable" 
                     :syllables="syllables"
                     :is-loading="isLoading"
+                    :is-murda="choiceOptions.isMurda"
+                    :is-dipthong="choiceOptions.isDipthong"
+                    :is-learning-angka="choiceOptions.isLearningAngka"
                     class="col-12 text-center"
                     style="margin-bottom: 0;"
                 />
@@ -40,7 +43,11 @@
                 </div>
                 
                 <div class="quiz-translation col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'">
-                    <span v-if="questionAnswered">terjemahan: {{ questions[currQuestion].translation }}</span>
+                    <span v-if="questionAnswered && questions[currQuestion].translation">terjemahan: {{ questions[currQuestion].translation }}</span>
+                </div>
+
+                <div class="quiz-translation col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'">
+                    <span v-if="questionAnswered && questions[currQuestion].description">keterangan: {{ questions[currQuestion].description }}</span>
                 </div>
 
                 <div class="quiz-next-button-area col-12 text-center" :class="questionAnswered ? 'visible' : 'invisible'" style="margin-top: 1em;">
@@ -102,6 +109,7 @@ const syllables = ref([])
 const currSyllable = ref(0)
 const choices = ref([])
 const totalChoices = ref(4)
+const choiceOptions = ref({})
 const questionPercentage = ref(0)
 const questionAnswered = ref(false)
 const streakCount = ref(0)
@@ -161,7 +169,7 @@ const loseStreakMessages = [
 
 const completeQuizMessages = [
   'Selamat, kamu berhasil menyelesaikan kuis!',
-  'Kuisnya berhasil diselesaikan kuis dengan apik!',
+  'Kuisnya berhasil diselesaikan dengan apik!',
   'Kuisnya berhasil diselesaikan, hore!',
 ];
 
@@ -191,9 +199,19 @@ onMounted(async () => {
     slug.value = route.params.id;
 
     try {
-        const response = await fetch(config.public.router_base + 'quizzes.json')
-        const quizzes = await response.json()
-        quiz.value = quizzes.find((item) => item.slug === slug.value);
+        const response = await fetch(config.public.router_base + 'quiz-database.json')
+        const database = await response.json()
+        for(let i = 0; i < database.length; i++) {
+            const data = database[i];
+            for(let j = 0; j < data.quizzes.length; j++) {
+                const quizData = data.quizzes[j];
+                if (quizData.slug == slug.value)
+                {
+                   quiz.value = quizData;
+                   break; 
+                }
+            }
+        }
         verifyUser();
         startQuiz();
     } catch (err) {
@@ -249,10 +267,13 @@ const generateChoices = (syllable) => {
     let choices = [syllable];
     
     for(let i = 1; i < totalChoices.value; i++) {
-        let generatedSyllable;
-        do { generatedSyllable = $generateJavaneseSyllable(); } 
-        while (generatedSyllable === syllable);
-        choices = [...choices, generatedSyllable];
+        let newChoice;
+        do 
+        { 
+            newChoice = $generateJavaneseSyllable(choiceOptions.value);
+        } 
+        while (choices.includes(newChoice) || syllable === 'ha' && newChoice === 'a' || syllable === 'a' && newChoice === 'ha');
+        choices = [...choices, newChoice];
     }
     
     return $shuffleArray(choices);
@@ -287,7 +308,7 @@ const selectChoices = (choiceButton, choice) => {
         // set to next syllable
         if(currSyllable.value < syllables.value.length - 1) {
             currSyllable.value++;
-            choices.value = generateChoices(syllables.value[currSyllable.value]);
+            populateChoices();
         } else {
             questionAnswered.value = true;
             questionPercentage.value = ((currQuestion.value + 1) / questions.value.length) * 100;
@@ -359,8 +380,26 @@ const setNextQuestion = () => {
 
 const startNewQuestion = () => {
     questionAnswered.value = false;
-    syllables.value = $toSyllables(questions.value[currQuestion.value].value);
-    choices.value = generateChoices(syllables.value[currSyllable.value]);
+    const question = questions.value[currQuestion.value];
+    syllables.value = $toSyllables(question.value);
+    populateChoices()
+}
+
+const populateChoices = () => {
+    const question = questions.value[currQuestion.value];
+
+    choiceOptions.value = {
+        isLearningNglegena: question.isLearningNglegena,
+        isLearningSwara: question.isLearningSwara,
+        isLearningSandhangan: question.isLearningSandhangan,
+        isLearningMurda: question.isLearningMurda,
+        isLearningAngka: question.isLearningAngka,
+        isLearningLampau: question.isLearningLampau,
+        isMurda: question.isMurda,
+        isDipthong: question.isDipthong
+    }
+
+    choices.value = generateChoices(syllables.value[currSyllable.value], choiceOptions);
 }
 
 const setNotification = (newNotification) => {

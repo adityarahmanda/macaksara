@@ -1,6 +1,8 @@
 const wyanjana:{ [id: string]: string; }  = {
     b: 'ꦧ',       // ba
+    bh: 'ꦨ',       // ba murda
     c: 'ꦕ',       // ca
+    ch: 'ꦖ',       // cha mahaprana
     d: 'ꦢ',       // da
     dh: 'ꦝ',       // dha
     ḍ: 'ꦝ',       // dha
@@ -11,6 +13,7 @@ const wyanjana:{ [id: string]: string; }  = {
     gh: 'ꦒ꦳',     // gha rekan
     h: 'ꦲ',       // ha
     j: 'ꦗ',       // ja
+    jh: 'ꦙ',       // jha murda
     k: 'ꦏ',       // ka
     kh: 'ꦏ꦳',     // kha rekan
     l: 'ꦭ',       // la
@@ -24,9 +27,10 @@ const wyanjana:{ [id: string]: string; }  = {
     ñ: 'ꦚ',       // nya
     ṇ: 'ꦟ',       // na murda
     p: 'ꦥ',       // pa
-    p̣: 'ꦦ',       // pa murda
+    ph: 'ꦦ',       // pa murda
     q: 'ꦐ',       // ka sasak
     r: 'ꦫ',       // ra
+    ṛ: 'ꦬ',        // ra agung
     s: 'ꦱ',       // sa
     ś: 'ꦯ',       // sa murda
     ṣ: 'ꦰ',       // sa mahaprana
@@ -38,19 +42,31 @@ const wyanjana:{ [id: string]: string; }  = {
     w: 'ꦮ',       // wa
     x: 'ꦏ꧀ꦱ',     // ks 
     y: 'ꦪ',       // ya
-    z: 'ꦗ꦳',      // za rekan
+    z: 'ꦗ꦳',      // za rekan,
 }
 
 const swara:{ [id: string]: string; }  = {
    A: 'ꦄ',       // aksara swara a
+   Ā: 'ꦄꦴ',       // aksara swara aa
+   Aa: 'ꦄꦴ',       // aksara swara aa
+   Ô: 'ꦄ',         // aksara swara aa
+   Ôô: 'ꦄꦴ',        // aksara swara aa
    I: 'ꦆ',       // aksara swara i
+   Ii: 'ꦇ',       // aksara swara a
+   Ī: 'ꦇ',       // aksara swara a
    U: 'ꦈ',       // aksara swara u
+   Ū: 'ꦈꦴ',       // aksara swara uu
+   Uu: 'ꦈꦴ',       // aksara swara uu
    E: 'ꦌ',       // aksara swara e
    È: 'ꦌ',       // aksara swara e
    É: 'ꦌ',       // aksara swara e
    Ê: 'ꦄꦼ',      // aksara swara ê
    Ě: 'ꦄꦼ',      // aksara swara ê
    O: 'ꦎ',       // aksara swara o
+   Ai: 'ꦍ',       // aksara swara ai
+   Eu: 'ꦎꦴ',       // aksara swara êu
+   lêu: 'ꦋ',       // aksara lêu
+   rêu: 'ꦉꦴ',       // aksara rêu
 }
 
 const murdaConsonants:{ [id: string]: string; } = {
@@ -99,7 +115,22 @@ const sandhanganSwara:{ [id: string]: string; } = {
     é: 'ꦺ',
     ê: 'ꦼ',
     ě: 'ꦼ',
+    êu: 'ꦼꦴ',
+    ěu: 'ꦼꦴ',
     o: 'ꦺꦴ',
+}
+
+const angka:{ [id: string]: string; } = {
+    '0': '꧐',
+    '1': '꧑',
+    '2': '꧒',
+    '3': '꧓',
+    '4': '꧔',
+    '5': '꧕',
+    '6': '꧖',
+    '7': '꧗',
+    '8': '꧘',
+    '9': '꧙'
 }
 
 const pada:{ [id: string]: string; } = {
@@ -109,7 +140,7 @@ const pada:{ [id: string]: string; } = {
     '-' : '',
 }
 
-function latinToJava(str:string, isIgnoreSpace:boolean = false, isMurda:boolean = false, isDiphthong:boolean = false):string {
+function convert(str:string, isIgnoreSpace:boolean = false, isMurda:boolean = false, isDiphthong:boolean = false):string {
    var length = str.length;
    var output = [];
    var isMurdaAlreadyIncluded = false;
@@ -297,6 +328,41 @@ function latinToJava(str:string, isIgnoreSpace:boolean = false, isMurda:boolean 
        if(isVowelsSwara(c)) {
            isAlreadyStacked = false;
 
+           // isDiphthong
+           if(isDiphthong && i + 1 < length && isVowels(str[i + 1])) {
+                var c2 = str[i + 1];
+
+                if(isSwaraA(c) && isVowelsA(c2)) {
+                    output.push(swara['Aa']);
+                    i++;
+                    continue;
+                }
+                
+                if (isSwaraA(c) && isVowelsWulu(c2)) {
+                    output.push(swara['Ai']);
+                    i++;
+                    continue;
+                }
+
+                if(isSwaraI(c) && isVowelsWulu(c2)) {
+                    output.push(swara['Ii']);
+                    i++;
+                    continue;
+                }
+
+                if(isSwaraU(c) && isVowelsSuku(c2)) {
+                    output.push(swara['Uu']);
+                    i++;
+                    continue;
+                }
+
+                if(isSwaraE(c) && isVowelsSuku(c2)) {
+                    output.push(swara['Eu']);
+                    i++;
+                    continue;
+                }
+            }
+
            output.push(swara[c]);
            continue;
        }
@@ -354,32 +420,55 @@ function latinToJava(str:string, isIgnoreSpace:boolean = false, isMurda:boolean 
                        output.push('ꦽ');
                        continue;
                    }
-
-                    // check nga lelet
-                   if(i - 1 >= 0) {
-                       var cBefore = str[i - 1];
-                       
-                       if(cBefore === 'l' && !isPangkon(lastOutputChar)) {
-                           output.pop(); // pop pangkon
-                           output.pop(); // pop aksara la
-                           output.push('ꦊ');
-                           continue;
-                       }
-                   }
                }
 
                if(i - 1 >= 0) {
                    var cBefore = str[i - 1];
                    
+                   // check nga lelet
+                   if(isConsonantL(cBefore)) {
+                        output.pop(); // pop pangkon
+                        output.pop(); // pop aksara la
+                        output.push('ꦊ');
+                        continue;
+                    }
+
                    // check pa ceret
-                   if(cBefore === 'r') {
+                   if(isConsonantR(cBefore)) {
                        output.pop(); // pop pangkon
                        output.pop(); // pop aksara ra
                        output.push('ꦉ');
                        continue;
                    }
                }
-           }            
+           }
+
+           if(isDiphthong && isVowelsSuku(c)) {
+                if(i - 2 >= 0) {
+                    var c2Before = str[i - 2];
+                    var cBefore = str[i - 1];
+                    
+                    // check nga lelet Raswadi
+                    if(isConsonantL(c2Before) && isVowelsPepet(cBefore)) {
+                        output.pop(); // pop nga lelet
+                        output.push('ꦋ');
+                        continue;
+                    }
+
+                    // check pa ceret-tarung
+                    if(isConsonantR(c2Before) && isVowelsPepet(cBefore)) {
+                        output.pop(); // pop pa ceret
+                        output.push('ꦉꦴ');
+                        continue;
+                    }
+                }
+
+                if(i - 1 >= 0) {
+                    var cBefore = str[i - 1];
+                    
+                    
+                }
+            }
            
            if(i - 1 >= 0 && isConsonants(str[i - 1])) {
                // check pangkon
@@ -432,10 +521,22 @@ function latinToJava(str:string, isIgnoreSpace:boolean = false, isMurda:boolean 
                    i++;
                    continue;
                }
+
+               if (isVowelsPepet(c) && isVowelsSuku(c2)) {
+                    output.pop();
+                    output.push(sandhanganSwara['êu']);
+                    i++;
+                    continue;
+                }
            }
 
            continue;
        }
+
+       if(isCharactersAngka(c)) {
+        output.push(angka[c]);
+        continue;
+    }
        
        if(isCharactersPada(c)) {
            isAlreadyStacked = false;
@@ -484,6 +585,14 @@ function isConsonantsSandhanganWyanjana(s:string):boolean {
    return Object.prototype.hasOwnProperty.call(sandhanganWyanjana, s.toLowerCase());
 }
 
+function isConsonantL(s:string):boolean { 
+    return s === 'L' || s === 'l';
+}
+
+function isConsonantR(s:string):boolean { 
+    return s === 'R' || s === 'r';
+}
+
 function isVowels(s:string):boolean { 
    return Object.prototype.hasOwnProperty.call(sandhanganSwara, s); 
 }
@@ -492,8 +601,28 @@ function isVowelsSwara(s:string):boolean {
    return Object.prototype.hasOwnProperty.call(swara, s); 
 }
 
+function isCharactersAngka(s:string):boolean {
+    return Object.prototype.hasOwnProperty.call(angka, s);
+ }
+
 function isCharactersPada(s:string):boolean {
    return Object.prototype.hasOwnProperty.call(pada, s);
+}
+
+function isSwaraA(s:string):boolean {
+    return s === 'A' || s === 'Ô';
+}
+
+function isSwaraI(s:string):boolean {
+    return s === 'I';
+}
+
+function isSwaraU(s:string):boolean {
+    return s === 'U';
+}
+ 
+function isSwaraE(s:string):boolean {
+    return s === 'E';
 }
 
 function isVowelsA(s:string):boolean {
@@ -529,9 +658,9 @@ function isCakra(s:string):boolean {
 }
 
 export default defineNuxtPlugin((nuxtApp) => {
-    nuxtApp.vueApp.mixin({
-        methods:{
-            latinToJava
-        },
-    })
+    return {
+        provide: {
+            convert,
+        }
+    }
 })

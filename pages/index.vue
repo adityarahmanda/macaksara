@@ -3,38 +3,37 @@
         <Sidebar :user="user" :is-loading="isLoading" @reset-game="resetGame"/>
 
         <main class="col-12 col-8-lg">
-            <h2 style="margin-top: 0">Pilih Kuis</h2>
-
             <div v-if="isLoading" class="row">
                 <div 
                     v-for="index in 5" 
                     :key="index" 
                     class="col-12 col-6-md"
-                    :style="index % 2 === 0 ? 'margin-left: 0' : ''"
-                    style="margin-bottom: 1em"
+                    style="margin-bottom: 1.25em"
                 >
                     <QuizCard is-loading />
                 </div>
             </div>
 
-            <div v-else class="row">
-                <div 
-                    v-for="(card, i) in quizCards"   
-                    :key="card.id" 
-                    class="col-12 col-6-md"
-                    :style="index % 2 === 0 ? 'margin-left: 0' : ''"
-                    style="margin-bottom: 1em"
-                >
-                    <QuizCard 
-                        :title="card.title" 
-                        :title-translation="card.titleTranslation"
-                        :slug="card.slug"
-                        :icon="card.icon"
-                        :question-total="card.questionTotal"
-                        :current-level="card.currentLevel"
-                        :max-level="card.maxLevel"
-                        :is-completed="card.isCompleted"             
-                    />
+            <div v-for="(card, i) in quizCardDataList" :key="card.id">
+                <h2 style="margin-top: 0">{{ card.category }}</h2>
+                <div class="row">
+                    <div 
+                        v-for="(quizData, i) in card.quizDataList"  
+                        :key="quizData.id" 
+                        class="col-12 col-6-md mb-1"
+                        style="margin-bottom: 1.25em"
+                    >
+                        <QuizCard 
+                            :title="quizData.title" 
+                            :description="quizData.description"
+                            :slug="quizData.slug"
+                            :icon="quizData.icon"
+                            :question-total="quizData.questionTotal"
+                            :current-level="quizData.currentLevel"
+                            :max-level="quizData.maxLevel"
+                            :is-completed="quizData.isCompleted"             
+                        />
+                    </div>
                 </div>
             </div>
         </main>
@@ -48,8 +47,8 @@ const config = useRuntimeConfig()
 
 const user = ref(undefined);
 const isLoading = ref(true);
-const quizzes = ref([]);
-const quizCards = ref({});
+const database = ref([]);
+const quizCardDataList = ref({});
 
 const title = `Macaksara — Permainan Kuis Membaca Aksara Jawa`
 const url = 'https://adityarahmanda.github.io/macaksara'
@@ -76,14 +75,16 @@ const createNewUser = () => {
         quizProgresses: {},
     };
 
-    // get quizzes
-    for(let i = 0; i < quizzes.value.length; i++) {
-        const slug = quizzes.value[i].slug;
-
-        user.value.quizProgresses[slug] = {
-            currentLevel: 1,
-            isCompleted: false
-        };
+    // get database
+    for(let i = 0; i < database.value.length; i++) {
+        const data = database.value[i];
+        for(let j = 0; j < data.quizzes.length; j++) {
+            const slug = data.quizzes[j].slug;
+            user.value.quizProgresses[slug] = {
+                currentLevel: 1,
+                isCompleted: false
+            };
+        }
     }
 
     localStorage.setItem('userData', JSON.stringify(user.value));
@@ -96,6 +97,8 @@ const verifyUser = () => {
     // verify user
     if(user.value) {
         const quizProgKeys = Object.keys(user.value.quizProgresses);
+        let quizzesLength = 0;
+        database.value.forEach(data => quizzesLength += data.quizzes.length)
 
         let updateUser = false;
         if(user.value.learnedWords === undefined || user.value.learnedWords === null) {
@@ -108,28 +111,30 @@ const verifyUser = () => {
             updateUser = true;
         }
 
-        if(quizProgKeys.length === quizzes.value.length) {
-            for(let i = 0; i < quizzes.value.length; i++) {
-                if(quizProgKeys[i] !== quizzes.value[i].slug || quizProgKeys[i] === "undefined") {
-                    user.value.quizProgresses[quizProgKeys[i]] = {
+        if(quizProgKeys.length === quizzesLength) {
+            database.value.forEach(data => {
+                data.quizzes.forEach(quizData => {
+                    const progressExist = quizProgKeys.indexOf(quizData.slug) !== -1;
+                    if(!progressExist) {
+                        user.value.quizProgresses[quizData.slug] = {
+                            currentLevel: 1,
+                            isCompleted: false
+                        }
+
+                        updateUser = true;
+                    }
+                });
+            });
+        } else {
+            user.value.quizProgresses = {};
+            database.value.forEach(data => {
+                data.quizzes.forEach(quizData => {
+                    user.value.quizProgresses[quizData.slug] = {
                         currentLevel: 1,
                         isCompleted: false
-                    }
-
-                    updateUser = true;
-                }
-            }
-        } else {
-            user.value.quizProgresses ={};
-            
-            for(let i = 0; i < quizzes.value.length; i++) {
-                const slug = quizzes.value[i].slug;
-
-                user.value.quizProgresses[slug] = {
-                    currentLevel: 1,
-                    isCompleted: false
-                };
-            }
+                    };
+                })
+            });
             createNewUser();
         }
 
@@ -141,39 +146,52 @@ const verifyUser = () => {
     }
 }
 
-const initQuizCards = () => {
+const initQuizCardDataList = () => {
     // create quiz card
-    for(let i = 0; i < quizzes.value.length; i++) {
-        var quiz = quizzes.value[i];
-        const slug = quiz.slug;
-        const title = quiz.title;
-        const titleTranslation = quiz.titleTranslation;
-        const icon = quiz.icon;
-        const currentLevel = user.value.quizProgresses[slug].currentLevel;
-        const maxLevel = quiz.levels.length;
-        const isCompleted = user.value.quizProgresses[slug].isCompleted;
+    for(let i = 0; i < database.value.length; i++) {
+        const data = database.value[i];
+        const category = data.category;
 
-        let questionTotal = 0;
-        if(!isCompleted) {
-            const levelKeys = Object.keys(quiz.levels);
-            for(const key in levelKeys) {
-                if(quiz.levels[key].value === currentLevel) {
-                    questionTotal = quiz.levels[key].questions.length;
-                    break;
+        const quizDataList = new Array;
+        for(let j = 0; j < data.quizzes.length; j++) {
+            const quiz = data.quizzes[j];
+            const slug = quiz.slug;
+            const title = quiz.title;
+            const description = quiz.description;
+            const icon = quiz.icon;
+            const maxLevel = quiz.levels.length;
+            const quizProgress = user.value.quizProgresses[slug];
+            const currentLevel = quizProgress.currentLevel;
+            const isCompleted = quizProgress.isCompleted;
+
+            let questionTotal = 0;
+            if(!isCompleted) {
+                const levelKeys = Object.keys(quiz.levels);
+                for(const key in levelKeys) {
+                    if(quiz.levels[key].value === currentLevel) {
+                        questionTotal = quiz.levels[key].questions.length;
+                        break;
+                    }
                 }
             }
-            // console.log(questionTotal);
-        }
 
-        quizCards.value[i] = {
-            slug,
-            title,
-            titleTranslation,
-            icon,
-            currentLevel,
-            maxLevel,
-            questionTotal,
-            isCompleted
+            const quizData = {
+                slug,
+                title,
+                description,
+                icon,
+                maxLevel,
+                currentLevel,
+                questionTotal,
+                isCompleted,
+            }
+
+            quizDataList[j] = quizData;
+        }
+        
+        quizCardDataList.value[i] = {
+            category,
+            quizDataList
         }
     }
 }
@@ -182,17 +200,17 @@ const resetGame = () => {
     isLoading.value = true;
 
     createNewUser();
-    initQuizCards();
+    initQuizCardDataList();
 
     isLoading.value = false;
 }
 
 onMounted(async () => {
     try {
-        const response = await fetch(config.public.router_base + 'quizzes.json');
-        quizzes.value = await response.json();
+        const response = await fetch(config.public.router_base + 'quiz-database.json');
+        database.value = await response.json();
         verifyUser();
-        initQuizCards();
+        initQuizCardDataList();
     } catch (error) {
         console.error(error);
     } finally {
