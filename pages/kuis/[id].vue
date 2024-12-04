@@ -33,6 +33,7 @@
                     :is-loading="isLoading"
                     :is-murda="choiceOptions.isMurda"
                     :is-dipthong="choiceOptions.isDipthong"
+                    :is-learning-angka="choiceOptions.isLearningAngka"
                     class="col-12 text-center"
                     style="margin-bottom: 0;"
                 />
