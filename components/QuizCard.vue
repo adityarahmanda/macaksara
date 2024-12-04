@@ -17,7 +17,7 @@
             <div class="quiz-card-content">
                 <div class="quiz-card-status">
                     <span v-if="!isCompleted && !isLoading">Level {{ currentLevel }} / {{ maxLevel }}</span>
-                    <span v-if="isCompleted && !isLoading">Terselesaikan</span>
+                    <span v-if="isCompleted && !isLoading">Selesai</span>
                 </div>
                 <div class="quiz-card-progress-bar">
                     <ProgressBar :height="8" :percentage="progressBarValue"/>
