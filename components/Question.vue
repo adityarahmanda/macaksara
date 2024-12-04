@@ -103,8 +103,18 @@ const isMobile = () => {
 
 const adjustStyle = () => {
     if(props.questionAnswered) {
-        angkaPrefix.value.style.transition = 'all .4s ease-out';
-        angkaPrefix.value.style.width = angkaPrefix.value.firstChild.offsetWidth  + 1 + 'px';
+        if (angkaPrefix.value)
+        {
+            angkaPrefix.value.style.transition = 'all .4s ease-out';
+            angkaPrefix.value.style.width = angkaPrefix.value.firstChild.offsetWidth  + 1 + 'px';
+        }
+
+        if (angkaPostfix.value)
+        {
+            angkaPostfix.value.style.transition = 'all .4s ease-out';
+            angkaPostfix.value.style.width = angkaPostfix.value.firstChild.offsetWidth  + 1 + 'px';
+        }
+            
         for(let i = 0; i < props.syllables.length; i++) {
             aksaraSyllables.value[i].style.transition = 'all .4s ease-out';
             aksaraSyllables.value[i].style.width = aksaraSyllables.value[i].firstChild.offsetWidth  + 1 + 'px';
@@ -112,15 +122,21 @@ const adjustStyle = () => {
             latinSyllables.value[i].style.transition = 'all .4s ease-out';
             latinSyllables.value[i].style.width = latinSyllables.value[i].firstChild.offsetWidth + 1 + 'px';
         }
-        angkaPostfix.value.style.transition = 'all .4s ease-out';
-        angkaPostfix.value.style.width = angkaPostfix.value.firstChild.offsetWidth  + 1 + 'px';
     }
 
     if(!props.questionAnswered) {
-        angkaPrefix.value.style.transition = 'none';
-        angkaPrefix.value.style.width = angkaPrefix.value.firstChild.offsetWidth  + 1 + 'px';
-        angkaPostfix.value.style.transition = 'none';
-        angkaPostfix.value.style.width = angkaPostfix.value.firstChild.offsetWidth  + 1 + 'px';
+        if (angkaPrefix.value)
+        {
+            angkaPrefix.value.style.transition = 'none';
+            angkaPrefix.value.style.width = angkaPrefix.value.firstChild.offsetWidth  + 1 + 'px';
+        }
+
+        if (angkaPostfix.value)
+        {
+            angkaPostfix.value.style.transition = 'none';
+            angkaPostfix.value.style.width = angkaPostfix.value.firstChild.offsetWidth  + 1 + 'px';
+        }
+
         for(let i = 0; i < props.syllables.length; i++) {
             aksaraSyllables.value[i].style.transition = 'none';
             aksaraSyllables.value[i].style.width = (aksaraSyllables.value[i].firstChild.offsetWidth + 1 + spacer.value) + 'px';
