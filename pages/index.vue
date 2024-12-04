@@ -150,7 +150,6 @@ const verifyUser = () => {
 
 const initQuizCardDataList = () => {
     // create quiz card
-    console.log(database.value);
     for(let i = 0; i < database.value.length; i++) {
         const data = database.value[i];
         const category = data.category;
@@ -202,7 +201,6 @@ const initQuizCardDataList = () => {
             quizDataList
         }
     }
-    console.log(quizCardDataList.value)
 }
 
 const resetGame = () => {
