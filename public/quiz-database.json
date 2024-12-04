@@ -82,8 +82,8 @@
                     { "value":"U", "isLearningSwara": true, "description":"aksara swara U" },
                     { "value":"E", "isLearningSwara": true, "description":"aksara swara E" },
                     { "value":"O", "isLearningSwara": true, "description":"aksara swara O" },
-                    { "value":"lê", "isLearningSwara": true, "description":"aksara ganten nga lêlêt" },
-                    { "value": "rê", "isLearningSwara": true, "description":"aksara ganten pa cêrêt" }
+                    { "value":"lê", "isLearningSwara": true, "description":"aksara nga lêlêt" },
+                    { "value": "rê", "isLearningSwara": true, "description":"aksara pa cêrêt" }
                 ]
             }
         ]
@@ -183,7 +183,7 @@
     },
     { 
         "title": "Aksara Angka", 
-        "description": "Angka Aksara Jawa",
+        "description": "Angka-Angka dalam Aksara Jawa",
         "slug": "aksara-angka",
         "icon": "aksara-angka",
         "levels": [
@@ -218,7 +218,7 @@
     },
     { 
         "title": "Aksara Lampau", 
-        "description": "Huruf Lampau yang Tak Lagi Digunakan",
+        "description": "Huruf Lampau yang Sudah Tak Digunakan",
         "slug": "aksara-lampau",
         "icon": "aksara-lampau",
         "levels": [
@@ -237,8 +237,8 @@
                     { "value":"Uu", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara U dirga" },
                     { "value":"Ai", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara Ai" },
                     { "value":"Eu", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara Eu" },
-                    { "value":"lêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara ganten nga lêlêt raswadi" },
-                    { "value":"rêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara ganten pa cêrêt-tarung" }
+                    { "value":"lêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara nga lêlêt raswadi" },
+                    { "value":"rêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara pa cêrêt-tarung" }
                 ]
             }
         ]

@@ -8,8 +8,7 @@
                     v-for="index in 5" 
                     :key="index" 
                     class="col-12 col-6-md"
-                    :style="index % 2 === 0 ? 'margin-left: 0' : ''"
-                    style="margin-bottom: 1em"
+                    style="margin-bottom: 1.25em"
                 >
                     <QuizCard is-loading />
                 </div>
@@ -21,9 +20,8 @@
                     <div 
                         v-for="(quizData, i) in card.quizDataList"  
                         :key="quizData.id" 
-                        class="col-12 col-6-md"
-                        :style="index % 2 === 0 ? 'margin-left: 0' : ''"
-                        style="margin-bottom: 1em"
+                        class="col-12 col-6-md mb-1"
+                        style="margin-bottom: 1.25em"
                     >
                         <QuizCard 
                             :title="quizData.title" 
@@ -162,36 +160,31 @@ const initQuizCardDataList = () => {
             const description = quiz.description;
             const icon = quiz.icon;
             const maxLevel = quiz.levels.length;
-
-            let quizData = {
-                
-            }
-
             const quizProgress = user.value.quizProgresses[slug];
-           
-                const currentLevel = quizProgress.currentLevel;
-                const isCompleted = quizProgress.isCompleted;
-                let questionTotal = 0;
-                if(!isCompleted) {
-                    const levelKeys = Object.keys(quiz.levels);
-                    for(const key in levelKeys) {
-                        if(quiz.levels[key].value === currentLevel) {
-                            questionTotal = quiz.levels[key].questions.length;
-                            break;
-                        }
+            const currentLevel = quizProgress.currentLevel;
+            const isCompleted = quizProgress.isCompleted;
+
+            let questionTotal = 0;
+            if(!isCompleted) {
+                const levelKeys = Object.keys(quiz.levels);
+                for(const key in levelKeys) {
+                    if(quiz.levels[key].value === currentLevel) {
+                        questionTotal = quiz.levels[key].questions.length;
+                        break;
                     }
                 }
+            }
 
-                quizData = {
-                    slug,
-                    title,
-                    description,
-                    icon,
-                    maxLevel,
-                    currentLevel,
-                    questionTotal,
-                    isCompleted,
-                }
+            const quizData = {
+                slug,
+                title,
+                description,
+                icon,
+                maxLevel,
+                currentLevel,
+                questionTotal,
+                isCompleted,
+            }
 
             quizDataList[j] = quizData;
         }
