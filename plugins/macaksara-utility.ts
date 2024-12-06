@@ -1,15 +1,19 @@
 // fungsi untuk melakukan pemenggalan suku kata bahasa jawa
 const toSyllables = (word:string) => {
-    const regex = /[0-9]|(lêu|rêu)|[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[^aiueoê\s]+[aiueoê]|[aiueoê](ng|r|h)?(?![aiueoê])/g;
+    const regex = /[0-9]|(lêu|rêu)|[^aiueoê\s]+[aiueoê]?(ng|r|h)?(?![aiueoê])|[^aiueoê\s]+[aiueoê]|[aiueoê](ng|r|h)?(?![aiueoê])|[aiueoê]/g;
     return word.match(regex);
 }
 
+const toSwaraSyllables = (word:string) => {
+    const regex = /[0-9]|[^aiueoê\s]+([aiueoê]|(ai|au|aa|ii|uu|êu))?(ng|r|h)?(?![aiueoê])|[^aiueoê\s]+[aiueoê]|[aiueoê](ng|r|h)?(?![aiueoê])|(ai|au|aa|ii|uu|êu)|[aiueoê]/g;
+    return word.match(regex);
+}
 // array karakter bahasa jawa dan peluang kemunculannya
 const wyanjana = [['h', 4],['n', 7],['c', 1],['r', 9],['k', 11],
                   ['d', 2],['t', 9],['s', 9],['w', 5],['l', 6],
                   ['p', 9],['dh', 3],['j', 3],['y', 3],['ny', 1],
                   ['m', 7],['g', 14],['b', 5],['th', 1],['ng', 3]];
-const swara = [['A', 1],['I', 1],['U', 1],['Ê', 1],['O', 1],['E', 1], ['lê', 1], ['rê', 1]];
+const swara = [['a', 1],['i', 1],['u', 1],['ê', 1],['o', 1],['e', 1], ['lê', 1], ['rê', 1]];
 const sandanganSwara = [['a', 48],['i', 19],['u', 14],['ê', 7],['o', 7],['e', 10]];
 const panyigeg = [['h', 9],['n', 31],['c', 0],['r', 4],['k', 4],
                   ['d', 1],['t', 4],['s', 5],['w', 0],['l', 3],
@@ -20,7 +24,7 @@ const rekan = [['kh', 1],['q', 0],['dz', 1],['f', 1],['v', 0],['gh', 1]];
 const angka = [['1', 1],['2', 1],['3', 1],['4', 1],['5', 1],
                 ['6', 1],['7', 1],['8', 1],['9', 1],['0', 1]];
 const lampauWyanjana = [['ch', 1],['ṛ', 1],['q', 1],['ḍh', 1],['ṣ', 1],['jh', 1],['ṭh', 1]];
-const lampauSwara = [['Aa', 1],['Ii', 1],['Uu', 1],['Ai', 1],['Eu', 1],['lêu', 1], ['rêu', 1]];
+const lampauSwara = [['aa', 1],['ii', 1],['uu', 1],['ai', 1],['au', 1],['lêu', 1], ['rêu', 1]];
 const murda = [['n', 1],['k', 1],['t', 1],['s', 1],['p', 1],['ny', 1],['g', 1],['b', 1]];
 
 // fungsi untuk melakukan generation suku kata bahasa jawa
@@ -143,6 +147,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         provide: {
             shuffleArray,
             toSyllables,
+            toSwaraSyllables,
             generateJavaneseSyllable
         }
     }

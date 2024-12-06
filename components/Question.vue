@@ -21,7 +21,7 @@
                         'answered' : i < currentSyllable
                     }"
                 >
-                    <span>{{ $convert(syllable, true, isMurda, isDipthong) }}</span>
+                    <span>{{ $convert(syllable, isIgnoreSpace, isDipthong, isSwara, isMurda) }}</span>
                 </div>
                 <div 
                     v-if="isLearningAngka"
@@ -75,11 +75,19 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
-    isMurda: {
+    isIgnoreSpace: {
         type: Boolean,
         default: false
     },
     isDipthong: {
+        type: Boolean,
+        default: false
+    },
+    isSwara: {
+        type: Boolean,
+        default: false
+    },
+    isMurda: {
         type: Boolean,
         default: false
     },

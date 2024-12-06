@@ -31,8 +31,9 @@
                     :current-syllable="currSyllable" 
                     :syllables="syllables"
                     :is-loading="isLoading"
-                    :is-murda="choiceOptions.isMurda"
                     :is-dipthong="choiceOptions.isDipthong"
+                    :is-swara="choiceOptions.isSwara"
+                    :is-murda="choiceOptions.isMurda"
                     :is-learning-angka="choiceOptions.isLearningAngka"
                     class="col-12 text-center"
                     style="margin-bottom: 0;"
@@ -90,7 +91,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-const { $shuffleArray, $toSyllables, $generateJavaneseSyllable } = useNuxtApp()
+const { $shuffleArray, $toSyllables, $toSwaraSyllables, $generateJavaneseSyllable } = useNuxtApp()
 const config = useRuntimeConfig()
 const route = useRoute();
 const router = useRouter();
@@ -381,7 +382,10 @@ const setNextQuestion = () => {
 const startNewQuestion = () => {
     questionAnswered.value = false;
     const question = questions.value[currQuestion.value];
-    syllables.value = $toSyllables(question.value);
+    if (question.isSwara)
+        syllables.value = $toSwaraSyllables(question.value);
+    else
+        syllables.value = $toSyllables(question.value);
     populateChoices()
 }
 
@@ -395,8 +399,9 @@ const populateChoices = () => {
         isLearningMurda: question.isLearningMurda,
         isLearningAngka: question.isLearningAngka,
         isLearningLampau: question.isLearningLampau,
-        isMurda: question.isMurda,
-        isDipthong: question.isDipthong
+        isDipthong: question.isDipthong,
+        isSwara: question.isSwara,
+        isMurda: question.isMurda
     }
 
     choices.value = generateChoices(syllables.value[currSyllable.value], choiceOptions);
