@@ -77,13 +77,13 @@
             {
                 "value": 1,
                 "questions": [
-                    { "value":"A", "isLearningSwara": true, "description":"aksara swara A" },
-                    { "value":"I", "isLearningSwara": true, "description":"aksara swara I" },
-                    { "value":"U", "isLearningSwara": true, "description":"aksara swara U" },
-                    { "value":"E", "isLearningSwara": true, "description":"aksara swara E" },
-                    { "value":"O", "isLearningSwara": true, "description":"aksara swara O" },
-                    { "value":"lê", "isLearningSwara": true, "description":"aksara nga lêlêt" },
-                    { "value": "rê", "isLearningSwara": true, "description":"aksara pa cêrêt" }
+                    { "value":"a", "isLearningSwara": true, "isSwara": true, "description":"aksara swara A" },
+                    { "value":"i", "isLearningSwara": true,"isSwara": true, "description":"aksara swara I" },
+                    { "value":"u", "isLearningSwara": true, "isSwara": true, "description":"aksara swara U" },
+                    { "value":"e", "isLearningSwara": true, "isSwara": true, "description":"aksara swara E" },
+                    { "value":"o", "isLearningSwara": true, "isSwara": true, "description":"aksara swara O" },
+                    { "value":"lê", "isLearningSwara": true, "isSwara": true, "description":"aksara nga lêlêt" },
+                    { "value": "rê", "isLearningSwara": true, "isSwara": true, "description":"aksara pa cêrêt" }
                 ]
             }
         ]
@@ -232,11 +232,11 @@
                     { "value":"ṣa", "isLearningLampau": true, "description":"aksara sa mahaprana" },
                     { "value":"jha", "isLearningLampau": true, "description":"aksara ja mahaprana" },
                     { "value":"ṭha", "isLearningLampau": true, "description":"aksara tha mahaprana" },
-                    { "value":"Aa", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara A dirga" },
-                    { "value":"Ii", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara I dirga" },
-                    { "value":"Uu", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara U dirga" },
-                    { "value":"Ai", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara Ai" },
-                    { "value":"Eu", "isLearningLampau": true, "isDipthong": true, "description":"aksara swara Eu" },
+                    { "value":"aa", "isLearningLampau": true, "isSwara": true, "description":"aksara swara A dirga" },
+                    { "value":"ii", "isLearningLampau": true, "isSwara": true, "description":"aksara swara I dirga" },
+                    { "value":"uu", "isLearningLampau": true, "isSwara": true, "description":"aksara swara U dirga" },
+                    { "value":"ai", "isLearningLampau": true, "isSwara": true, "description":"aksara swara Ai" },
+                    { "value":"au", "isLearningLampau": true, "isSwara": true, "description":"aksara swara Au" },
                     { "value":"lêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara nga lêlêt raswadi" },
                     { "value":"rêu", "isLearningLampau": true, "isDipthong": true, "description":"aksara pa cêrêt-tarung" }
                 ]

@@ -1,1 +1,0 @@
-import{A as c,o as _,c as s,f as e,B as a,C as r}from"./DkvaAolM.js";import{_ as m}from"./BIiDCUy0.js";const p={},f={class:"container d-flex flex-column",style:{"min-height":"100vh"}};function l(i,d){const o=a,n=m,t=r;return _(),s("div",f,[e(o),e(n,{class:"content"}),e(t)])}const h=c(p,[["render",l]]);export{h as default};
