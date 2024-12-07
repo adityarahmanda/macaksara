@@ -30,6 +30,7 @@ export default defineNuxtConfig({
         { name:"apple-mobile-web-app-capable", content:"yes" },
         { name:"apple-mobile-web-app-status-bar-style", content:"default" },
         { name:"theme-color", content:"#47311c" },
+        { name:"google-site-verification", content:"f1-0Yi6e3RKJjV4zbh94coGiNGf9aze04uLuILtGI00" },
         { hid: 'title', name: 'title', content: site_name },
         { hid: 'description', name: 'description', content: description },
         { name:'keyword', content:'macaksara, aksara, jawa, kuis, membaca, latihan, interaktif' },
@@ -51,7 +52,6 @@ export default defineNuxtConfig({
         { name: 'twitter:creator', content: '@arahmanda21' },
         { name: 'twitter:card', content:'summary_large_image' },
         { name: 'twitter:image', content: screenshot },
-        // { name: 'google-site-verification', content: 'xxxx' },
         // { name: 'yandex-verification', content: 'xxxx' },
         // { name: 'p:domain_verify', content: 'xxxx' },
         // { name: 'norton-safeweb-site-verification', content: 'xxxx' }

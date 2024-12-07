@@ -62,7 +62,7 @@
 
 <script setup>
 const title = `Privacy Policy — Macaksara`;
-const url = 'https://adityarahmanda.github.io/privacy-policy';
+const url = 'https://adityarahmanda.github.io/macaksara/privacy-policy';
 
 useHead({
     title,

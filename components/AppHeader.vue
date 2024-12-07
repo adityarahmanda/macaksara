@@ -7,9 +7,9 @@
                 <fa v-else icon="bars" />
             </button>
         </div>
-        <div class="nav-collapse nav-collapse-md" :class="[{'show' : expanded}]" style="width: 100%;">
+        <div class="nav-right nav-collapse nav-collapse-md" :class="[{'show' : expanded}]" style="width: 100%; flex-basis: auto;">
             <div>
-                <a v-for="item in navItems" :key="item.title" :href="item.link" target="_self">{{ item.title }}</a>
+                <a v-for="item in navItems" :key="item.title" :href="item.link" target="_self" style="padding: 1rem 1rem;">{{ item.title }}</a>
             </div>
         </div>
     </nav>
@@ -32,7 +32,7 @@ const props = defineProps({
         default() {
             return [
                 { title: 'Belajar Aksara Jawa', link: 'https://adityarahmanda.github.io/artikel/belajar-aksara-jawa' },
-                { title: 'Alih Aksara', link: 'https://adityarahmanda.github.io/alih-aksara' },
+                { title: 'Alih Aksara', link: 'https://adityarahmanda.github.io/alih-aksara' }
             ]
         }
     }
